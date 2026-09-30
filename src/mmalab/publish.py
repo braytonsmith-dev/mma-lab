@@ -38,18 +38,24 @@ ol.fav,ul.fav{padding-left:22px}ol.fav li,ul.fav li{margin:3px 0}.flag{color:#d0
 
 
 HEAD = ("<thead><tr><th>#</th><th>Fighter</th><th class='num'>Score</th><th class='num'>Rating</th>"
-        "<th>Last 3 yrs</th><th class='num'>UFC bouts</th><th class='num'>Top-15 wins</th>"
+        "<th>Last 5</th><th class='num'>Quality wins</th><th class='num'>15-yr QW</th>"
         "<th class='num'>Days since</th><th>Stability</th></tr></thead>")
 
 
 def _row(r) -> str:
-    label = "C" if r.champion else str(r.rank)
-    cls = ' class="champ"' if r.champion else ""
-    return (f"<tr{cls}><td>{label}</td><td>{html.escape(r.fighter)}</td>"
-            f"<td class='num'>{r.score:.3f}</td><td class='num'>{r.rating:.0f}</td>"
-            f"<td>{r.record_3y}</td><td class='num'>{int(r.ufc_bouts)}</td>"
-            f"<td class='num'>{int(r.top15_wins)}</td><td class='num'>{int(r.days_since)}</td>"
-            f"<td class='band'>{int(r.rank_p10)}-{int(r.rank_p90)}</td></tr>")
+    interim = bool(getattr(r, "interim", False))
+    label = "C" if r.champion else ("IC" if interim else str(r.rank))
+    cls = ' class="champ"' if (r.champion or interim) else ""
+    last5 = getattr(r, "last5", r.record_3y)
+    qw = getattr(r, "quality_wins", float("nan"))
+    ent = " E" if bool(getattr(r, "entrenched", False)) else ""
+    inj = " <span class='band'>(injury)</span>" if bool(getattr(r, "injury", False)) else ""
+    band = "" if (r.champion or interim) else f"{int(r.rank_p10)}-{int(r.rank_p90)}"
+    return (f"<tr{cls}><td>{label}</td><td>{html.escape(r.fighter)}{inj}</td>"
+            f"<td class='num'>{r.score:+.2f}</td><td class='num'>{r.rating:.0f}</td>"
+            f"<td>{last5}</td><td class='num'>{qw:.1f}</td>"
+            f"<td class='num'>{int(r.top15_wins)}{ent}</td><td class='num'>{int(r.days_since)}</td>"
+            f"<td class='band'>{band}</td></tr>")
 
 
 def board_tables(cfg: dict) -> str:
@@ -140,7 +146,8 @@ def main() -> None:
     DOCS.mkdir(exist_ok=True)
     bouts = pd.read_csv(ROOT / "data" / "processed" / "bouts.csv", parse_dates=["date"])
     as_of = bouts["date"].max().date()
-    w = ", ".join(f"{k} {v:.0%}" for k, v in cfg["weights"].items())
+    wsrc = cfg["resume"]["weights"] if cfg.get("board_model") == "resume" else cfg["weights"]
+    w = ", ".join(f"{k.replace('_', ' ')} {v:.0%}" for k, v in wsrc.items())
     site = cfg.get("site_name", "The Notorious Fighter Rankings")
 
     summary = pd.read_csv(OUT / "card_quality_summary.csv")
@@ -159,12 +166,18 @@ def main() -> None:
 <p class="meta"><a href="#boards">Divisional boards</a> · <a href="#favorites">Top ten favorites</a> ·
 <a href="#cards">Card quality</a> · <a href="#backtest">Model accuracy</a></p>
 <p class="meta">Data through {as_of}. Page built {date.today()}. Weights: {w}. Stability = 10th to 90th
-percentile position across {cfg['stability_draws']} random weight vectors near the configured weights.
+percentile position across {cfg['resume']['stability_draws']} weight vectors near the configured weights.
 Champion (C) = last undisputed title-bout winner. Open source, public data (UFCStats).</p>
-<details><summary>How the score is built</summary><p>Six dimensions, each percentile-ranked within the
-division, then weighted: current performance-adjusted Elo (opponent quality plus in-fight dominance),
-net rating change over 36 months, entrenchment (UFC tenure and wins over top-15 opponents), offensive
-output, activity, and durability. Change the weights in config/weights.yaml and rerun.</p></details>
+<details><summary>How the score is built</summary><p>Resume first: who has earned it as of now.
+Score = 70% resume rating + 30% quality wins, each measured as distance from the division median in
+interdecile ranges. The resume rating credits wins and losses by opponent strength; decisions blend the
+judges' cards with the fight stats; losses to a top-3 fighter or in a title fight cost 15% (75% if
+dominant, 100% for a round-one finish by a heavy favorite). Quality wins are wins over UFC fighters with
+5+ UFC wins or ranked top 7 at the time, weighted by age (3, 5, 10, 15 years); a dominant loss in the last
+3 years cancels one. No penalty for the first 12 months off; documented injury layoffs are exempt.
+A fighter who beat someone in their latest meeting (last 3 years) and sits within 3 spots below moves
+above him. E = entrenched (5+ quality wins in 15 years). Stability = 10th to 90th percentile position
+across nearby weights.</p></details>
 <div id='boards'></div>{board_tables(cfg)}
 {favorites_section(bouts, as_of)}
 <h2 id='cards'>Card-quality index, 2022 to present</h2>
@@ -173,7 +186,7 @@ output, activity, and durability. Change the weights in config/weights.yaml and 
 <h2 id='backtest'>Does the rating predict?</h2>
 <img src="fig_backtest.png" alt="Backtest log loss by year and calibration">
 {md_table_to_html(table_md)}
-<p class='meta'>Independent fan research project built on public UFCStats data. Not affiliated with or endorsed by the UFC, TKO Group, or Conor McGregor.</p>
+<p class='meta'>Independent fan research project built on public UFCStats data. Not affiliated with, sponsored or endorsed by UFC, Zuffa, LLC, TKO Group Holdings, or any athlete. All trademarks belong to their owners and are used only to identify athletes and events.</p>
 </body></html>"""
     (DOCS / "index.html").write_text(page)
     print(f"docs/index.html written (data through {as_of})")

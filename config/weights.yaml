@@ -39,3 +39,33 @@ elo:
 # Rank stability: number of random weight vectors drawn around the weights above
 stability_draws: 300
 stability_concentration: 40   # higher = draws stay closer to the configured weights
+
+# ---------------------------------------------------------------------------
+# Resume board (Option B, adopted Sept 30, 2026). run_all uses this when
+# board_model is "resume"; the older composite above stays available as "composite".
+board_model: resume
+resume:
+  weights: {rating: 0.70, quality_wins: 0.30}
+  horizons: {3: 1.0, 5: 0.6, 10: 0.3, 15: 0.1}     # age of a quality win in years -> weight
+  engine:
+    k: 60
+    k_new_mult: 1.5
+    n_new: 5
+    protected_loss_mult: 0.15      # loss to a top-3 fighter or in a title fight, not dominant
+    dominant_loss_mult: 0.75       # same, but dominant (2 of 3 cards at 3+ points, stats agree, or R1 finish)
+    heavy_favorite_p: 0.75         # R1 finish by a >= 75% favorite: full cost
+    consecutive_loss_mult: 0.60    # protection is weaker on a second straight loss
+    card_weight: 0.5               # decisions: half judges' cards, half fight stats
+    protect_top_n: 3
+    quality_top_n: 7
+    quality_min_wins: 5
+  inactivity:
+    grace_days: 365                # no penalty for the first 12 months
+    max_days: 540                  # gradual penalty to 18 months, then off the board
+    max_penalty_points: 50
+    injury_max_days: 730           # documented injuries (config/layoffs.yaml): no penalty, eligible 24 months
+  decisive_loss_years: 3         # dominant losses this recent cancel a quality win
+  head_to_head: {max_gap: 3, max_gap_recent: 6, max_years: 3}   # recent = last 12 months
+  declining_guard: false         # proposal: negative last five -> only last-3-year quality wins count
+  stability_draws: 200
+  stability_concentration: 20

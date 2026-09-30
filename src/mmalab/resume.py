@@ -2,15 +2,20 @@
 resume.py - Resume-first rating engine (who has earned it as of now).
 
 Differences from the predictive Elo in elo.py:
-  1. Decisions are scored from the judges' cards, not strike stats.
-     Per judge, round share = 0.5 + margin / (2 * rounds): 30-27 or 50-45 -> 1.0,
-     49-46 -> 0.8, 29-28 -> 0.67, 48-47 -> 0.6. The winner's score is
-     win_base + (1 - win_base) * (share - 0.5) / 0.5, so a 49-46 sweep of the
-     cards is a clear win, not a near-draw. Finishes score 1.0.
-  2. Loss protection: a loss to a fighter inside the division's top 3 at fight
-     time, or in a title fight, moves the loser's rating by only
-     `protected_loss_mult` of the normal amount, unless the loss was dominant
-     (every card at least 49-46 / 30-27, or a first-round finish).
+  1. Decisions blend the judges' cards with the fight stats (card_weight = 0.5).
+     Cards, per judge by point margin: 1 point (29-28, 48-47) = close, 0.6;
+     2 points = 0.8; 3+ points (30-27, 49-46, 50-45) = 1.0; mean of three.
+     Stats: logistic of the winner's dominance per minute. The official winner
+     never scores below a draw, so a robbery (e.g. Jones-Reyes) earns the winner
+     little and costs the loser little. Finishes score 1.0.
+     "Dominant" needs the cards (2 of 3 at 3+ points) and the stats to agree.
+  2. Loss protection, for losses to a division top-3 fighter or in a title fight:
+       not dominant                      -> 15% of the normal drop
+       dominant (2 of 3 cards 3+ points,
+       or a round-one finish)            -> 75%
+       round-one finish by a heavy
+       favorite (>= 75% pre-fight)       -> 100%
+     A loss right after another loss keeps at least 60% (streaks are not one-offs).
   3. No rating decay for layoffs. Inactivity is handled separately, with an
      injury exemption (config/layoffs.yaml).
   4. Records quality wins as they happen: opponent had >= 5 UFC wins, or was
@@ -44,8 +49,14 @@ class ResumeParams:
     k: float = 60.0
     k_new_mult: float = 1.5
     n_new: int = 5
-    win_base: float = 0.6            # score for a 50/50-on-the-cards win; 1.0 for a sweep or finish
-    protected_loss_mult: float = 0.15
+    protected_loss_mult: float = 0.15    # top-3 / title-fight loss that was not dominant
+    dominant_loss_mult: float = 0.75     # top-3 / title-fight loss that was dominant
+    heavy_favorite_p: float = 0.75       # winner's pre-fight win probability (about 3-1)
+    consecutive_loss_mult: float = 0.6   # protection is weaker when the previous bout was also a loss
+    no_card_decision_s: float = 0.75
+    card_weight: float = 0.5             # decisions: share of the score from the judges; the rest from fight stats
+    stat_scale: float = 2.0              # dominance per minute that maps to ~73% on the stats side
+    dominant_stat_min: float = 0.0       # stats must not contradict the cards (winner not behind on stats)
     protect_top_n: int = 3
     quality_top_n: int = 7
     quality_min_wins: int = 5
@@ -56,6 +67,12 @@ class ResumeParams:
         return asdict(self)
 
 
+def judge_value(m: int) -> float:
+    """Winner's score from one judge's point margin. 1 point (29-28, 48-47) is close,
+    3+ points (30-27, 49-46, 50-45) is a clear, dominant round split."""
+    return {3: 1.0, 2: 0.8, 1: 0.6, 0: 0.5, -1: 0.4, -2: 0.2}.get(max(-3, min(3, m)), 0.0 if m < 0 else 1.0)
+
+
 def load_scorecards() -> pd.DataFrame:
     r = pd.read_csv(RAW / "ufc_fight_results.csv")
     r.columns = [c.strip() for c in r.columns]
@@ -63,24 +80,25 @@ def load_scorecards() -> pd.DataFrame:
     r["bout_url"] = r["URL"]
     r = r.drop_duplicates(subset="bout_url", keep="first")
     r["cards"] = r["DETAILS"].fillna("").astype(str).apply(_CARD.findall)
-    r["rounds"] = pd.to_numeric(r["ROUND"], errors="coerce")
 
-    def winner_shares(row) -> float | None:
-        cards = [(int(a), int(b)) for a, b in row["cards"]]
-        if len(cards) != 3 or not row["rounds"]:
-            return None
+    def score(cards_raw):
+        cards = [(int(a), int(b)) for a, b in cards_raw]
+        if len(cards) != 3:
+            return (np.nan, False, "")
         diffs = [a - b for a, b in cards]
-        sign = np.sign(sum(np.sign(d) for d in diffs))    # majority orientation = the winner
+        sign = np.sign(sum(np.sign(d) for d in diffs))   # the majority orientation is the winner
         if sign == 0:
-            return 0.5
-        R = row["rounds"]
-        shares = [min(1.0, max(0.0, 0.5 + sign * d / (2 * R))) for d in diffs]
-        return float(np.mean(shares)), float(min(shares))
+            return (0.5, False, "")
+        margins = [int(sign * d) for d in diffs]
+        s_win = float(np.mean([judge_value(m) for m in margins]))
+        dominant = sum(m >= 3 for m in margins) >= 2       # 2 of 3 cards at 49-46 / 30-27 or wider
+        return (s_win, dominant, ",".join(str(m) for m in margins))
 
-    out = r.apply(winner_shares, axis=1)
-    r["card_share_mean"] = [o[0] if isinstance(o, tuple) else np.nan for o in out]
-    r["card_share_min"] = [o[1] if isinstance(o, tuple) else np.nan for o in out]
-    return r[["bout_url", "card_share_mean", "card_share_min", "cards"]]
+    out = r["cards"].apply(score)
+    r["card_s"] = [o[0] for o in out]
+    r["card_dominant"] = [o[1] for o in out]
+    r["card_margins"] = [o[2] for o in out]
+    return r[["bout_url", "card_s", "card_dominant", "card_margins"]]
 
 
 def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -93,6 +111,7 @@ def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.D
     wins: dict[str, int] = {}
     last_date: dict[str, pd.Timestamp] = {}
     last_div: dict[str, str] = {}
+    last_result: dict[str, str] = {}
     active_days = pd.Timedelta(days=p.active_days)
 
     # per-division index keeps position() cheap
@@ -116,19 +135,30 @@ def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.D
         res = row.result_a
         rec = {"bout_id": row.bout_id, "pos_a": pos_a, "pos_b": pos_b, "r_pre_a": ra, "r_pre_b": rb,
                "wins_pre_a": wins.get(a, 0), "wins_pre_b": wins.get(b, 0),
-               "s_a": np.nan, "protected": "", "quality_win": False}
+               "s_a": np.nan, "protected": "", "loss_mult": 1.0, "dominant": False,
+               "decisive_loss": False, "quality_win": False}
         if pd.isna(res):
             rows.append({**rec, "r_post_a": ra, "r_post_b": rb})
             continue
 
         finish = row.method in ("KO/TKO", "SUB")
-        share = row.card_share_mean
         if res == 0.5:
             s_win = 0.5
-        elif finish or pd.isna(share):
+        elif finish:
             s_win = 1.0
         else:
-            s_win = p.win_base + (1 - p.win_base) * (share - 0.5) / 0.5
+            # decision: blend the judges with the fight stats, never below a draw for the official winner
+            dom_w = row.dominance_a if res == 1.0 else -row.dominance_a
+            stat_s = 1.0 / (1.0 + np.exp(-dom_w / p.stat_scale)) if not pd.isna(dom_w) else np.nan
+            card_s = row.card_s
+            if pd.isna(card_s) and pd.isna(stat_s):
+                s_win = p.no_card_decision_s
+            elif pd.isna(card_s):
+                s_win = stat_s
+            elif pd.isna(stat_s):
+                s_win = float(card_s)
+            else:
+                s_win = p.card_weight * float(card_s) + (1 - p.card_weight) * stat_s
             s_win = float(np.clip(s_win, 0.5, 1.0))
         sa = s_win if res == 1.0 else (1 - s_win if res == 0.0 else 0.5)
 
@@ -136,18 +166,35 @@ def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.D
         kb = p.k * (p.k_new_mult if n_fights.get(b, 0) < p.n_new else 1.0)
         da, db = ka * (sa - ea), kb * ((1 - sa) - (1 - ea))
 
-        # loss protection
-        dominant = (finish and row.round == 1) or (
-            not finish and not pd.isna(row.card_share_min) and row.card_share_min >= 0.8)
-        if res in (0.0, 1.0) and not dominant:
-            loser, winner_pos = ("a", pos_b) if res == 0.0 else ("b", pos_a)
-            if row.title_fight or winner_pos <= p.protect_top_n:
+        # how the loss is treated
+        r1_finish = finish and row.round == 1
+        dom_winner = (row.dominance_a if res == 1.0 else -row.dominance_a) if res in (0.0, 1.0) else np.nan
+        stats_agree = pd.isna(dom_winner) or dom_winner >= p.dominant_stat_min
+        dominant = bool(r1_finish or (not finish and row.card_dominant is True and stats_agree))
+        rec["s_win"] = s_win if res in (0.0, 1.0) else np.nan
+        rec["dominant"] = dominant if res in (0.0, 1.0) else False
+        if res in (0.0, 1.0):
+            loser = "a" if res == 0.0 else "b"
+            winner_pos = pos_b if loser == "a" else pos_a
+            p_winner = (1 - ea) if loser == "a" else ea
+            protected_ctx = bool(row.title_fight) or winner_pos <= p.protect_top_n
+            if protected_ctx:
+                if r1_finish and p_winner >= p.heavy_favorite_p:
+                    mult = 1.0                    # the real gap: a heavy favorite finished it in round one
+                elif dominant:
+                    mult = p.dominant_loss_mult
+                else:
+                    mult = p.protected_loss_mult
+                    loser_name = a if loser == "a" else b
+                    if last_result.get(loser_name) == "L":
+                        mult = max(mult, p.consecutive_loss_mult)   # a losing streak is not a one-off
                 if loser == "a" and da < 0:
-                    da *= p.protected_loss_mult
-                    rec["protected"] = "a"
+                    da *= mult
                 if loser == "b" and db < 0:
-                    db *= p.protected_loss_mult
-                    rec["protected"] = "b"
+                    db *= mult
+                rec["protected"] = loser
+                rec["loss_mult"] = mult
+            rec["decisive_loss"] = dominant
 
         # quality win bookkeeping (opponent strength measured before the bout)
         if res == 1.0:
@@ -160,6 +207,7 @@ def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.D
         for f, won in ((a, res == 1.0), (b, res == 0.0)):
             n_fights[f] = n_fights.get(f, 0) + 1
             wins[f] = wins.get(f, 0) + int(won)
+            last_result[f] = "W" if won else ("L" if res in (0.0, 1.0) else "D")
             if last_div.get(f) != div and f in last_div:
                 div_members.get(last_div[f], set()).discard(f)
             last_div[f], last_date[f] = div, d

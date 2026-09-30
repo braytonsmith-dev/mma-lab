@@ -1,338 +1,339 @@
-division,rank,fighter,champion,rank_all,rank_p10,rank_p90,score,rating,record_3y,ufc_bouts,top15_wins,days_since,slpm,diff_pm
-Bantamweight,1,Merab Dvalishvili,False,1,1.0,1.0,0.935,1934.096,5-1,17,8,294,4.372,1.056
-Bantamweight,2,Mario Bautista,False,2,2.0,3.0,0.9,1806.375,5-1,15,3,77,5.698,1.557
-Bantamweight,0,Petr Yan,True,3,2.0,4.0,0.882,1864.231,4-0,16,8,294,5.5,1.288
-Bantamweight,3,Umar Nurmagomedov,False,4,4.0,5.0,0.859,1834.719,4-2,10,2,28,3.428,1.228
-Bantamweight,4,Song Yadong,False,5,4.0,7.0,0.851,1810.907,4-2,18,4,28,3.676,-0.058
-Bantamweight,5,Raul Rosas Jr.,False,6,4.0,7.0,0.833,1703.744,5-0,8,2,0,2.5,0.027
-Bantamweight,6,Raoni Barcelos,False,7,6.0,12.0,0.813,1671.929,5-1,16,2,0,3.97,0.544
-Bantamweight,7,Montel Jackson,False,8,7.0,11.0,0.798,1732.86,3-2,14,0,0,2.446,1.035
-Bantamweight,8,Sean O'Malley,False,9,6.0,13.0,0.798,1822.028,3-2,15,5,104,4.474,1.195
-Bantamweight,9,Payton Talbott,False,10,8.0,14.0,0.783,1719.118,5-1,6,0,294,5.856,2.863
-Bantamweight,10,Farid Basharat,False,11,9.0,13.0,0.783,1715.112,5-0,7,0,77,4.12,0.467
-Bantamweight,11,David Martinez,False,12,8.0,15.0,0.78,1752.242,4-0,4,0,14,4.271,1.753
-Bantamweight,12,Marcus McGhee,False,13,12.0,17.0,0.761,1716.975,3-1,6,0,112,5.796,1.832
-Bantamweight,13,Bryce Mitchell,False,14,11.0,17.1,0.743,1714.009,3-2,13,2,112,1.89,0.643
-Bantamweight,14,Aiemann Zahabi,False,15,13.0,19.0,0.74,1696.394,4-1,11,1,104,5.736,1.0
-Bantamweight,15,Cory Sandhagen,False,16,10.0,22.0,0.734,1796.581,1-3,17,8,77,3.966,-0.513
-Bantamweight,16,Chris Gutierrez,False,17,14.0,23.0,0.714,1697.03,3-2,15,1,357,3.918,1.412
-Bantamweight,17,Deiveson Figueiredo,False,18,14.9,26.0,0.705,1673.002,4-4,22,9,119,1.79,-1.551
-Bantamweight,18,Daniel Marcos,False,19,16.0,22.0,0.695,1669.712,3-1,6,0,322,4.192,0.57
-Bantamweight,19,Brady Hiestand,False,20,15.0,24.0,0.693,1658.783,2-0,5,0,0,2.288,-1.43
-Bantamweight,20,Charles Jourdain,False,21,17.0,26.0,0.69,1650.612,3-3,18,1,7,4.784,0.548
-Bantamweight,21,Rob Font,False,22,17.0,30.0,0.679,1667.256,2-3,21,4,203,3.48,0.413
-Bantamweight,22,Elijah Smith,False,23,18.0,28.0,0.668,1635.827,3-0,3,0,196,3.686,1.982
-Bantamweight,23,Jean Matsumoto,False,24,20.0,29.0,0.659,1627.751,4-2,6,0,91,5.119,0.059
-Bantamweight,24,Said Nurmagomedov,False,25,20.0,32.0,0.651,1700.161,1-2,11,0,427,2.018,0.192
-Bantamweight,25,Cody Haddon,False,26,21.9,32.0,0.643,1653.254,2-0,2,0,119,8.881,6.176
-Bantamweight,26,Davey Grant,False,27,22.0,33.0,0.642,1621.895,3-1,16,0,154,7.986,3.286
-Bantamweight,27,Ethyn Ewing,False,28,24.0,34.0,0.633,1670.696,2-0,2,0,175,7.444,2.918
-Bantamweight,28,Rinya Nakamura,False,29,26.0,32.0,0.631,1636.283,2-2,6,0,0,2.74,0.797
-Bantamweight,29,Adrian Yanez,False,30,24.9,33.0,0.628,1681.807,2-2,11,0,77,5.163,0.605
-Bantamweight,30,Jafel Filho,False,31,24.0,36.0,0.619,1587.879,2-2,6,0,154,1.609,0.255
-Featherweight,1,Aljamain Sterling,False,1,1.0,1.0,0.904,1870.034,3-1,23,12,154,2.762,1.438
-Featherweight,2,Diego Lopes,False,2,2.0,6.0,0.865,1838.894,6-2,10,4,104,4.23,-0.348
-Featherweight,3,Lerone Murphy,False,3,3.0,6.1,0.854,1737.975,4-1,11,2,189,4.853,2.014
-Featherweight,4,Joanderson Brito,False,4,2.0,8.0,0.853,1741.298,5-2,11,2,7,1.862,-0.175
-Featherweight,5,Jean Silva,False,5,3.0,10.0,0.847,1779.034,7-1,8,1,14,4.294,0.096
-Featherweight,6,Steve Garcia,False,6,2.0,10.0,0.845,1762.45,5-1,11,0,104,6.1,4.305
-Featherweight,7,Vinicius Oliveira,False,7,5.0,9.0,0.844,1738.919,5-1,6,2,98,5.278,2.393
-Featherweight,8,Youssef Zalal,False,8,3.0,10.0,0.842,1701.688,5-1,13,1,154,2.829,0.977
-Featherweight,9,Pat Sabatini,False,9,7.0,12.0,0.824,1705.212,4-1,11,2,140,1.403,0.455
-Featherweight,10,Movsar Evloev,False,10,6.0,12.0,0.821,1813.617,3-0,10,5,189,2.636,-0.273
-Featherweight,11,Kevin Vallejos,False,11,6.0,14.0,0.818,1767.347,4-0,4,0,196,5.677,2.129
-Featherweight,12,Melquizael Costa,False,12,11.0,16.0,0.789,1715.819,6-2,10,0,133,4.059,0.682
-Featherweight,13,Cub Swanson,False,13,11.0,17.0,0.779,1669.305,2-1,26,6,168,6.45,0.619
-Featherweight,0,Alexander Volkanovski,True,14,9.0,20.0,0.777,1908.955,2-2,18,12,238,4.981,1.866
-Featherweight,14,Arnold Allen,False,15,12.0,19.0,0.772,1734.291,2-2,15,5,133,3.914,0.157
-Featherweight,15,Tommy McMillen,False,16,13.0,20.0,0.751,1717.627,3-0,3,0,14,12.795,8.016
-Featherweight,16,Luke Riley,False,17,15.0,22.0,0.734,1690.072,3-0,3,0,77,6.667,2.803
-Featherweight,17,Chepe Mariscal,False,18,15.0,22.0,0.733,1704.972,3-1,6,0,315,3.933,1.767
-Featherweight,18,Yair Rodriguez,False,19,15.0,27.0,0.728,1706.269,1-1,15,2,532,4.814,3.081
-Featherweight,19,Jamall Emmers,False,20,17.0,26.0,0.718,1646.079,4-1,10,0,35,5.413,1.203
-Featherweight,20,Jose Aldo,False,21,16.0,30.0,0.711,1677.286,1-2,23,13,504,4.356,-0.089
-Featherweight,21,Jose Delgado,False,22,18.0,28.0,0.71,1676.896,4-2,6,1,14,5.422,1.498
-Featherweight,22,Yadier del Valle,False,23,17.0,25.0,0.71,1665.416,3-1,4,0,49,1.263,0.361
-Featherweight,23,Nathaniel Wood,False,24,18.0,31.0,0.697,1633.072,4-2,15,1,21,4.244,0.267
-Featherweight,24,Felipe Lima,False,25,22.0,28.1,0.692,1666.431,3-1,4,0,21,4.089,1.316
-Featherweight,25,Christian Rodriguez,False,26,21.0,28.0,0.692,1630.484,4-3,10,0,98,4.489,0.838
-Featherweight,26,Mairon Santos,False,27,22.0,31.0,0.679,1660.846,4-0,4,0,294,3.33,1.089
-Featherweight,27,Sean Woodson,False,28,23.0,30.0,0.679,1631.55,4-1,11,0,28,5.362,1.259
-Featherweight,28,William Gomis,False,29,23.9,32.0,0.672,1610.687,2-2,7,1,140,3.6,0.217
-Featherweight,29,David Onama,False,30,25.0,32.0,0.662,1607.17,3-1,9,1,329,4.736,0.474
-Featherweight,30,Marcio Barbosa,False,31,27.0,36.0,0.642,1623.131,2-0,2,0,35,3.644,1.215
-Flyweight,0,Joshua Van,True,1,1.0,2.0,0.888,1776.483,10-1,12,4,7,8.281,2.553
-Flyweight,1,Manel Kape,False,2,1.0,3.0,0.848,1738.72,4-1,11,4,98,4.129,1.032
-Flyweight,2,Alexandre Pantoja,False,3,2.0,9.0,0.813,1712.824,4-2,19,8,7,4.73,-0.138
-Flyweight,3,Tatsuro Taira,False,4,3.0,7.0,0.809,1713.462,4-2,10,3,140,2.651,-1.542
-Flyweight,4,Brandon Royval,False,5,3.0,8.0,0.809,1675.338,3-3,13,6,77,6.507,1.589
-Flyweight,5,Ramazan Temirov,False,6,3.0,8.0,0.804,1692.64,3-0,3,2,63,4.733,1.082
-Flyweight,6,Kyoji Horiguchi,False,7,4.0,9.0,0.781,1599.51,2-1,11,3,98,3.725,2.7
-Flyweight,7,Asu Almabayev,False,8,5.0,9.0,0.779,1677.97,6-1,8,0,91,2.204,0.146
-Flyweight,8,Sumudaerji,False,9,6.0,10.0,0.77,1610.934,4-2,11,1,28,3.872,2.088
-Flyweight,9,Rei Tsuruya,False,10,8.0,13.0,0.735,1642.027,3-1,4,0,28,2.796,0.772
-Flyweight,10,Kai Kara-France,False,11,10.0,15.0,0.716,1651.73,1-1,13,2,455,3.504,0.313
-Flyweight,11,Jose Ochoa,False,12,11.0,15.0,0.709,1633.009,2-2,4,0,140,5.161,2.172
-Flyweight,12,Brandon Moreno,False,13,10.0,17.0,0.694,1635.371,3-3,21,8,14,3.987,-0.261
-Flyweight,13,Alex Perez,False,14,12.0,15.0,0.69,1600.028,2-4,15,3,28,3.193,0.051
-Flyweight,14,Charles Johnson,False,15,11.9,16.0,0.684,1563.239,7-4,16,1,42,4.778,0.766
-Flyweight,15,Allan Nascimento,False,16,14.0,18.0,0.658,1596.825,2-1,6,1,98,3.192,0.34
-Flyweight,16,Tim Elliott,False,17,16.0,21.0,0.634,1570.031,3-2,23,2,14,3.895,-0.317
-Flyweight,17,Tagir Ulanbekov,False,18,16.0,19.0,0.633,1582.362,3-1,8,2,308,2.707,-0.87
-Flyweight,18,Joseph Morales,False,19,15.0,20.0,0.63,1579.32,2-1,6,0,14,4.044,0.231
-Flyweight,19,Alden Coria,False,20,17.0,21.0,0.6,1582.036,3-0,3,0,70,4.046,1.839
-Flyweight,20,Nyamjargal Tumendemberel,False,21,20.0,23.0,0.567,1556.639,2-1,3,0,203,1.885,-0.03
-Flyweight,21,Bilal Hasan,False,22,21.0,24.0,0.563,1580.055,1-0,1,0,28,7.098,2.679
-Flyweight,22,Fabia Sintes,False,23,21.0,25.0,0.557,1559.577,1-0,1,0,21,1.867,1.2
-Flyweight,23,Andre Lima,False,24,23.0,25.0,0.531,1550.445,5-1,6,0,28,3.861,0.81
-Flyweight,24,Edgar Chairez,False,25,23.9,28.0,0.509,1522.002,4-2,7,0,14,4.519,-0.352
-Flyweight,25,Alessandro Costa,False,26,25.0,27.0,0.506,1545.17,4-2,8,0,77,3.744,-0.422
-Flyweight,26,Imanol Rodriguez,False,27,25.0,31.0,0.484,1536.727,1-0,1,0,210,4.92,2.567
-Flyweight,27,Steve Erceg,False,28,26.0,30.0,0.475,1551.808,4-4,9,0,63,4.695,0.469
-Flyweight,28,Lone'er Kavanagh,False,29,27.0,31.0,0.469,1545.181,3-2,5,1,77,4.102,0.166
-Flyweight,29,Amir Albazi,False,30,27.0,33.0,0.446,1556.212,0-2,7,1,231,1.975,-3.15
-Flyweight,30,Jesus Aguilar,False,31,29.0,33.0,0.429,1507.62,3-2,7,0,203,2.761,0.144
-Heavyweight,1,Alexander Volkov,False,1,1.0,3.0,0.893,1894.383,3-1,19,10,140,3.9,1.367
-Heavyweight,2,Ciryl Gane,False,2,2.0,4.0,0.88,1887.634,2-0,13,7,104,4.522,2.145
-Heavyweight,3,Tom Aspinall,False,3,1.0,5.0,0.879,1971.314,2-0,9,4,336,11.163,8.372
-Heavyweight,4,Alex Pereira,False,4,3.0,5.0,0.855,1876.45,5-2,13,9,104,4.907,1.159
-Heavyweight,5,Waldo Cortes Acosta,False,5,3.0,5.0,0.85,1762.682,7-3,14,3,14,4.145,0.988
-Heavyweight,6,Josh Hokit,False,6,5.0,8.0,0.814,1822.285,4-0,4,2,104,10.277,4.157
-Heavyweight,7,Valter Walker,False,7,7.0,10.0,0.782,1735.241,5-1,6,0,63,1.916,-0.758
-Heavyweight,8,Mario Pinto,False,8,6.0,10.0,0.779,1742.49,4-0,4,0,21,3.47,1.595
-Heavyweight,9,Curtis Blaydes,False,9,6.0,11.1,0.768,1800.697,3-2,21,12,14,5.329,0.194
-Heavyweight,10,Vitor Petrino,False,10,9.0,11.0,0.758,1683.771,6-2,10,1,35,3.375,0.945
-Heavyweight,11,Sergei Pavlovich,False,11,8.0,13.0,0.735,1849.581,3-2,12,6,119,2.991,-0.321
-Heavyweight,12,Brando Pericic,False,12,10.0,14.0,0.716,1710.663,3-0,3,0,147,11.004,6.747
-Heavyweight,13,Rizvan Kuniev,False,13,11.0,14.0,0.702,1701.332,2-1,3,1,63,3.738,1.141
-Heavyweight,14,Aleksandar Rakic,False,14,12.0,14.0,0.69,1702.35,1-3,12,2,56,4.606,0.748
-Heavyweight,15,Serghei Spivac,False,15,15.0,17.0,0.636,1639.326,2-3,16,2,35,3.022,-1.976
-Heavyweight,16,Steven Asplund,False,16,15.0,19.0,0.622,1580.999,2-1,3,0,49,7.651,2.422
-Heavyweight,17,Derrick Lewis,False,17,16.0,23.0,0.614,1639.209,2-3,32,7,104,1.58,-2.101
-Heavyweight,18,Marcin Tybura,False,18,16.0,22.1,0.606,1572.23,3-4,25,5,56,3.29,0.0
-Heavyweight,19,Ryan Spann,False,19,18.0,25.0,0.584,1574.763,3-3,17,1,21,2.337,-2.309
-Heavyweight,20,Ante Delija,False,20,19.0,24.0,0.568,1592.582,1-2,3,1,217,4.279,0.333
-Heavyweight,21,Jose Montanha,False,21,16.0,25.0,0.561,1563.75,1-0,1,0,49,1.091,-0.545
-Heavyweight,22,Jovan Leka,False,22,19.0,25.0,0.549,1572.32,1-0,1,0,56,4.225,0.845
-Heavyweight,23,RJ Harris,False,23,19.0,26.0,0.545,1579.021,1-0,1,0,70,9.0,2.4
-Heavyweight,24,Anthony Wint,False,24,19.0,28.0,0.541,1558.664,1-0,1,0,35,1.115,0.892
-Heavyweight,25,Hamdy Abdelwahab,False,25,19.9,28.0,0.531,1515.617,2-1,3,0,336,4.4,0.556
-Heavyweight,26,Tallison Teixeira,False,26,21.0,27.0,0.528,1548.196,2-2,4,0,119,3.687,0.238
-Heavyweight,27,Thomas Petersen,False,27,25.0,30.0,0.501,1516.132,3-4,7,0,63,2.993,0.412
-Heavyweight,28,Shamil Gaziev,False,28,22.0,30.0,0.5,1557.309,4-3,7,1,35,2.969,-2.124
-Heavyweight,29,Tanner Boser,False,29,26.0,31.0,0.486,1523.115,0-1,11,0,161,4.816,1.814
-Heavyweight,30,Gokhan Saricam,False,30,27.0,31.0,0.484,1566.014,1-0,1,0,161,5.866,-0.309
-Light Heavyweight,0,Carlos Ulberg,True,1,1.0,2.0,0.883,1881.451,5-0,11,4,168,5.633,1.111
-Light Heavyweight,1,Navajo Stirling,False,2,1.0,5.0,0.865,1808.058,6-0,6,1,56,6.407,3.945
-Light Heavyweight,2,Volkan Oezdemir,False,3,2.0,6.0,0.843,1778.533,2-1,16,7,308,7.718,1.639
-Light Heavyweight,3,Dominick Reyes,False,4,3.0,6.0,0.84,1747.261,4-1,15,5,168,5.592,3.094
-Light Heavyweight,4,Magomed Ankalaev,False,5,3.0,7.0,0.822,1849.777,4-1,16,10,63,3.43,0.363
-Light Heavyweight,5,Robert Whittaker,False,6,3.0,8.0,0.819,1814.083,3-2,25,9,77,4.096,0.674
-Light Heavyweight,6,Reinier de Ridder,False,7,5.0,9.0,0.792,1762.613,5-2,7,1,35,3.18,0.917
-Light Heavyweight,7,Paulo Costa,False,8,7.0,9.0,0.777,1765.015,2-2,12,3,168,5.709,0.301
-Light Heavyweight,8,Azamat Murzakanov,False,9,7.0,9.0,0.777,1762.942,3-1,7,2,168,4.147,0.837
-Light Heavyweight,9,Bogdan Guskov,False,10,10.0,14.0,0.712,1717.948,4-1,7,0,63,3.684,0.384
-Light Heavyweight,10,Abdul Rakhman Yakhyaev,False,11,10.0,17.0,0.701,1689.693,3-0,3,0,91,4.851,2.809
-Light Heavyweight,11,Jiri Prochazka,False,12,10.0,15.0,0.683,1752.157,3-3,9,5,168,5.489,-0.381
-Light Heavyweight,12,Ion Cutelaba,False,13,11.0,16.0,0.678,1642.102,3-3,21,2,98,3.249,-0.412
-Light Heavyweight,13,Johnny Walker,False,14,11.0,16.0,0.673,1718.493,1-3,15,5,168,3.996,0.031
-Light Heavyweight,14,Khalil Rountree Jr.,False,15,12.0,17.0,0.664,1682.483,2-2,17,3,357,4.115,-0.467
-Light Heavyweight,15,Jan Blachowicz,False,16,12.0,21.0,0.649,1702.912,0-2,23,5,56,4.433,-1.336
-Light Heavyweight,16,Iwo Baraniewski,False,17,13.0,21.0,0.633,1651.049,3-1,4,0,7,5.707,0.707
-Light Heavyweight,17,Nikita Krylov,False,18,16.0,21.1,0.632,1651.692,1-3,22,2,77,4.378,0.551
-Light Heavyweight,18,Dustin Jacoby,False,19,17.0,22.0,0.62,1649.922,3-3,18,1,63,4.829,0.795
-Light Heavyweight,19,Alonzo Menifield,False,20,17.0,23.0,0.615,1651.472,5-3,19,1,7,3.919,-0.926
-Light Heavyweight,20,Jimmy Crute,False,21,18.0,23.0,0.595,1631.179,2-0,12,0,364,5.344,0.13
-Light Heavyweight,21,Muhammad Saidov,False,22,18.0,25.0,0.585,1634.86,1-0,1,1,63,6.112,2.649
-Light Heavyweight,22,Modestas Bukauskas,False,23,19.0,25.0,0.577,1596.021,6-2,14,0,21,2.825,-0.884
-Light Heavyweight,23,Roman Dolidze,False,24,20.0,27.0,0.575,1644.84,3-4,15,3,35,3.194,-1.564
-Light Heavyweight,24,Diyar Nurgozhay,False,25,21.0,28.0,0.552,1570.507,2-2,4,0,49,5.685,2.842
-Light Heavyweight,25,Jamahal Hill,False,26,22.0,32.0,0.538,1682.695,0-3,10,3,462,3.927,-1.479
-Light Heavyweight,26,Billy Elekana,False,27,25.0,30.0,0.529,1600.75,3-1,4,0,238,2.712,-0.876
-Light Heavyweight,27,Christian Edwards,False,28,27.0,31.0,0.497,1588.132,1-1,2,0,0,3.547,1.083
-Light Heavyweight,28,Lucas Fernando,False,29,26.0,32.0,0.491,1561.057,1-0,1,0,42,6.179,5.015
-Light Heavyweight,29,Felipe Franco,False,30,28.9,32.0,0.491,1581.737,1-1,2,0,70,2.769,0.692
-Light Heavyweight,30,Luis Hernandez,False,31,25.9,34.0,0.49,1560.292,1-0,1,0,0,3.158,3.158
-Lightweight,1,Arman Tsarukyan,False,1,1.0,3.0,0.891,1880.705,4-0,13,5,7,3.619,2.435
-Lightweight,2,Quillan Salkilld,False,2,1.0,4.0,0.885,1829.642,6-0,6,1,49,4.355,2.35
-Lightweight,3,Charles Oliveira,False,3,1.0,7.1,0.865,1891.343,3-2,36,11,203,2.352,-0.279
-Lightweight,4,Paddy Pimblett,False,4,3.0,6.0,0.865,1842.835,4-1,9,2,77,6.173,2.11
-Lightweight,5,Benoit Saint Denis,False,5,4.0,8.0,0.846,1775.206,5-3,13,1,77,5.538,2.539
-Lightweight,6,King Green,False,6,5.0,9.0,0.837,1750.298,6-3,30,1,77,8.23,4.803
-Lightweight,7,Renato Moicano,False,7,4.0,11.0,0.831,1745.31,4-2,20,4,175,2.764,0.276
-Lightweight,8,Mateusz Gamrot,False,8,5.0,12.0,0.826,1788.193,3-3,14,3,49,3.382,1.127
-Lightweight,9,Jalin Turner,False,9,6.0,11.0,0.822,1771.697,3-2,15,1,42,5.932,1.768
-Lightweight,10,Ilia Topuria,False,10,5.0,11.0,0.821,1889.022,3-1,10,3,104,5.358,0.047
-Lightweight,11,Grant Dawson,False,11,8.0,14.0,0.808,1759.137,4-2,15,1,140,3.476,1.508
-Lightweight,12,Mauricio Ruffy,False,12,10.0,15.0,0.782,1723.781,5-2,7,2,7,3.678,0.144
-Lightweight,0,Justin Gaethje,True,13,10.0,18.0,0.776,1863.295,3-1,16,8,104,4.824,-1.083
-Lightweight,13,Diego Ferreira,False,14,12.0,17.0,0.768,1684.371,2-2,18,3,49,5.651,1.716
-Lightweight,14,Rafael Fiziev,False,15,14.0,17.0,0.766,1713.611,2-2,13,2,91,4.268,-0.179
-Lightweight,15,Manuel Torres,False,16,13.0,19.1,0.749,1718.76,3-2,7,1,91,5.06,0.591
-Lightweight,16,Chris Padilla,False,17,13.0,19.0,0.741,1712.681,5-0,6,0,35,6.665,1.816
-Lightweight,17,Axel Sola,False,18,14.0,22.0,0.729,1711.038,3-1,4,0,21,4.546,0.03
-Lightweight,18,Fares Ziam,False,19,19.0,25.0,0.696,1623.501,4-2,12,0,21,2.556,1.35
-Lightweight,19,Tom Nolan,False,20,19.0,26.0,0.695,1663.291,5-1,6,0,112,4.721,0.926
-Lightweight,20,Alexander Hernandez,False,21,17.0,31.0,0.692,1635.401,4-3,18,2,154,3.854,-0.518
-Lightweight,21,Esteban Ribovics,False,22,19.0,29.0,0.69,1690.647,4-2,8,0,42,8.086,1.139
-Lightweight,22,Beneil Dariush,False,23,17.0,34.0,0.688,1671.493,1-3,26,8,147,3.192,0.499
-Lightweight,23,Michael Johnson,False,24,18.0,31.0,0.688,1597.427,3-1,32,5,203,4.256,1.457
-Lightweight,24,Chase Hooper,False,25,19.9,31.0,0.685,1593.033,5-2,14,0,70,3.141,1.784
-Lightweight,25,Tommy Gantt,False,26,19.0,32.0,0.679,1680.292,2-0,2,0,14,4.074,2.959
-Lightweight,26,Mason Jones,False,27,22.0,31.0,0.67,1630.317,3-1,7,0,35,7.156,2.356
-Lightweight,27,Nurullo Aliev,False,28,23.9,33.0,0.661,1647.215,3-0,4,0,63,2.2,0.111
-Lightweight,28,Chris Duncan,False,29,24.0,34.0,0.659,1661.785,4-2,8,0,175,4.602,-0.754
-Lightweight,29,MarQuel Mederos,False,30,24.0,33.0,0.656,1657.609,4-0,5,0,35,5.945,0.536
-Lightweight,30,Mateusz Rebecki,False,31,26.0,34.1,0.646,1659.75,3-4,9,0,56,5.184,0.364
-Middleweight,1,Khamzat Chimaev,False,1,1.0,3.0,0.871,1926.721,3-1,10,3,140,2.567,0.029
-Middleweight,2,Gregory Rodrigues,False,2,1.0,5.0,0.851,1800.705,6-1,14,2,35,5.641,1.773
-Middleweight,3,Christian Leroy Duncan,False,3,2.0,5.0,0.847,1765.049,7-1,10,2,70,4.528,2.766
-Middleweight,0,Sean Strickland,True,4,2.0,6.0,0.838,1880.398,3-2,25,6,140,6.371,1.077
-Middleweight,4,Nassourdine Imavov,False,5,3.0,7.0,0.828,1828.001,5-0,11,6,385,3.985,1.459
-Middleweight,5,Joe Pyfer,False,6,5.0,9.0,0.802,1779.513,5-1,8,1,182,3.485,0.108
-Middleweight,6,Brendan Allen,False,7,6.0,10.0,0.794,1755.515,5-2,19,2,112,3.546,-0.13
-Middleweight,7,Dricus Du Plessis,False,8,6.0,11.0,0.793,1909.827,4-1,11,5,70,4.409,-0.034
-Middleweight,8,Anthony Hernandez,False,9,5.0,11.0,0.792,1734.639,4-2,13,3,35,4.48,0.585
-Middleweight,9,Caio Borralho,False,10,9.0,14.0,0.754,1758.329,4-1,9,2,203,4.164,0.964
-Middleweight,10,Ikram Aliskerov,False,11,8.0,15.0,0.747,1784.815,4-1,6,0,91,5.485,1.906
-Middleweight,11,Abus Magomedov,False,12,10.0,14.0,0.746,1695.993,4-2,8,1,91,2.704,0.073
-Middleweight,12,Kamaru Usman,False,13,8.0,21.0,0.738,1802.935,1-2,20,10,70,2.6,-0.754
-Middleweight,13,Michael Page,False,14,10.0,17.0,0.734,1737.04,5-1,6,2,21,1.922,0.522
-Middleweight,14,Yousri Belgaroui,False,15,10.0,17.0,0.729,1758.25,3-0,3,0,14,8.35,6.417
-Middleweight,15,Edmen Shahbazyan,False,16,14.0,18.0,0.71,1681.828,5-2,16,0,7,4.763,1.593
-Middleweight,16,Bo Nickal,False,17,16.0,19.1,0.695,1695.023,4-1,7,0,104,3.433,1.348
-Middleweight,17,Ryan Gandra,False,18,14.0,23.0,0.685,1687.426,3-0,3,0,7,10.0,8.0
-Middleweight,18,Cam Rowston,False,19,16.0,22.0,0.68,1709.213,3-0,3,0,147,5.519,3.543
-Middleweight,19,Ateba Gautier,False,20,18.0,23.0,0.672,1676.446,5-0,5,0,140,3.993,0.944
-Middleweight,20,Ismail Naurdiev,False,21,18.0,24.0,0.662,1630.393,2-1,7,1,308,4.613,2.004
-Middleweight,21,Jacob Malkoun,False,22,20.0,26.0,0.654,1638.144,3-0,9,0,147,4.853,2.833
-Middleweight,22,Israel Adesanya,False,23,16.0,31.1,0.636,1750.08,0-3,19,9,182,4.935,0.718
-Middleweight,23,Shara Magomedov,False,24,22.0,26.0,0.634,1671.828,6-1,7,0,91,5.549,1.932
-Middleweight,24,Jared Cannonier,False,25,18.0,32.0,0.63,1686.595,1-4,21,6,70,3.221,-1.668
-Middleweight,25,Marvin Vettori,False,26,21.0,30.0,0.623,1644.885,0-3,18,3,294,5.6,-0.382
-Middleweight,26,Donte Johnson,False,27,24.0,33.0,0.607,1631.687,3-0,3,0,42,2.863,1.041
-Middleweight,27,Baisangur Susurkaev,False,28,25.0,33.1,0.599,1634.452,3-0,3,0,140,5.967,1.309
-Middleweight,28,Nursulton Ruziboev,False,29,26.9,34.0,0.589,1650.665,4-2,7,0,21,1.851,-0.346
-Middleweight,29,Michal Oleksiejczuk,False,30,27.0,34.0,0.585,1626.219,3-4,18,0,91,6.879,1.887
-Middleweight,30,Dustin Stoltzfus,False,31,26.0,39.0,0.564,1538.157,3-3,11,0,42,3.851,0.604
-Welterweight,0,Islam Makhachev,True,1,1.0,1.0,0.902,1987.366,5-0,19,7,42,2.128,0.451
-Welterweight,1,Sean Brady,False,2,2.0,3.0,0.87,1845.228,4-1,11,4,140,3.982,2.353
-Welterweight,2,Michael Morales,False,3,3.0,6.0,0.849,1920.475,4-0,7,2,315,6.542,3.738
-Welterweight,3,Ian Machado Garry,False,4,2.0,6.0,0.842,1867.789,4-2,12,4,42,2.958,0.917
-Welterweight,4,Gabriel Bonfim,False,5,4.0,8.0,0.822,1826.543,5-1,8,4,112,4.656,1.133
-Welterweight,5,Max Holloway,False,6,3.0,11.0,0.815,1894.825,3-2,33,14,77,5.656,1.813
-Welterweight,6,Carlos Prates,False,7,5.0,9.0,0.811,1831.964,7-1,8,3,147,4.378,0.026
-Welterweight,7,Michael Chiesa,False,8,5.0,10.0,0.801,1705.19,4-0,22,3,182,2.806,0.914
-Welterweight,8,Joaquin Buckley,False,9,7.0,11.0,0.79,1731.527,5-2,17,3,140,3.486,0.674
-Welterweight,9,Daniil Donchenko,False,10,7.0,14.1,0.774,1764.101,4-0,4,0,21,7.141,4.996
-Welterweight,10,Uros Medic,False,11,9.0,13.0,0.768,1733.044,5-2,11,1,56,3.611,1.14
-Welterweight,11,Yaroslav Amosov,False,12,8.0,17.0,0.757,1748.269,2-0,2,1,140,2.646,1.27
-Welterweight,12,Kevin Holland,False,13,11.0,21.0,0.736,1717.177,4-5,28,1,168,3.851,0.658
-Welterweight,13,Ignacio Bahamondes,False,14,13.0,20.0,0.731,1681.841,4-2,11,2,14,4.375,1.071
-Welterweight,14,Randy Brown,False,15,13.0,19.0,0.729,1704.474,3-3,22,1,168,4.432,1.023
-Welterweight,15,Belal Muhammad,False,16,11.0,23.0,0.722,1778.346,1-3,21,6,112,3.8,-0.922
-Welterweight,16,Jake Matthews,False,17,15.0,22.0,0.721,1691.276,4-2,24,1,119,3.594,0.363
-Welterweight,17,Jeremiah Wells,False,18,14.0,22.0,0.716,1701.988,2-1,8,1,42,1.932,0.242
-Welterweight,18,Myktybek Orolbai,False,19,14.0,23.0,0.711,1706.27,5-2,7,0,42,2.7,0.206
-Welterweight,19,Sam Patterson,False,20,13.0,24.0,0.71,1699.743,5-1,7,0,63,3.893,1.434
-Welterweight,20,Jacobe Smith,False,21,14.0,24.1,0.702,1715.439,3-0,3,0,217,6.851,3.237
-Welterweight,21,Mike Malott,False,22,16.0,23.0,0.702,1742.272,4-1,8,0,161,3.932,0.834
-Welterweight,22,Jack Della Maddalena,False,23,16.0,25.0,0.689,1788.349,2-2,10,3,147,3.948,0.143
-Welterweight,23,Rinat Fakhretdinov,False,24,15.0,26.0,0.686,1801.306,3-0,7,0,385,6.253,0.741
-Welterweight,24,Themba Gorimbo,False,25,22.0,29.0,0.641,1640.978,3-3,8,0,147,3.013,1.254
-Welterweight,25,Leon Edwards,False,26,23.0,31.0,0.635,1714.012,1-3,19,5,315,1.901,-0.698
-Welterweight,26,Neil Magny,False,27,24.0,30.1,0.63,1652.07,4-3,38,3,42,2.97,0.495
-Welterweight,27,Chidi Njokuani,False,28,26.0,33.0,0.611,1625.509,4-2,11,0,42,7.23,3.447
-Welterweight,28,Stephen Thompson,False,29,26.0,37.0,0.603,1709.373,0-3,22,6,441,2.875,0.134
-Welterweight,29,Daniel Rodriguez,False,30,29.0,34.0,0.589,1671.492,3-2,15,0,56,6.949,1.164
-Welterweight,30,Jonathan Micallef,False,31,27.0,34.0,0.588,1656.505,3-0,3,0,147,4.128,0.338
-Women's Bantamweight,1,Ailin Perez,False,1,1.0,1.0,0.907,1706.797,6-0,8,4,0,2.751,0.735
-Women's Bantamweight,2,Joselyne Edwards,False,2,2.0,3.0,0.859,1683.952,5-1,13,2,154,4.423,1.364
-Women's Bantamweight,0,Kayla Harrison,True,3,2.0,3.0,0.832,1748.23,3-0,3,3,476,4.29,3.186
-Women's Bantamweight,3,Norma Dumont,False,4,4.0,4.0,0.791,1671.276,3-2,13,2,0,4.387,1.493
-Women's Bantamweight,4,Luana Santos,False,5,5.0,8.0,0.724,1649.749,5-1,7,2,98,1.798,-0.449
-Women's Bantamweight,5,Bia Mesquita,False,6,5.0,11.0,0.709,1666.464,3-0,3,0,98,4.518,3.25
-Women's Bantamweight,6,Jacqueline Cavalcanti,False,7,6.0,10.0,0.707,1653.547,4-1,6,1,133,4.68,1.627
-Women's Bantamweight,7,Melissa Croden,False,8,6.0,10.0,0.707,1640.044,2-1,3,1,161,4.266,2.133
-Women's Bantamweight,8,Yana Santos,False,9,5.0,10.0,0.702,1620.497,3-0,12,4,357,5.0,1.667
-Women's Bantamweight,9,Karol Rosa,False,10,7.0,10.0,0.691,1609.36,2-3,13,3,98,5.52,1.053
-Women's Bantamweight,10,Ketlen Vieira,False,11,10.0,12.0,0.621,1592.194,2-2,15,6,133,1.783,-1.417
-Women's Bantamweight,11,Miesha Tate,False,12,11.0,14.0,0.602,1532.825,1-1,14,4,511,2.743,0.114
-Women's Bantamweight,12,Macy Chiasson,False,13,13.0,15.1,0.571,1566.71,2-3,14,4,210,2.47,-0.537
-Women's Bantamweight,13,Nora Cornolle,False,14,12.0,15.0,0.561,1580.785,3-3,7,2,21,2.644,0.532
-Women's Bantamweight,14,Julianna Pena,False,15,13.0,17.0,0.541,1597.462,1-1,12,3,476,2.893,-0.601
-Women's Bantamweight,15,Luana Carolina,False,16,13.0,17.0,0.521,1521.384,2-1,10,0,364,4.636,2.407
-Women's Bantamweight,16,Michelle Montague,False,17,14.0,17.0,0.517,1592.894,2-0,2,0,154,2.767,0.3
-Women's Bantamweight,17,Nina Milosevic,False,18,18.0,19.0,0.44,1553.718,1-0,1,0,56,5.701,2.172
-Women's Bantamweight,18,Daria Zhelezniakova,False,19,19.0,20.0,0.393,1514.773,2-2,4,1,161,4.134,0.757
-Women's Bantamweight,19,Melissa Mullins,False,20,19.0,21.0,0.379,1498.937,2-3,5,1,98,3.669,-0.482
-Women's Bantamweight,20,Klaudia Sygula,False,21,20.0,22.0,0.364,1510.964,2-2,4,0,21,5.591,1.032
-Women's Bantamweight,21,Mayra Bueno Silva,False,22,20.0,23.0,0.352,1475.462,0-5,13,2,154,2.819,-1.884
-Women's Bantamweight,22,Alice Pereira,False,23,22.0,23.0,0.324,1514.523,1-1,2,0,175,2.828,-0.287
-Women's Bantamweight,23,Chelsea Chandler,False,24,24.0,25.0,0.266,1469.364,2-2,6,0,112,3.728,-1.187
-Women's Bantamweight,24,Priscila Cachoeira,False,25,24.0,26.0,0.248,1398.374,1-4,14,0,112,4.841,-3.323
-Women's Bantamweight,25,Montse Rendon,False,26,25.0,26.0,0.247,1434.964,1-2,4,1,196,2.18,-1.308
-Women's Bantamweight,26,Hailey Cowan,False,27,27.0,28.0,0.164,1359.941,0-3,4,0,56,2.356,-0.702
-Women's Bantamweight,27,Tainara Lisboa,False,28,27.0,28.0,0.157,1404.912,1-2,4,0,343,1.67,-1.594
-Women's Bantamweight,28,Irina Alekseeva,False,29,29.0,29.0,0.105,1359.804,0-3,4,0,350,3.142,-1.934
-Women's Flyweight,1,Valentina Shevchenko,False,1,1.0,1.0,0.901,1839.746,3-0,19,10,315,2.107,0.493
-Women's Flyweight,2,Zhang Weili,False,2,2.0,5.0,0.835,1843.306,2-1,13,6,315,2.547,1.267
-Women's Flyweight,3,Alexa Grasso,False,3,2.0,4.0,0.822,1756.91,2-2,16,6,14,2.686,-0.555
-Women's Flyweight,4,Jasmine Jasudavicius,False,4,3.0,6.0,0.797,1659.634,6-1,12,3,161,3.381,1.043
-Women's Flyweight,5,Wang Cong,False,5,3.0,9.0,0.776,1725.821,5-1,6,1,77,6.843,4.023
-Women's Flyweight,6,Natalia Silva,False,6,5.0,8.0,0.759,1784.911,4-0,8,3,245,4.517,2.067
-Women's Flyweight,7,Rose Namajunas,False,7,4.0,9.0,0.757,1723.103,3-2,19,11,245,3.181,0.067
-Women's Flyweight,8,Manon Fiorot,False,8,7.0,10.0,0.732,1787.197,2-2,10,3,14,4.997,0.71
-Women's Flyweight,9,Erin Blanchfield,False,9,7.0,11.0,0.726,1810.354,2-1,9,5,315,4.888,-0.335
-Women's Flyweight,10,Carli Judice,False,10,7.0,12.0,0.697,1704.411,4-1,5,0,35,8.702,3.994
-Women's Flyweight,11,Miranda Maverick,False,11,10.0,14.0,0.674,1641.858,3-1,12,2,469,2.417,0.8
-Women's Flyweight,12,Maycee Barber,False,12,10.0,15.0,0.672,1656.707,2-1,13,7,182,4.404,1.376
-Women's Flyweight,13,Dione Barbosa,False,13,11.0,14.0,0.647,1610.367,4-2,6,0,70,2.241,-0.161
-Women's Flyweight,14,Casey O'Neill,False,14,12.0,15.0,0.639,1641.829,3-1,9,1,7,5.027,0.862
-Women's Flyweight,15,Jamey-Lyn Horth,False,15,13.0,16.0,0.611,1595.201,3-3,7,0,161,3.555,1.219
-Women's Flyweight,16,Melissa Gatto,False,16,15.0,18.0,0.574,1566.317,1-1,6,1,175,2.459,0.703
-Women's Flyweight,17,Viviane Araujo,False,17,17.0,21.0,0.527,1564.115,2-2,13,5,455,2.0,-1.367
-Women's Flyweight,18,Tracy Cortez,False,18,16.0,22.0,0.522,1632.961,1-3,9,1,77,3.723,-1.02
-Women's Flyweight,19,JJ Aldrich,False,19,17.0,22.0,0.516,1524.165,3-2,18,2,14,3.72,-0.32
-Women's Flyweight,20,Eduarda Moura,False,20,17.0,22.0,0.511,1544.176,3-3,6,0,7,2.55,0.014
-Women's Flyweight,21,Karine Silva,False,21,18.0,23.0,0.503,1584.149,2-3,8,0,161,1.96,-0.627
-Women's Flyweight,22,Veronica Hardy,False,22,19.0,23.0,0.493,1534.182,3-1,10,0,357,2.733,0.767
-Women's Flyweight,23,Regina Tarin,False,23,21.0,25.0,0.457,1585.847,2-0,2,0,14,6.367,0.767
-Women's Flyweight,24,Juliana Miller,False,24,22.0,26.0,0.441,1465.074,2-1,6,0,49,2.238,-0.792
-Women's Flyweight,25,Lauren Murphy,False,25,23.0,26.1,0.423,1507.632,0-1,15,3,441,3.942,-1.245
-Women's Flyweight,26,Ariane da Silva,False,26,24.0,26.0,0.407,1500.646,1-3,14,1,476,4.327,-0.533
-Women's Flyweight,27,Gabriella Fernandes,False,27,25.0,28.0,0.365,1467.463,3-1,6,0,182,4.857,-2.31
-Women's Flyweight,28,Ernesta Kareckaite,False,28,27.0,29.0,0.326,1484.241,1-2,3,0,210,5.622,0.733
-Women's Flyweight,29,Jeisla Chaves,False,29,28.0,30.0,0.307,1450.482,1-1,2,0,35,4.444,-0.24
-Women's Flyweight,30,Ivana Petrovic,False,30,29.0,32.0,0.264,1405.629,1-2,4,0,511,2.073,0.265
-Women's Strawweight,1,Virna Jandiroba,False,1,1.0,2.0,0.897,1707.231,4-1,13,5,175,2.193,-0.464
-Women's Strawweight,2,Fatima Kline,False,2,1.0,3.0,0.885,1762.5,4-1,5,2,70,4.877,2.416
-Women's Strawweight,3,Gillian Robertson,False,3,2.0,5.0,0.853,1655.264,5-1,21,3,42,2.684,0.504
-Women's Strawweight,4,Alexia Thainara,False,4,3.0,6.0,0.847,1727.768,4-0,4,1,49,4.219,1.555
-Women's Strawweight,5,Denise Gomes,False,5,4.0,6.0,0.836,1701.269,5-1,9,3,28,4.039,0.796
-Women's Strawweight,0,Mackenzie Dern,True,6,4.0,8.0,0.814,1693.718,4-2,17,6,42,3.411,0.184
-Women's Strawweight,6,Tatiana Suarez,False,7,5.0,8.0,0.804,1693.583,2-1,10,6,168,0.927,-1.053
-Women's Strawweight,7,Iasmin Lucindo,False,8,7.9,9.0,0.779,1676.42,3-1,7,2,413,3.15,0.633
-Women's Strawweight,8,Piera Rodriguez,False,9,6.0,11.0,0.774,1647.859,3-1,7,1,196,4.637,1.352
-Women's Strawweight,9,Tecia Pennington,False,10,9.0,12.0,0.742,1636.328,2-2,19,5,322,4.683,1.583
-Women's Strawweight,10,Amanda Lemos,False,11,9.0,13.0,0.729,1639.168,2-4,16,3,49,2.075,0.425
-Women's Strawweight,11,Jaqueline Amorim,False,12,10.0,14.0,0.705,1616.504,4-1,7,0,119,1.194,-1.097
-Women's Strawweight,12,Yan Xiaonan,False,13,12.0,17.0,0.697,1660.333,1-3,14,3,28,2.625,0.117
-Women's Strawweight,13,Loopy Godinez,False,14,13.0,16.0,0.679,1632.902,3-3,15,2,168,4.995,0.449
-Women's Strawweight,14,Stephanie Luciano,False,15,12.0,17.0,0.664,1620.95,3-1,4,0,56,5.069,1.473
-Women's Strawweight,15,Angela Hill,False,16,14.0,18.0,0.654,1603.986,4-3,30,2,119,5.484,0.393
-Women's Strawweight,16,Alice Ardelean,False,17,15.0,21.0,0.628,1607.559,3-2,5,0,133,6.997,2.026
-Women's Strawweight,17,Talita Alencar,False,18,16.0,23.0,0.617,1606.066,4-1,5,0,154,3.244,0.0
-Women's Strawweight,18,Shanelle Dyer,False,19,16.0,22.0,0.611,1625.216,2-0,2,0,35,10.287,6.117
-Women's Strawweight,19,Mizuki,False,20,19.0,24.0,0.587,1608.948,1-0,4,1,336,4.45,-0.2
-Women's Strawweight,20,Tabatha Ricci,False,21,17.0,25.0,0.584,1608.38,3-4,12,3,70,3.562,-1.439
-Women's Strawweight,21,Marina Rodriguez,False,22,17.0,26.0,0.572,1615.979,0-3,15,3,511,3.206,-0.431
-Women's Strawweight,22,Amanda Ribas,False,23,19.0,25.0,0.57,1606.944,1-3,13,4,427,3.511,0.129
-Women's Strawweight,23,Julia Polastri,False,24,20.0,25.0,0.56,1590.974,3-3,6,0,28,6.181,0.973
-Women's Strawweight,24,Jessica Andrade,False,25,21.0,28.0,0.546,1585.538,2-3,30,11,406,5.115,-1.431
-Women's Strawweight,25,Ketlen Souza,False,26,23.0,28.0,0.523,1550.354,4-2,7,0,112,4.226,0.279
-Women's Strawweight,26,Tina Black,False,27,22.0,28.0,0.519,1586.647,1-0,1,0,0,6.012,3.367
-Women's Strawweight,27,Sam Hughes,False,28,26.0,29.0,0.507,1554.878,3-2,12,0,196,5.286,-0.045
-Women's Strawweight,28,Delphine Benouaich,False,29,26.9,31.0,0.482,1598.205,1-0,1,0,21,15.587,7.9
-Women's Strawweight,29,Carol Foro,False,30,29.0,33.0,0.454,1564.079,1-0,1,0,49,7.067,3.333
-Women's Strawweight,30,Yazmin Jauregui,False,31,30.0,33.0,0.45,1515.476,2-1,6,0,0,8.549,2.727
+division,rank,fighter,champion,interim,score,rating,quality_wins,quality_wins_15y,entrenched,last5,streak,days_since,injury,ko_risk,rank_p10,rank_p90
+Bantamweight,0,Petr Yan,True,False,1.116,1746.937,4.8,8,True,4-1,W4,295,True,0.0,0.0,0.0
+Bantamweight,1,Merab Dvalishvili,False,False,1.377,1790.456,6.1,10,True,4-1,L1,295,False,0.0,1.0,1.0
+Bantamweight,2,Sean O'Malley,False,False,1.131,1741.858,5.1,8,True,3-2,W2,105,False,0.03,3.0,3.0
+Bantamweight,3,Song Yadong,False,False,1.34,1768.042,6.4,10,True,3-2,W2,29,False,0.013,2.0,2.0
+Bantamweight,4,Umar Nurmagomedov,False,False,1.007,1730.462,4.2,5,True,3-2,L1,29,False,0.033,4.0,4.0
+Bantamweight,5,Mario Bautista,False,False,0.71,1685.075,2.6,4,False,4-1,W2,78,False,0.039,9.0,9.0
+Bantamweight,6,Cory Sandhagen,False,False,0.839,1737.979,2.3,9,True,2-3,L2,78,False,0.0,5.0,6.0
+Bantamweight,7,Deiveson Figueiredo,False,False,0.795,1663.597,4.1,10,True,1-4,L2,120,False,0.019,5.0,8.0
+Bantamweight,8,David Martinez,False,False,0.557,1620.984,3.0,3,False,4-0,W4,15,False,0.0,10.0,12.0
+Bantamweight,9,Marlon Vera,False,False,0.788,1697.708,3.0,7,True,1-4,W1,8,False,0.0,6.0,7.0
+Bantamweight,10,Raul Rosas Jr.,False,False,0.562,1655.963,2.0,2,False,5-0,W6,1,False,0.0,10.0,12.0
+Bantamweight,11,Raoni Barcelos,False,False,0.533,1613.143,3.0,3,False,4-1,L1,1,False,0.089,11.0,13.0
+Bantamweight,12,Montel Jackson,False,False,0.774,1719.655,2.2,3,False,3-2,W1,1,False,0.0,6.0,8.0
+Bantamweight,13,Henry Cejudo,False,False,0.5,1671.827,0.9,7,True,1-4,L4,295,False,0.0,11.0,17.0
+Bantamweight,14,Charles Jourdain,False,False,0.478,1608.084,2.6,3,False,3-2,L1,8,False,0.052,13.0,19.0
+Bantamweight,15,Rob Font,False,False,0.473,1629.589,1.9,8,True,2-3,L2,204,False,0.0,14.0,15.0
+Bantamweight,16,Kyler Phillips,False,False,0.466,1627.21,1.9,3,False,2-3,L3,162,False,0.0,15.0,16.1
+Bantamweight,17,Aiemann Zahabi,False,False,0.45,1585.582,3.0,3,False,4-1,L1,105,False,0.075,14.0,25.0
+Bantamweight,18,Bryce Mitchell,False,False,0.427,1627.549,1.5,4,False,3-2,W2,113,False,0.041,18.0,19.0
+Bantamweight,19,Said Nurmagomedov,False,False,0.436,1640.636,1.2,2,False,2-3,L2,428,False,0.0,14.0,19.0
+Bantamweight,20,Marcus McGhee,False,False,0.401,1635.753,1.0,1,False,4-1,W1,113,False,0.0,17.0,21.0
+Bantamweight,21,Daniel Marcos,False,False,0.381,1608.93,1.6,3,False,4-1,W1,323,False,0.0,20.0,23.1
+Bantamweight,22,Adrian Yanez,False,False,0.389,1631.538,1.0,1,False,2-3,W1,78,False,0.097,20.0,22.0
+Bantamweight,23,Farid Basharat,False,False,0.349,1618.256,1.0,1,False,5-0,W7,78,False,0.0,23.0,23.0
+Bantamweight,24,Brady Hiestand,False,False,0.302,1635.794,0.0,0,False,4-1,W4,1,False,0.0,21.0,27.0
+Bantamweight,25,Payton Talbott,False,False,0.295,1633.495,0.0,1,False,4-1,W2,295,False,0.0,23.9,28.0
+Bantamweight,26,Davey Grant,False,False,0.266,1584.071,1.2,3,False,3-2,W1,155,False,0.0,24.0,28.0
+Bantamweight,27,Da'Mon Blackshear,False,False,0.272,1592.821,1.0,2,False,3-2,L1,428,False,0.053,25.0,27.0
+Bantamweight,28,Dan Ige,False,False,0.264,1583.366,1.2,5,True,1-4,L3,15,False,0.033,25.0,29.0
+Bantamweight,29,Chris Gutierrez,False,False,0.248,1618.051,0.0,1,False,3-2,L1,358,False,0.0,26.0,30.0
+Bantamweight,30,Jean Matsumoto,False,False,0.194,1566.98,1.0,1,False,3-2,W1,92,False,0.0,29.0,32.0
+Featherweight,0,Alexander Volkanovski,True,False,1.314,1838.228,4.6,11,True,3-2,W2,239,False,0.017,0.0,0.0
+Featherweight,1,Movsar Evloev,False,False,0.837,1680.374,4.5,7,True,5-0,W10,190,False,0.0,4.0,5.0
+Featherweight,2,Aljamain Sterling,False,False,1.383,1808.864,6.4,12,True,3-2,W2,155,False,0.054,1.0,1.0
+Featherweight,3,Diego Lopes,False,False,0.949,1732.862,4.0,6,True,3-2,W1,105,False,0.0,2.0,2.0
+Featherweight,4,Jean Silva,False,False,0.893,1714.084,4.0,4,False,4-1,W2,15,False,0.04,3.0,3.0
+Featherweight,5,Arnold Allen,False,False,0.803,1698.216,3.5,5,True,2-3,W1,134,False,0.0,4.0,5.0
+Featherweight,6,Joanderson Brito,False,False,0.785,1689.252,3.6,5,True,3-2,W3,8,False,0.0,6.0,7.0
+Featherweight,7,Lerone Murphy,False,False,0.775,1677.206,3.9,5,True,4-1,L1,190,False,0.0,6.0,7.0
+Featherweight,8,Jose Aldo,False,False,0.679,1656.3,3.5,13,True,2-3,L2,505,False,0.024,8.0,8.0
+Featherweight,9,Cub Swanson,False,False,0.654,1642.238,3.7,9,True,3-2,W2,169,False,0.088,9.0,12.0
+Featherweight,10,Youssef Zalal,False,False,0.63,1654.517,3.0,4,False,4-1,L1,155,False,0.0,10.0,11.0
+Featherweight,11,Pat Sabatini,False,False,0.619,1650.762,3.0,4,False,4-1,W4,141,False,0.136,11.0,13.0
+Featherweight,12,Yair Rodriguez,False,False,0.592,1665.208,2.2,6,True,3-2,W1,533,False,0.041,10.0,13.0
+Featherweight,13,Vinicius Oliveira,False,False,0.592,1612.353,4.0,4,False,4-1,W1,99,False,0.0,10.0,16.0
+Featherweight,14,Steve Garcia,False,False,0.567,1662.801,2.0,2,False,4-1,L1,105,False,0.065,13.0,15.0
+Featherweight,15,Kevin Vallejos,False,False,0.565,1661.928,2.0,2,False,4-0,W4,197,False,0.0,14.0,16.0
+Featherweight,16,Melquizael Costa,False,False,0.529,1620.358,3.0,4,False,4-1,L1,134,False,0.042,14.0,17.0
+Featherweight,17,Brian Ortega,False,False,0.505,1694.534,0.2,7,True,1-4,L2,400,False,0.039,9.0,17.0
+Featherweight,18,Mairon Santos,False,False,0.401,1606.666,2.0,2,False,4-0,W4,295,False,0.0,18.0,18.0
+Featherweight,19,Nathaniel Wood,False,False,0.343,1610.696,1.2,3,False,4-1,L1,22,False,0.038,19.0,21.0
+Featherweight,20,Yadier del Valle,False,False,0.341,1615.804,1.0,1,False,3-1,W1,50,False,0.0,19.0,22.1
+Featherweight,21,Chepe Mariscal,False,False,0.335,1613.668,1.0,2,False,4-1,L1,316,False,0.0,20.0,24.0
+Featherweight,22,David Onama,False,False,0.331,1594.628,1.6,3,False,4-1,L1,330,False,0.033,19.0,23.0
+Featherweight,23,Felipe Lima,False,False,0.321,1608.994,1.0,1,False,3-1,W1,22,False,0.0,22.0,25.0
+Featherweight,24,Josh Emmett,False,False,0.317,1586.993,1.7,8,True,1-4,L3,197,False,0.05,20.0,25.0
+Featherweight,25,Sean Woodson,False,False,0.285,1567.395,2.0,2,False,4-1,W1,29,False,0.061,22.9,28.0
+Featherweight,26,Dooho Choi,False,False,0.234,1573.697,1.2,4,False,3-2,L1,8,False,0.217,27.0,31.0
+Featherweight,27,Daniel Santos,False,False,0.261,1588.707,1.0,1,False,4-1,L1,134,False,0.071,26.0,27.0
+Featherweight,28,Luke Riley,False,False,0.255,1616.03,0.0,0,False,3-0,W3,78,False,0.0,24.0,29.0
+Featherweight,29,Jose Delgado,False,False,0.227,1577.266,1.0,1,False,3-2,L1,15,False,0.0,28.0,30.0
+Featherweight,30,Tommy McMillen,False,False,0.21,1600.931,0.0,0,False,3-0,W3,15,False,0.0,27.0,32.0
+Flyweight,0,Joshua Van,True,False,1.332,1695.308,6.0,6,True,5-0,W8,8,False,0.06,0.0,0.0
+Flyweight,1,Tatsuro Taira,False,False,0.791,1715.645,2.0,2,False,3-2,L1,141,False,0.032,3.0,4.0
+Flyweight,2,Brandon Moreno,False,False,0.948,1681.617,3.7,8,True,3-2,W1,15,False,0.01,1.0,2.0
+Flyweight,3,Manel Kape,False,False,0.941,1715.55,3.0,3,False,4-1,W4,99,False,0.0,1.0,2.0
+Flyweight,4,Asu Almabayev,False,False,0.698,1631.201,3.0,3,False,4-1,W3,92,False,0.031,3.0,6.0
+Flyweight,5,Alexandre Pantoja,False,False,0.638,1688.479,1.5,5,True,3-2,L2,8,False,0.028,4.0,6.0
+Flyweight,6,Kyoji Horiguchi,False,False,0.619,1655.891,2.0,2,False,4-1,L1,99,False,0.038,5.0,6.0
+Flyweight,7,Alex Perez,False,False,0.475,1590.226,2.3,3,False,2-3,L1,29,False,0.039,7.0,7.0
+Flyweight,8,Ramazan Temirov,False,False,0.425,1588.531,2.0,2,False,3-0,W3,64,False,0.0,8.0,8.0
+Flyweight,9,Brandon Royval,False,False,0.362,1592.458,1.5,5,True,3-2,W1,78,False,0.057,9.0,10.0
+Flyweight,10,Alessandro Costa,False,False,0.35,1562.273,2.0,2,False,4-1,W3,78,False,0.128,9.0,13.0
+Flyweight,11,Kai Kara-France,False,False,0.332,1597.811,1.2,2,False,2-3,L1,456,False,0.027,10.0,11.0
+Flyweight,12,Allan Nascimento,False,False,0.281,1590.536,1.0,1,False,4-1,L1,99,False,0.0,11.0,12.0
+Flyweight,13,Tagir Ulanbekov,False,False,0.275,1588.54,1.0,1,False,4-1,L1,309,False,0.0,12.0,13.0
+Flyweight,14,Joseph Morales,False,False,0.245,1577.9,1.0,1,False,2-3,L1,15,False,0.071,14.0,15.0
+Flyweight,15,Steve Erceg,False,False,0.067,1516.134,1.0,3,False,2-3,L1,64,False,0.11,18.0,26.0
+Flyweight,16,Tim Elliott,False,False,0.237,1559.725,1.3,2,False,3-2,W1,15,False,0.0,14.0,15.0
+Flyweight,17,Edgar Chairez,False,False,0.193,1559.91,1.0,1,False,3-2,L1,15,False,0.0,16.0,17.0
+Flyweight,18,Nyamjargal Tumendemberel,False,False,0.15,1544.985,1.0,1,False,2-1,W2,204,False,0.0,17.0,19.0
+Flyweight,19,Amir Albazi,False,False,0.132,1590.799,0.0,1,False,3-2,L2,232,False,0.0,16.0,19.0
+Flyweight,20,Alden Coria,False,False,0.072,1569.904,0.0,0,False,3-0,W3,71,False,0.0,18.0,20.0
+Flyweight,21,Andre Lima,False,False,0.044,1560.142,0.0,0,False,4-1,W1,29,False,0.0,20.0,23.0
+Flyweight,22,Jose Ochoa,False,False,0.04,1558.903,0.0,1,False,2-2,W1,141,False,0.0,21.0,24.0
+Flyweight,23,Rei Tsuruya,False,False,0.028,1554.561,0.0,0,False,3-1,W2,29,False,0.0,22.0,25.0
+Flyweight,24,Charles Johnson,False,False,0.004,1546.392,0.0,1,False,3-2,W1,43,False,0.033,23.0,26.0
+Flyweight,25,Sumudaerji,False,False,0.0,1545.078,0.0,1,False,4-1,W4,29,False,0.0,24.0,27.0
+Flyweight,26,Bilal Hasan,False,False,0.0,1545.0,0.0,0,False,1-0,W1,29,False,0.0,25.0,28.0
+Flyweight,27,Imanol Rodriguez,False,False,-0.024,1536.486,0.0,0,False,1-0,W1,211,False,0.0,27.0,29.0
+Flyweight,28,Alibi Idiris,False,False,-0.041,1478.625,1.0,1,False,1-1,W1,218,False,0.0,21.0,31.0
+Flyweight,29,Lone'er Kavanagh,False,False,-0.045,1477.045,1.0,1,False,3-2,L1,78,False,0.139,22.0,32.0
+Flyweight,30,Fabia Sintes,False,False,-0.078,1517.873,0.0,0,False,1-0,W1,22,False,0.0,28.0,30.0
+Heavyweight,0,Ciryl Gane,False,True,1.176,1815.891,4.4,8,True,4-1,W3,105,False,0.0,0.0,0.0
+Heavyweight,1,Alex Pereira,False,False,1.475,1826.857,7.4,9,True,3-2,L1,105,False,0.027,1.0,1.0
+Heavyweight,2,Alexander Volkov,False,False,1.26,1763.681,6.9,12,True,4-1,W2,141,False,0.016,2.0,2.0
+Heavyweight,3,Tom Aspinall,False,False,0.983,1774.504,3.5,5,True,4-1,W3,337,True,0.024,3.0,3.0
+Heavyweight,4,Josh Hokit,False,False,0.534,1658.263,2.0,2,False,4-0,W4,105,False,0.0,7.0,7.0
+Heavyweight,5,Curtis Blaydes,False,False,0.822,1718.094,3.4,9,True,3-2,W1,15,False,0.029,4.0,5.0
+Heavyweight,6,Sergei Pavlovich,False,False,0.761,1728.91,2.4,6,True,3-2,W3,120,False,0.048,5.0,6.0
+Heavyweight,7,Waldo Cortes Acosta,False,False,0.811,1694.256,4.0,4,False,3-2,L2,15,False,0.0,4.0,6.0
+Heavyweight,8,Valter Walker,False,False,0.463,1665.056,1.0,1,False,5-0,W5,64,False,0.0,8.0,9.0
+Heavyweight,9,Aleksandar Rakic,False,False,0.4,1645.227,0.9,4,False,1-4,W1,57,False,0.045,9.0,11.0
+Heavyweight,10,Derrick Lewis,False,False,0.393,1619.206,1.6,9,True,2-3,L2,105,False,0.097,10.0,11.0
+Heavyweight,11,Mario Pinto,False,False,0.371,1631.166,1.0,1,False,4-0,W4,22,False,0.0,10.0,12.0
+Heavyweight,12,Ryan Spann,False,False,0.39,1568.425,3.1,6,True,3-2,L1,22,False,0.115,8.0,15.0
+Heavyweight,13,Vitor Petrino,False,False,0.34,1619.804,1.0,2,False,4-1,W4,36,False,0.061,12.0,13.0
+Heavyweight,14,Rizvan Kuniev,False,False,0.301,1605.386,1.0,1,False,2-1,W2,64,False,0.0,14.0,14.0
+Heavyweight,15,Brando Pericic,False,False,0.255,1621.537,0.0,0,False,3-0,W3,148,False,0.0,13.0,15.0
+Heavyweight,16,Gokhan Saricam,False,False,0.168,1555.942,1.0,1,False,1-0,W1,162,False,0.0,16.0,17.0
+Heavyweight,17,Serghei Spivac,False,False,0.167,1588.751,0.0,3,False,2-3,L1,36,False,0.093,16.0,18.0
+Heavyweight,18,Shamil Gaziev,False,False,0.079,1556.347,0.0,1,False,3-2,W1,36,False,0.17,19.0,21.0
+Heavyweight,19,Martin Buday,False,False,0.088,1506.666,1.6,2,False,4-1,W3,428,False,0.053,17.0,26.0
+Heavyweight,20,Tanner Boser,False,False,0.086,1548.912,0.3,1,False,2-3,L1,162,False,0.1,18.0,20.0
+Heavyweight,21,Marcin Tybura,False,False,0.08,1556.719,0.0,6,True,2-3,L3,57,False,0.086,18.0,20.0
+Heavyweight,22,Anthony Wint,False,False,0.048,1545.0,0.0,0,False,1-0,W1,36,False,0.0,21.0,22.0
+Heavyweight,23,Jovan Leka,False,False,0.048,1545.0,0.0,0,False,1-0,W1,57,False,0.0,22.0,23.0
+Heavyweight,24,RJ Harris,False,False,0.044,1543.546,0.0,0,False,1-0,W1,71,False,0.0,23.0,24.0
+Heavyweight,25,Jose Montanha,False,False,0.042,1542.631,0.0,0,False,1-0,W1,50,False,0.0,24.0,25.0
+Heavyweight,26,Steven Asplund,False,False,0.041,1542.326,0.0,0,False,2-1,W1,50,False,0.0,25.0,26.0
+Heavyweight,27,Kennedy Nzechukwu,False,False,0.0,1527.2,0.0,2,False,2-3,L2,36,False,0.102,27.0,28.0
+Heavyweight,28,Ante Delija,False,False,-0.015,1521.74,0.0,1,False,1-2,L2,218,False,0.176,28.0,29.0
+Heavyweight,29,Hamdy Abdelwahab,False,False,-0.017,1520.784,0.0,0,False,2-1,W1,337,False,0.0,29.0,30.0
+Heavyweight,30,Tallison Teixeira,False,False,-0.039,1512.816,0.0,1,False,2-2,L1,120,False,0.113,31.0,32.0
+Light Heavyweight,0,Carlos Ulberg,True,False,1.034,1758.393,5.0,5,True,5-0,W10,169,False,0.061,0.0,0.0
+Light Heavyweight,1,Magomed Ankalaev,False,False,0.942,1756.355,4.1,7,True,4-1,W1,64,False,0.0,1.0,1.0
+Light Heavyweight,2,Robert Whittaker,False,False,0.884,1737.706,4.0,13,True,3-2,W1,78,False,0.027,2.0,2.0
+Light Heavyweight,3,Jiri Prochazka,False,False,0.827,1745.477,3.2,6,True,3-2,L1,169,False,0.033,3.0,3.0
+Light Heavyweight,4,Paulo Costa,False,False,0.702,1722.853,2.5,6,True,3-2,W2,169,False,0.008,4.0,5.0
+Light Heavyweight,5,Dominick Reyes,False,False,0.667,1667.993,3.6,6,True,4-1,W1,169,False,0.101,4.0,5.0
+Light Heavyweight,6,Azamat Murzakanov,False,False,0.632,1669.147,3.2,4,False,4-1,L1,169,False,0.038,6.0,6.0
+Light Heavyweight,7,Reinier de Ridder,False,False,0.575,1654.477,3.0,4,False,3-2,W1,36,False,0.099,7.0,10.0
+Light Heavyweight,8,Volkan Oezdemir,False,False,0.574,1661.508,2.8,7,True,3-2,W1,309,False,0.047,8.0,9.0
+Light Heavyweight,9,Navajo Stirling,False,False,0.569,1689.792,2.0,2,False,5-0,W6,57,False,0.0,7.0,9.0
+Light Heavyweight,10,Jan Blachowicz,False,False,0.534,1687.484,1.7,8,True,1-4,L3,57,False,0.029,8.0,11.0
+Light Heavyweight,11,Khalil Rountree Jr.,False,False,0.525,1649.975,2.6,3,False,3-2,L1,358,False,0.057,10.0,11.0
+Light Heavyweight,12,Roman Dolidze,False,False,0.461,1625.154,2.6,4,False,2-3,L3,36,False,0.037,12.0,13.0
+Light Heavyweight,13,Bogdan Guskov,False,False,0.434,1636.999,2.0,2,False,4-1,L1,64,False,0.037,12.0,13.0
+Light Heavyweight,14,Johnny Walker,False,False,0.359,1641.405,1.1,4,False,2-3,L1,169,False,0.116,14.0,15.0
+Light Heavyweight,15,Nikita Krylov,False,False,0.292,1611.731,1.2,6,True,2-3,L1,78,False,0.073,15.0,16.0
+Light Heavyweight,16,Modestas Bukauskas,False,False,0.298,1561.48,2.6,3,False,4-1,W2,22,False,0.183,14.0,19.0
+Light Heavyweight,17,Abdul Rakhman Yakhyaev,False,False,0.182,1613.988,0.0,0,False,3-0,W3,92,False,0.0,16.0,18.0
+Light Heavyweight,18,Muhammad Saidov,False,False,0.15,1563.967,1.0,1,False,1-0,W1,64,False,0.0,17.0,23.0
+Light Heavyweight,19,Dustin Jacoby,False,False,0.181,1613.531,0.0,2,False,3-2,L1,64,False,0.064,17.0,19.0
+Light Heavyweight,20,Jamahal Hill,False,False,0.175,1611.045,0.0,3,False,2-3,L3,463,False,0.097,18.0,20.0
+Light Heavyweight,21,Jimmy Crute,False,False,0.152,1590.756,0.3,1,False,2-3,W2,365,False,0.087,20.0,21.0
+Light Heavyweight,22,Alonzo Menifield,False,False,0.115,1587.659,0.0,3,False,4-1,W2,8,False,0.093,22.0,24.0
+Light Heavyweight,23,Iwo Baraniewski,False,False,0.146,1599.892,0.0,0,False,3-1,L1,8,False,0.0,20.0,22.0
+Light Heavyweight,24,Billy Elekana,False,False,0.077,1572.765,0.0,0,False,3-1,W3,239,False,0.0,24.0,26.0
+Light Heavyweight,25,Anthony Smith,False,False,0.063,1526.201,1.1,6,True,1-4,L3,519,False,0.099,23.0,27.0
+Light Heavyweight,26,Ion Cutelaba,False,False,0.061,1555.334,0.3,1,False,3-2,L1,99,False,0.09,25.0,26.0
+Light Heavyweight,27,Christian Edwards,False,False,0.032,1555.301,0.0,0,False,1-1,W1,1,False,0.0,26.0,27.0
+Light Heavyweight,28,Felipe Franco,False,False,0.0,1542.9,0.0,0,False,1-1,W1,71,False,0.0,28.0,28.0
+Light Heavyweight,29,Lucas Fernando,False,False,-0.007,1540.238,0.0,0,False,1-0,W1,43,False,0.0,29.0,29.0
+Light Heavyweight,30,Liu Ce,False,False,-0.01,1539.164,0.0,0,False,1-0,W1,29,False,0.0,30.0,30.0
+Lightweight,0,Justin Gaethje,True,False,1.169,1772.694,5.7,10,True,4-1,W3,105,False,0.07,0.0,0.0
+Lightweight,1,Arman Tsarukyan,False,False,1.233,1791.224,5.8,8,True,5-0,W6,8,False,0.0,2.0,3.0
+Lightweight,2,Ilia Topuria,False,False,1.192,1823.449,4.2,5,True,4-1,L1,105,False,0.024,2.0,3.0
+Lightweight,3,Charles Oliveira,False,False,1.391,1870.196,4.9,14,True,3-2,W2,204,False,0.034,1.0,1.0
+Lightweight,4,Quillan Salkilld,False,False,0.877,1723.778,4.0,4,False,5-0,W6,50,False,0.0,4.0,4.1
+Lightweight,5,Paddy Pimblett,False,False,0.812,1742.32,2.6,4,False,4-1,W1,78,False,0.0,4.9,8.0
+Lightweight,6,Renato Moicano,False,False,0.803,1693.228,4.2,7,True,3-2,W1,176,False,0.084,5.0,6.0
+Lightweight,7,Mateusz Gamrot,False,False,0.759,1684.258,4.0,8,True,2-3,L1,50,False,0.0,6.0,7.0
+Lightweight,8,King Green,False,False,0.708,1681.43,3.5,10,True,4-1,W4,78,False,0.071,9.0,11.0
+Lightweight,9,Jim Miller,False,False,0.742,1681.464,3.9,11,True,3-2,W1,141,False,0.023,7.0,8.0
+Lightweight,10,Benoit Saint Denis,False,False,0.68,1697.895,2.6,4,False,4-1,L1,78,False,0.064,9.0,10.0
+Lightweight,11,Grant Dawson,False,False,0.63,1713.024,1.5,5,True,4-1,W1,141,False,0.073,9.0,12.0
+Lightweight,12,Mauricio Ruffy,False,False,0.486,1621.771,3.0,4,False,3-2,L1,8,False,0.042,13.0,14.0
+Lightweight,13,Rafael Fiziev,False,False,0.589,1641.848,3.5,6,True,2-3,W1,92,False,0.101,11.0,12.0
+Lightweight,14,Rafa Garcia,False,False,0.44,1589.104,3.6,4,False,3-2,L1,15,False,0.054,14.0,18.0
+Lightweight,15,Jalin Turner,False,False,0.439,1663.237,1.0,2,False,3-2,W2,43,False,0.084,13.0,17.0
+Lightweight,16,Alexander Hernandez,False,False,0.357,1592.605,2.5,6,True,4-1,L1,155,False,0.083,16.0,21.0
+Lightweight,17,Diego Ferreira,False,False,0.368,1622.185,1.6,6,True,3-2,W1,50,False,0.118,15.0,18.0
+Lightweight,18,Dan Hooker,False,False,0.346,1566.268,3.3,10,True,2-3,L3,22,False,0.128,15.0,25.0
+Lightweight,19,Chris Padilla,False,False,0.329,1626.606,1.0,1,False,5-0,W5,36,False,0.0,16.0,21.0
+Lightweight,20,Manuel Torres,False,False,0.329,1626.465,1.0,2,False,3-2,L1,92,False,0.17,17.0,22.0
+Lightweight,21,Esteban Ribovics,False,False,0.325,1596.383,2.0,2,False,3-2,W1,43,False,0.0,19.0,22.0
+Lightweight,22,Nurullo Aliev,False,False,0.317,1593.882,2.0,2,False,4-0,W4,64,False,0.0,20.0,24.0
+Lightweight,23,Drew Dober,False,False,0.292,1616.853,0.9,3,False,2-3,W2,204,False,0.074,20.0,23.0
+Lightweight,24,Axel Sola,False,False,0.281,1610.232,1.0,1,False,3-1,W2,22,False,0.0,22.0,25.0
+Lightweight,25,Beneil Dariush,False,False,0.271,1635.642,0.0,10,True,1-4,L2,148,False,0.137,19.0,27.0
+Lightweight,26,Tommy Gantt,False,False,0.234,1594.57,1.0,1,False,2-0,W2,15,False,0.0,26.0,27.0
+Lightweight,27,Drakkar Klose,False,False,0.204,1547.359,2.3,4,False,3-2,L1,15,False,0.078,25.0,31.1
+Lightweight,28,Mateusz Rebecki,False,False,0.186,1578.671,1.0,1,False,2-3,W1,57,False,0.068,27.0,29.0
+Lightweight,29,MarQuel Mederos,False,False,0.145,1593.459,0.0,0,False,4-0,W4,36,False,0.0,27.0,38.0
+Lightweight,30,Fares Ziam,False,False,0.145,1564.694,1.0,2,False,3-2,L2,22,False,0.044,30.0,32.0
+Middleweight,0,Sean Strickland,True,False,0.939,1750.565,4.7,10,True,3-2,W2,141,False,0.056,0.0,0.0
+Middleweight,1,Khamzat Chimaev,False,False,1.08,1789.724,5.1,7,True,4-1,L1,141,False,0.0,2.0,3.0
+Middleweight,2,Dricus Du Plessis,False,False,1.134,1792.267,5.7,9,True,4-1,W1,71,False,0.0,1.0,1.0
+Middleweight,3,Nassourdine Imavov,False,False,0.952,1729.74,5.6,6,True,5-0,W5,386,False,0.0,4.0,5.0
+Middleweight,4,Brendan Allen,False,False,1.035,1736.573,6.4,8,True,3-2,W3,113,False,0.037,2.0,4.0
+Middleweight,5,Kamaru Usman,False,False,1.016,1818.203,3.3,11,True,1-4,L1,71,False,0.027,2.0,5.0
+Middleweight,6,Joe Pyfer,False,False,0.872,1729.303,4.6,5,True,4-1,W4,183,False,0.0,6.0,6.1
+Middleweight,7,Gregory Rodrigues,False,False,0.852,1711.028,5.0,5,True,4-1,W4,36,False,0.071,6.0,7.0
+Middleweight,8,Israel Adesanya,False,False,0.732,1690.497,4.2,11,True,1-4,L4,183,False,0.059,8.0,8.0
+Middleweight,9,Anthony Hernandez,False,False,0.62,1667.498,3.6,4,False,3-2,L2,36,False,0.095,9.0,9.0
+Middleweight,10,Ikram Aliskerov,False,False,0.572,1667.467,3.0,4,False,4-1,W3,92,False,0.065,10.0,10.0
+Middleweight,11,Christian Leroy Duncan,False,False,0.509,1673.354,2.0,3,False,5-0,W5,71,False,0.0,11.0,11.0
+Middleweight,12,Caio Borralho,False,False,0.47,1670.624,1.6,3,False,4-1,W1,204,False,0.0,12.0,15.0
+Middleweight,13,Shara Magomedov,False,False,0.45,1623.67,3.0,4,False,4-1,W2,92,False,0.0,12.0,15.0
+Middleweight,14,Vicente Luque,False,False,0.427,1652.272,1.7,9,True,2-3,L1,43,False,0.045,13.0,17.0
+Middleweight,15,Abus Magomedov,False,False,0.426,1614.956,3.0,3,False,4-1,W1,92,False,0.075,13.0,17.0
+Middleweight,16,Bo Nickal,False,False,0.418,1640.356,2.0,2,False,4-1,W2,105,False,0.096,14.0,17.0
+Middleweight,17,Michael Page,False,False,0.408,1608.333,3.0,3,False,4-1,W4,22,False,0.0,14.0,19.0
+Middleweight,18,Jared Cannonier,False,False,0.38,1635.437,1.7,7,True,1-4,L2,71,False,0.049,16.0,20.0
+Middleweight,19,Cam Rowston,False,False,0.376,1625.28,2.0,2,False,3-0,W3,148,False,0.0,18.0,19.0
+Middleweight,20,Edmen Shahbazyan,False,False,0.371,1615.043,2.3,4,False,4-1,W1,8,False,0.109,18.0,20.0
+Middleweight,21,Jacob Malkoun,False,False,0.331,1609.445,2.0,2,False,4-1,W3,148,False,0.047,21.0,21.0
+Middleweight,22,Ismail Naurdiev,False,False,0.269,1606.811,1.3,2,False,3-2,W1,309,False,0.0,22.0,25.0
+Middleweight,23,Yousri Belgaroui,False,False,0.243,1634.646,0.0,0,False,3-0,W3,15,False,0.0,22.0,25.0
+Middleweight,24,Ateba Gautier,False,False,0.235,1631.7,0.0,0,False,5-0,W5,141,False,0.0,23.0,27.0
+Middleweight,25,Marvin Vettori,False,False,0.218,1622.856,0.1,5,True,1-4,L4,295,False,0.0,24.0,28.0
+Middleweight,26,Kelvin Gastelum,False,False,0.218,1597.146,1.0,7,True,2-3,L1,169,False,0.0,24.0,27.0
+Middleweight,27,Baisangur Susurkaev,False,False,0.188,1614.889,0.0,0,False,3-0,W3,141,False,0.0,26.0,31.0
+Middleweight,28,Nursulton Ruziboev,False,False,0.175,1610.191,0.0,0,False,3-2,L1,22,False,0.0,28.0,32.0
+Middleweight,29,Michel Pereira,False,False,0.156,1569.398,1.2,5,True,1-4,L1,92,False,0.096,29.0,33.0
+Middleweight,30,Ryan Gandra,False,False,0.154,1602.855,0.0,0,False,3-0,W3,8,False,0.0,29.0,34.0
+Welterweight,0,Islam Makhachev,True,False,1.547,1894.645,8.3,12,True,5-0,W17,43,False,0.0,0.0,0.0
+Welterweight,1,Max Holloway,False,False,1.33,1879.606,6.1,17,True,3-2,W1,78,False,0.0,1.0,1.0
+Welterweight,2,Carlos Prates,False,False,0.988,1757.719,6.0,6,True,4-1,W3,148,False,0.0,2.0,2.0
+Welterweight,3,Michael Morales,False,False,0.873,1739.394,5.2,6,True,5-0,W7,316,False,0.0,3.0,3.0
+Welterweight,4,Michael Chiesa,False,False,0.8,1706.725,5.4,10,True,4-1,W4,183,False,0.0,4.0,5.0
+Welterweight,5,Sean Brady,False,False,0.769,1730.717,4.2,7,True,4-1,W1,141,False,0.09,4.0,5.0
+Welterweight,6,Gabriel Bonfim,False,False,0.697,1692.729,4.6,5,True,5-0,W5,113,False,0.106,6.0,8.0
+Welterweight,7,Leon Edwards,False,False,0.675,1708.027,3.8,9,True,2-3,L3,316,False,0.02,7.0,8.0
+Welterweight,8,Kevin Holland,False,False,0.656,1666.032,5.0,10,True,3-2,W1,169,False,0.035,7.0,10.0
+Welterweight,9,Ian Machado Garry,False,False,0.625,1736.504,2.2,4,False,3-2,L1,43,False,0.0,6.0,10.0
+Welterweight,10,Jack Della Maddalena,False,False,0.583,1686.087,3.4,6,True,3-2,L2,148,False,0.03,9.0,11.0
+Welterweight,11,Joaquin Buckley,False,False,0.548,1696.945,2.6,5,True,3-2,L2,141,False,0.107,11.0,12.0
+Welterweight,12,Belal Muhammad,False,False,0.548,1714.426,2.0,7,True,2-3,L3,113,False,0.03,9.0,14.0
+Welterweight,13,Uros Medic,False,False,0.531,1661.397,3.6,5,True,4-1,W4,57,False,0.048,11.0,14.0
+Welterweight,14,Neil Magny,False,False,0.444,1641.134,3.2,13,True,3-2,W1,43,False,0.059,15.0,16.0
+Welterweight,15,Mike Malott,False,False,0.493,1647.56,3.6,4,False,4-1,W4,162,False,0.093,13.0,15.0
+Welterweight,16,Daniel Rodriguez,False,False,0.419,1623.191,3.5,7,True,3-2,L1,57,False,0.057,16.0,21.0
+Welterweight,17,Jeremiah Wells,False,False,0.392,1642.71,2.5,4,False,3-2,W2,43,False,0.0,17.0,18.0
+Welterweight,18,Randy Brown,False,False,0.391,1613.224,3.5,7,True,2-3,L2,169,False,0.084,17.0,25.0
+Welterweight,19,Conor McGregor,False,False,0.378,1710.978,0.0,6,True,1-4,L3,78,False,0.097,13.0,27.0
+Welterweight,20,Daniil Donchenko,False,False,0.37,1649.292,2.0,2,False,4-0,W4,22,False,0.0,18.0,20.0
+Welterweight,21,Myktybek Orolbai,False,False,0.362,1646.522,2.0,2,False,3-2,L1,43,False,0.0,19.0,21.0
+Welterweight,22,Stephen Thompson,False,False,0.347,1643.795,1.9,8,True,1-4,L3,442,False,0.074,21.0,23.0
+Welterweight,23,Rinat Fakhretdinov,False,False,0.343,1651.217,1.6,2,False,5-0,W6,386,False,0.0,20.0,23.0
+Welterweight,24,Ignacio Bahamondes,False,False,0.329,1634.595,2.0,3,False,3-2,W1,15,False,0.0,22.0,24.0
+Welterweight,25,Jake Matthews,False,False,0.311,1639.699,1.6,3,False,4-1,W1,120,False,0.0,24.0,26.0
+Welterweight,26,Yaroslav Amosov,False,False,0.31,1627.352,2.0,2,False,2-0,W2,141,False,0.0,24.0,27.0
+Welterweight,27,Joel Alvarez,False,False,0.301,1635.879,1.6,3,False,3-2,L2,43,False,0.043,26.0,27.0
+Welterweight,28,Sam Patterson,False,False,0.263,1639.788,1.0,1,False,4-1,W1,64,False,0.061,28.0,29.0
+Welterweight,29,Jacobe Smith,False,False,0.218,1623.333,1.0,1,False,3-0,W3,218,False,0.0,29.0,30.0
+Welterweight,30,Chris Curtis,False,False,0.202,1582.297,2.2,4,False,2-3,L1,197,False,0.035,28.0,32.0
+Women's Bantamweight,0,Kayla Harrison,True,False,0.554,1606.372,3.0,3,False,3-0,W3,477,False,0.0,0.0,0.0
+Women's Bantamweight,1,Joselyne Edwards,False,False,0.583,1622.717,2.6,3,False,5-0,W5,155,False,0.0,2.0,3.0
+Women's Bantamweight,2,Ailin Perez,False,False,0.55,1605.441,3.0,3,False,5-0,W7,1,False,0.0,4.0,4.0
+Women's Bantamweight,3,Norma Dumont,False,False,0.814,1618.222,5.1,7,True,3-2,L2,1,False,0.013,1.0,1.0
+Women's Bantamweight,4,Ketlen Vieira,False,False,0.403,1553.819,3.7,8,True,3-2,W1,134,False,0.036,5.0,10.0
+Women's Bantamweight,5,Yana Santos,False,False,0.299,1555.164,2.6,4,False,3-2,W3,358,False,0.064,8.0,11.0
+Women's Bantamweight,6,Macy Chiasson,False,False,0.566,1611.454,2.9,4,False,2-3,L3,211,False,0.029,2.0,3.0
+Women's Bantamweight,7,Luana Santos,False,False,0.305,1618.415,0.0,1,False,4-1,W3,99,False,0.0,5.0,11.0
+Women's Bantamweight,8,Karol Rosa,False,False,0.372,1582.159,2.2,4,False,2-3,L1,99,False,0.0,6.0,8.0
+Women's Bantamweight,9,Julianna Pena,False,False,0.338,1578.869,2.0,4,False,3-2,L1,477,False,0.0,7.0,9.0
+Women's Bantamweight,10,Jacqueline Cavalcanti,False,False,0.31,1595.769,1.0,1,False,4-1,L1,134,False,0.0,7.0,10.0
+Women's Bantamweight,11,Bia Mesquita,False,False,0.3,1617.284,0.0,0,False,3-0,W3,99,False,0.0,6.0,12.0
+Women's Bantamweight,12,Michelle Montague,False,False,0.2,1545.949,2.0,2,False,2-0,W2,155,False,0.0,10.0,12.0
+Women's Bantamweight,13,Nora Cornolle,False,False,0.07,1562.634,0.0,0,False,2-3,W1,22,False,0.0,13.0,14.0
+Women's Bantamweight,14,Melissa Croden,False,False,0.025,1551.984,0.0,0,False,2-1,W1,162,False,0.0,14.0,15.0
+Women's Bantamweight,15,Miesha Tate,False,False,0.01,1515.056,1.4,3,False,2-3,L1,512,False,0.0,13.0,16.0
+Women's Bantamweight,16,Nina Milosevic,False,False,-0.049,1534.38,0.0,0,False,1-0,W1,57,False,0.0,15.0,16.0
+Women's Bantamweight,17,Alice Pereira,False,False,-0.071,1529.165,0.0,0,False,1-1,W1,176,False,0.0,17.0,17.0
+Women's Bantamweight,18,Mayra Bueno Silva,False,False,-0.183,1502.481,0.0,1,False,0-5,L5,155,False,0.029,18.0,18.0
+Women's Bantamweight,19,Klaudia Sygula,False,False,-0.202,1498.011,0.0,1,False,2-2,L1,22,False,0.169,19.0,19.0
+Women's Bantamweight,20,Chelsea Chandler,False,False,-0.21,1496.03,0.0,1,False,2-3,W1,113,False,0.139,20.0,20.0
+Women's Bantamweight,21,Daria Zhelezniakova,False,False,-0.238,1489.46,0.0,0,False,2-2,L1,162,False,0.0,21.0,21.0
+Women's Bantamweight,22,Luana Carolina,False,False,-0.24,1488.858,0.0,0,False,3-2,L1,365,False,0.081,22.0,22.0
+Women's Bantamweight,23,Montse Rendon,False,False,-0.319,1470.014,0.0,0,False,2-2,L1,197,False,0.0,23.0,23.0
+Women's Bantamweight,24,Melissa Mullins,False,False,-0.374,1457.046,0.0,1,False,2-3,L2,99,False,0.118,24.0,24.0
+Women's Bantamweight,25,Tainara Lisboa,False,False,-0.392,1452.808,0.0,0,False,2-2,L2,344,False,0.106,25.0,25.0
+Women's Bantamweight,26,Irina Alekseeva,False,False,-0.428,1444.091,0.0,1,False,1-3,L3,351,False,0.0,26.0,26.0
+Women's Bantamweight,27,Priscila Cachoeira,False,False,-0.465,1435.465,0.0,0,False,1-4,L3,113,False,0.045,27.0,27.0
+Women's Bantamweight,28,Hailey Cowan,False,False,-0.689,1382.047,0.0,0,False,0-4,L4,57,False,0.254,28.0,28.0
+Women's Flyweight,1,Valentina Shevchenko,False,False,1.012,1763.526,5.5,11,True,4-1,W3,316,True,0.0,1.0,1.0
+Women's Flyweight,2,Zhang Weili,False,False,0.798,1738.731,3.7,8,True,4-1,L1,316,False,0.026,2.0,3.0
+Women's Flyweight,3,Erin Blanchfield,False,False,0.719,1718.399,3.4,6,True,4-1,W2,316,False,0.0,3.0,5.0
+Women's Flyweight,4,Natalia Silva,False,False,0.747,1693.015,4.6,5,True,5-0,W8,246,False,0.0,4.0,5.0
+Women's Flyweight,5,Rose Namajunas,False,False,0.795,1689.906,5.3,11,True,3-2,L1,246,False,0.022,2.0,4.0
+Women's Flyweight,6,Alexa Grasso,False,False,0.486,1663.008,2.4,7,True,3-2,W2,15,False,0.0,7.0,8.0
+Women's Flyweight,7,Manon Fiorot,False,False,0.661,1703.376,3.2,4,False,3-2,L1,15,False,0.0,6.0,6.0
+Women's Flyweight,8,Maycee Barber,False,False,0.504,1630.74,3.7,7,True,4-1,L1,183,False,0.057,7.0,8.0
+Women's Flyweight,9,Jasmine Jasudavicius,False,False,0.411,1617.486,3.0,4,False,4-1,W1,162,False,0.029,9.0,9.0
+Women's Flyweight,10,Wang Cong,False,False,0.36,1599.01,3.0,3,False,4-1,W4,78,False,0.0,10.0,10.0
+Women's Flyweight,11,Karine Silva,False,False,0.22,1589.223,1.6,2,False,2-3,L2,162,False,0.0,11.0,13.0
+Women's Flyweight,12,Casey O'Neill,False,False,0.21,1633.124,0.0,0,False,3-2,W3,8,False,0.0,11.0,13.0
+Women's Flyweight,13,Carli Judice,False,False,0.171,1618.596,0.0,0,False,4-1,W4,36,False,0.0,12.0,15.0
+Women's Flyweight,14,JJ Aldrich,False,False,0.162,1529.09,2.9,4,False,3-2,L1,15,False,0.017,11.0,18.0
+Women's Flyweight,15,Dione Barbosa,False,False,0.074,1583.213,0.0,0,False,3-2,W2,71,False,0.0,16.0,19.0
+Women's Flyweight,16,Melissa Gatto,False,False,0.156,1595.257,0.6,1,False,2-3,L1,176,False,0.0,14.0,15.0
+Women's Flyweight,17,Miranda Maverick,False,False,0.115,1589.284,0.3,2,False,4-1,L1,470,False,0.0,15.0,17.0
+Women's Flyweight,18,Jamey-Lyn Horth,False,False,0.114,1568.249,1.0,1,False,3-2,L1,162,False,0.0,16.0,17.0
+Women's Flyweight,19,Lauren Murphy,False,False,0.049,1538.228,1.2,3,False,2-3,L2,442,False,0.019,18.0,20.0
+Women's Flyweight,20,Tracy Cortez,False,False,0.023,1564.429,0.0,1,False,2-3,L2,78,False,0.0,19.0,21.0
+Women's Flyweight,21,Regina Tarin,False,False,0.016,1532.32,1.0,1,False,2-0,W2,15,False,0.0,20.0,21.0
+Women's Flyweight,22,Viviane Araujo,False,False,-0.053,1500.886,1.2,4,False,2-3,L1,456,False,0.0,22.0,22.0
+Women's Flyweight,23,Eduarda Moura,False,False,-0.148,1501.966,0.0,1,False,2-3,L2,8,False,0.0,24.0,24.0
+Women's Flyweight,24,Veronica Hardy,False,False,-0.072,1499.839,1.0,1,False,4-1,W1,358,False,0.0,23.0,23.0
+Women's Flyweight,25,Ernesta Kareckaite,False,False,-0.188,1487.126,0.0,0,False,1-2,L1,211,False,0.0,25.0,25.0
+Women's Flyweight,26,Juliana Miller,False,False,-0.196,1484.048,0.0,0,False,2-3,W1,50,False,0.071,26.0,26.0
+Women's Flyweight,27,Gabriella Fernandes,False,False,-0.22,1475.48,0.0,0,False,3-2,L1,183,False,0.078,27.0,27.0
+Women's Flyweight,28,Jeisla Chaves,False,False,-0.251,1464.191,0.0,0,False,1-1,L1,36,False,0.15,28.0,28.0
+Women's Flyweight,29,Anna Melisano,False,False,-0.255,1462.467,0.0,0,False,0-1,L1,71,False,0.0,29.0,29.0
+Women's Flyweight,30,Tereza Bleda,False,False,-0.261,1460.451,0.0,0,False,1-2,L1,288,False,0.458,30.0,30.0
+Women's Strawweight,0,Mackenzie Dern,True,False,0.958,1659.09,5.8,8,True,4-1,W4,43,False,0.016,0.0,0.0
+Women's Strawweight,1,Virna Jandiroba,False,False,0.985,1676.124,5.5,7,True,4-1,W1,176,False,0.0,1.0,1.1
+Women's Strawweight,2,Tatiana Suarez,False,False,0.808,1722.366,2.2,4,False,4-1,W2,169,False,0.0,1.9,2.0
+Women's Strawweight,3,Denise Gomes,False,False,0.632,1645.055,3.0,3,False,5-0,W5,29,False,0.0,3.0,3.0
+Women's Strawweight,4,Alexia Thainara,False,False,0.589,1632.151,3.0,3,False,4-0,W4,50,False,0.0,4.0,5.0
+Women's Strawweight,5,Gillian Robertson,False,False,0.571,1647.859,2.3,4,False,4-1,L1,43,False,0.0,4.0,5.0
+Women's Strawweight,6,Jessica Andrade,False,False,0.501,1599.623,3.2,12,True,2-3,L3,407,False,0.068,6.0,8.0
+Women's Strawweight,7,Amanda Lemos,False,False,0.482,1605.874,2.8,4,False,1-4,L3,50,False,0.042,7.0,8.0
+Women's Strawweight,8,Iasmin Lucindo,False,False,0.47,1596.137,3.0,3,False,4-1,W1,414,False,0.0,7.0,10.0
+Women's Strawweight,9,Fatima Kline,False,False,0.427,1643.553,1.0,2,False,4-1,W4,71,False,0.0,6.0,9.0
+Women's Strawweight,10,Jaqueline Amorim,False,False,0.372,1626.955,1.0,2,False,4-1,W1,120,False,0.0,9.0,12.0
+Women's Strawweight,11,Loopy Godinez,False,False,0.34,1599.307,1.6,2,False,2-3,L1,169,False,0.0,11.0,11.0
+Women's Strawweight,12,Marina Rodriguez,False,False,0.28,1547.917,2.7,6,True,1-4,L3,512,False,0.057,10.0,17.0
+Women's Strawweight,13,Tabatha Ricci,False,False,0.24,1568.985,1.6,4,False,2-3,L2,71,False,0.035,13.0,15.0
+Women's Strawweight,14,Tecia Pennington,False,False,0.237,1604.304,0.4,3,False,2-3,L1,323,False,0.0,12.0,14.0
+Women's Strawweight,15,Julia Polastri,False,False,0.194,1573.348,1.0,1,False,3-2,W1,29,False,0.0,15.0,16.0
+Women's Strawweight,16,Stephanie Luciano,False,False,0.188,1601.587,0.0,0,False,3-1,W2,57,False,0.0,13.0,17.0
+Women's Strawweight,17,Piera Rodriguez,False,False,0.164,1564.295,1.0,1,False,3-2,W3,197,False,0.0,16.0,18.0
+Women's Strawweight,18,Yan Xiaonan,False,False,0.153,1591.045,0.0,5,True,2-3,L2,29,False,0.081,15.0,18.0
+Women's Strawweight,19,Angela Hill,False,False,0.093,1573.071,0.0,1,False,2-3,W1,120,False,0.0,19.0,21.0
+Women's Strawweight,20,Shanelle Dyer,False,False,0.074,1567.192,0.0,0,False,2-0,W2,36,False,0.0,20.0,22.0
+Women's Strawweight,21,Alice Ardelean,False,False,0.07,1566.079,0.0,0,False,3-2,W3,134,False,0.0,21.0,23.0
+Women's Strawweight,22,Amanda Ribas,False,False,0.051,1536.334,0.8,4,False,1-4,L3,428,False,0.148,19.0,24.0
+Women's Strawweight,23,Ketlen Souza,False,False,0.037,1556.162,0.0,0,False,3-2,W2,113,False,0.0,22.0,24.0
+Women's Strawweight,24,Mizuki,False,False,0.031,1524.195,1.0,1,False,3-1,W2,337,False,0.0,20.0,27.0
+Women's Strawweight,25,Talita Alencar,False,False,0.015,1549.422,0.0,1,False,4-1,W3,155,False,0.0,23.0,25.0
+Women's Strawweight,26,Tina Black,False,False,0.0,1545.0,0.0,0,False,1-0,W1,1,False,0.0,25.0,26.0
+Women's Strawweight,27,Delphine Benouaich,False,False,0.0,1545.0,0.0,0,False,1-0,W1,22,False,0.0,26.0,27.0
+Women's Strawweight,28,Carol Foro,False,False,-0.095,1516.224,0.0,0,False,1-0,W1,50,False,0.0,28.0,28.0
+Women's Strawweight,29,Yazmin Jauregui,False,False,-0.134,1504.699,0.0,1,False,3-2,W1,1,False,0.071,30.0,30.0
+Women's Strawweight,30,Sam Hughes,False,False,-0.112,1511.243,0.0,0,False,3-2,L1,197,False,0.048,29.0,29.0

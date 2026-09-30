@@ -142,24 +142,23 @@ def reason(row: pd.Series, lab: pd.DataFrame, bouts_recent: pd.DataFrame, as_of:
         return f"Inactive: last UFC bout {d.date()} ({(as_of - d).days} days), outside the 540-day window"
     m = mine.iloc[0]
     if m["division"] != row["division"]:
-        return f"Model places him/her in {m['division']} (most frequent of last three bouts)"
+        return f"Model places this fighter in {m['division']} (division of most recent bout)"
     notes = []
-    if m["ufc_bouts"] <= 3:
+    if m.get("ufc_bouts", 99) <= 3:
         notes.append(f"only {int(m['ufc_bouts'])} UFC bouts")
-    if m["top15_wins"] == 0:
-        notes.append("no wins over top-15 opponents")
-    if m["days_since"] > 300:
-        notes.append(f"{int(m['days_since'])} days inactive")
-    rec = str(m["record_3y"])
-    w, l = (int(x) for x in rec.split("-"))
-    if l >= w and w + l > 0:
-        notes.append(f"{rec} over 3 years")
-    if m["p_offense"] >= 0.8:
-        notes.append("top-quintile offensive output")
-    if m["p_durability"] <= 0.25:
-        notes.append("bottom-quartile durability")
+    if m.get("top15_wins", 1) == 0:
+        notes.append("no quality wins")
+    if m.get("days_since", 0) > 300:
+        notes.append(f"{int(m['days_since'])} days since last bout")
+    rec = str(m.get("last5", m.get("record_3y", "0-0")))
+    try:
+        w, l = (int(x) for x in rec.split("-"))
+        if l > w:
+            notes.append(f"last five {rec}")
+    except ValueError:
+        pass
     if not notes:
-        notes.append(f"rating {m['rating']:.0f}, 3-yr record {rec}")
+        notes.append(f"rating {m['rating']:.0f}, last five {rec}")
     return "; ".join(notes)
 
 
@@ -203,7 +202,7 @@ def main() -> None:
         sources=("source", lambda s: ", ".join(sorted(s))),
         median_position=("position", "median"), best=("position", "min"), worst=("position", "max"),
         lab_position=("lab_position_same_div", "first"), lab_division=("lab_division", "first")).reset_index()
-    # fighters MMA Lab has top 10 that no external board ranks
+    # fighters our board has top 10 that no external board ranks
     lab_top = lab[(lab["rank"] >= 1) & (lab["rank"] <= 10) & ~lab["key"].isin(set(interim_key.values()))]
     ranked_keys = set(zip(ranked["division"], ranked["key"]))
     lab_only = lab_top[[ (d, k) not in ranked_keys for d, k in zip(lab_top["division"], lab_top["key"])]]
@@ -221,14 +220,14 @@ def main() -> None:
     for r in cons.itertuples():
         typ = None
         if r.boards >= 2 and pd.isna(r.lab_position) and r.median_position <= 10:
-            typ = "Consensus ranked, MMA Lab outside top 15"
+            typ = "Consensus ranked, ours outside top 15"
             if not lab[(lab["key"] == r.key)].empty and lab.loc[lab["key"] == r.key, "division"].iloc[0] == r.division:
                 lp = int(lab.loc[lab["key"] == r.key, "rank"].iloc[0])
-                typ = f"Consensus ranked, MMA Lab has #{lp}"
+                typ = f"Consensus ranked, our board has #{lp}"
         elif r.boards >= 2 and not pd.isna(r.lab_position) and abs(r.gap_vs_median) >= DEVIATION:
-            typ = "MMA Lab higher" if r.gap_vs_median < 0 else "MMA Lab lower"
+            typ = "Ours higher" if r.gap_vs_median < 0 else "Ours lower"
         elif r.boards == 0:
-            typ = "MMA Lab top 10, unranked on every board"
+            typ = "Our top 10, unranked on every board"
         if typ:
             flags.append({"division": r.division, "fighter": r.fighter, "type": typ,
                           "lab_position": r.lab_position, "median_external": r.median_position,
@@ -259,10 +258,10 @@ def main() -> None:
 
     # external boards vs each other, as a yardstick for "normal" disagreement
     pairs = []
-    srcs = ranked["source"].unique().tolist() + ["MMA Lab"]
+    srcs = ranked["source"].unique().tolist() + ["Our board"]
     lab_as_src = labpos[(labpos["lab_position"] >= 1) & (labpos["lab_position"] <= 15)].rename(
         columns={"lab_division": "division", "lab_position": "position"})
-    lab_as_src["source"] = "MMA Lab"
+    lab_as_src["source"] = "Our board"
     allpos = pd.concat([ranked[["source", "division", "key", "position"]],
                         lab_as_src[["source", "division", "key", "position"]]])
     for i, a in enumerate(srcs):
@@ -278,7 +277,7 @@ def main() -> None:
     pairs.to_csv(OUT / "compare_pairwise.csv", index=False)
 
     # report
-    lines = [f"# MMA Lab vs public boards (model data through {as_of.date()})", ""]
+    lines = [f"# Our board vs public boards (model data through {as_of.date()})", ""]
     lines.append("Name fixes applied by fuzzy match: " + (", ".join(f"{a} -> {b}" for a, b in fixes) or "none"))
     lines.append("")
     lines.append("## Pairwise agreement (UFC contenders only, champions removed)")
