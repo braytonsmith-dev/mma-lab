@@ -38,6 +38,7 @@ def build() -> pd.DataFrame:
     bouts = pd.read_csv(PROC / "bouts.csv", parse_dates=["date"])
     rs = pd.read_csv(PROC / "round_stats.csv")
     rs["event"] = rs["event"].replace(EVENT_ALIASES)
+    rs = rs.drop_duplicates(subset=["event", "bout", "fighter", "round"], keep="first")
 
     tot = rs.groupby(["event", "bout", "fighter"], as_index=False)[STAT_COLS].sum()
     bouts["bout"] = bouts["fighter_a"] + " vs. " + bouts["fighter_b"]

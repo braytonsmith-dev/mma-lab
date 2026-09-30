@@ -103,6 +103,8 @@ def build_bouts() -> pd.DataFrame:
         "UFC Fight Night: Lopes vs. Silva": "Noche UFC: Lopes vs. Silva",
     }
     res["EVENT"] = res["EVENT"].replace(EVENT_ALIASES)
+    # the scraper lists two Noche UFC cards under both of their names; keep one copy of each bout
+    res = res.drop_duplicates(subset="URL", keep="first")
     df = res.merge(ev, on="EVENT", how="left")
     # Road to UFC 4.6 (Shanghai, Aug 2025 finals) is absent from the events file.
     mask = df["date"].isna() & df["EVENT"].str.contains("Road to UFC 4", case=False)
