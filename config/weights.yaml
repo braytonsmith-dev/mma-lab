@@ -1,3 +1,5 @@
+site_name: "The Notorious Fighter Rankings"
+
 # Composite ranking weights. Must sum to 1.0. Change these and re-run
 #   python -m mmalab.rankings
 # Each dimension is percentile-ranked within the division before weighting,
@@ -15,7 +17,7 @@ weights:
 division_rule: latest       # latest = division of most recent bout; mode3 = most common of last three
 active_window_days: 540      # last bout within ~18 months to appear on a board
 min_ufc_bouts: 1
-board_size: 15
+board_size: 30
 
 # Elo parameters for the rating dimension. This is the "interpretable" model:
 # 75% of each update listens to in-fight dominance, a win never scores below

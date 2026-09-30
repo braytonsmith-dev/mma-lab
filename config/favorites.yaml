@@ -1,0 +1,37 @@
+# Brayton's Top Ten Favorite Fighters. Order and membership are set by hand;
+# last-five records are computed from the fight data on every rebuild, so they
+# are never typed in. Favorite is not the same as best.
+title: "Brayton's Top Ten Favorite Fighters"
+list_set: 2026-08-01          # date the order below was last set by Brayton
+
+top_ten:
+  - Petr Yan
+  - Joshua Van
+  - Jiri Prochazka
+  - Kevin Holland
+  - Sean Strickland
+  - Brandon Royval
+  - Charles Oliveira
+  - Ilia Topuria
+  - Manel Kape
+  - Lerone Murphy
+
+honorable_mentions:
+  - Tom Aspinall
+  - Alex Pereira
+  - Nassourdine Imavov
+  - Anthony Hernandez
+  - Sean O'Malley
+  - Diego Lopes
+  - Carlos Prates
+  - Conor McGregor        # permanent honorable mention, never ranked in the active ten
+
+criteria:
+  - "Offensive style: boxing first, kickboxing second. Defensive wrestling as an offensive orientation is instant removal."
+  - "Warrior spirit: bites down on the mouthpiece when it gets hard and finds a way to win."
+  - "Christian principles shown in actions: beneficial."
+  - "Accountability: whining or refusing responsibility is immediate removal."
+  - "Championship contention: fan favorites without a title path miss the cut."
+  - "Trash talk: respectful, direct, honest. McGregor vs. Cerrone and Alvarez is the model."
+  - "Future success: trajectory, age, camp, recent trend. Inconsistent commitment is penalized."
+  - "Affinity outranks criteria fit. Tiers: Love, Really Like, Like."
