@@ -1,0 +1,71 @@
+division,fighter,type,lab_position,median_external,external_range,boards,sources,lab_full_position,reason,abs_gap
+Women's Bantamweight,Raquel Pennington,"Consensus ranked, MMA Lab outside top 15",,9.5,4-15,2,"Meta, UFC media",,"Inactive: last UFC bout 2024-10-05 (721 days), outside the 540-day window",30.5
+Welterweight,Kamaru Usman,"Consensus ranked, MMA Lab outside top 15",,9.0,5-12,3,"Fight Matrix, Meta, UFC media",12.0,Model places him/her in Middleweight (most frequent of last three bouts),3.0
+Light Heavyweight,Alex Pereira,"Consensus ranked, MMA Lab outside top 15",,1.0,1-3,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",3.0,Model places him/her in Heavyweight (most frequent of last three bouts),2.0
+Lightweight,Max Holloway,"Consensus ranked, MMA Lab outside top 15",,4.0,4-4,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",5.0,Model places him/her in Welterweight (most frequent of last three bouts),1.0
+Women's Strawweight,Zhang Weili,"Consensus ranked, MMA Lab outside top 15",,1.0,1-1,4,"ESPN (Jun), Fight Matrix, Meta, UFC media",2.0,Model places him/her in Women's Flyweight (most frequent of last three bouts),1.0
+Light Heavyweight,Volkan Oezdemir,MMA Lab higher,2.0,10.0,8-12,2,"Fight Matrix, Sherdog",2.0,308 days inactive; top-quintile offensive output,8.0
+Featherweight,Steve Garcia,MMA Lab higher,3.0,10.0,7-13,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",3.0,no wins over top-15 opponents; top-quintile offensive output,7.0
+Light Heavyweight,Robert Whittaker,MMA Lab higher,5.0,12.0,6-13,3,"Fight Matrix, Meta, UFC media",5.0,"rating 1814, 3-yr record 3-2",7.0
+Middleweight,Christian Leroy Duncan,MMA Lab higher,3.0,10.0,8-10,3,"Fight Matrix, Meta, UFC media",3.0,"rating 1765, 3-yr record 7-1",7.0
+Women's Bantamweight,Bia Mesquita,MMA Lab higher,4.0,11.0,8-12,4,"Fight Matrix, Meta, Sherdog, UFC media",4.0,only 3 UFC bouts; no wins over top-15 opponents; top-quintile offensive output,7.0
+Women's Bantamweight,Melissa Croden,MMA Lab higher,6.0,12.0,9-15,2,"Meta, UFC media",6.0,only 3 UFC bouts; top-quintile offensive output,6.0
+Heavyweight,Mario Pinto,MMA Lab higher,7.0,12.0,10-14,2,"Meta, UFC media",7.0,no wins over top-15 opponents; top-quintile offensive output,5.0
+Heavyweight,Valter Walker,MMA Lab higher,6.0,11.0,11-11,2,"Meta, UFC media",6.0,no wins over top-15 opponents; top-quintile offensive output,5.0
+Light Heavyweight,Dominick Reyes,MMA Lab higher,3.0,8.0,7-10,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",3.0,top-quintile offensive output,5.0
+Middleweight,Gregory Rodrigues,MMA Lab higher,2.0,7.0,4-7,4,"Fight Matrix, Meta, Sherdog, UFC media",2.0,"rating 1802, 3-yr record 6-1",5.0
+Featherweight,Patricio Pitbull,MMA Lab lower,49.0,11.5,9-14,2,"Fight Matrix, Fight Matrix, UFC media, UFC media",60.0,only 2 UFC bouts; 434 days inactive; 1-1 over 3 years,48.5
+Lightweight,Salahdine Parnasse,MMA Lab lower,50.0,9.0,8-11,3,"Fight Matrix, Sherdog, UFC media",50.0,only 1 UFC bouts; no wins over top-15 opponents; top-quintile offensive output,41.0
+Featherweight,Aaron Pico,MMA Lab lower,45.0,11.0,10-14,3,"Fight Matrix, Meta, UFC media",45.0,only 2 UFC bouts; no wins over top-15 opponents; 1-1 over 3 years; top-quintile offensive output,34.0
+Featherweight,Brian Ortega,MMA Lab lower,33.0,10.0,7-13,2,"Fight Matrix, UFC media",33.0,399 days inactive; 1-2 over 3 years,23.0
+Flyweight,Lone'er Kavanagh,MMA Lab lower,28.0,6.0,6-6,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",28.0,"rating 1545, 3-yr record 3-2",22.0
+Flyweight,Amir Albazi,MMA Lab lower,29.0,9.0,9-10,3,"Meta, Sherdog, UFC media",29.0,0-2 over 3 years,20.0
+Light Heavyweight,Jamahal Hill,MMA Lab lower,25.0,7.0,5-9,3,"Meta, Sherdog, UFC media",25.0,462 days inactive; 0-3 over 3 years; bottom-quartile durability,18.0
+Welterweight,Jack Della Maddalena,MMA Lab lower,22.0,4.0,4-6,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",22.0,2-2 over 3 years,18.0
+Welterweight,Leon Edwards,MMA Lab lower,25.0,8.0,8-10,3,"Fight Matrix, Meta, UFC media",25.0,315 days inactive; 1-3 over 3 years,17.0
+Flyweight,Steve Erceg,MMA Lab lower,27.0,10.5,9-12,2,"Fight Matrix, UFC media",27.0,no wins over top-15 opponents; 4-4 over 3 years,16.5
+Welterweight,Daniel Rodriguez,MMA Lab lower,29.0,14.5,14-15,2,"Meta, UFC media",29.0,no wins over top-15 opponents,14.5
+Bantamweight,Marlon Vera,MMA Lab lower,25.0,11.0,10-14,3,"Fight Matrix, Meta, UFC media",25.0,1-4 over 3 years,14.0
+Middleweight,Israel Adesanya,MMA Lab lower,22.0,9.0,8-11,4,"ESPN (Jun), Fight Matrix, Meta, UFC media",22.0,0-3 over 3 years; bottom-quartile durability,13.0
+Women's Bantamweight,Julianna Peña,MMA Lab lower,14.0,1.0,1-5,4,"Fight Matrix, Meta, Sherdog, UFC media",14.0,476 days inactive; 1-1 over 3 years; bottom-quartile durability,13.0
+Women's Strawweight,Amanda Ribas,MMA Lab lower,22.0,11.0,9-13,2,"ESPN (Jun), UFC media",22.0,427 days inactive; 1-3 over 3 years,11.0
+Light Heavyweight,Khalil Rountree Jr.,MMA Lab lower,14.0,4.0,4-8,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",14.0,357 days inactive; 2-2 over 3 years,10.0
+Women's Flyweight,Regina Tarin,MMA Lab lower,23.0,13.5,13-14,2,"Meta, UFC media",23.0,only 2 UFC bouts; no wins over top-15 opponents,9.5
+Women's Strawweight,Tabatha Ricci,MMA Lab lower,19.0,9.5,8-12,4,"ESPN (Jun), Fight Matrix, Meta, UFC media",19.0,3-4 over 3 years,9.5
+Bantamweight,Cory Sandhagen,MMA Lab lower,15.0,6.0,4-6,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",15.0,1-3 over 3 years,9.0
+Bantamweight,Deiveson Figueiredo,MMA Lab lower,18.0,9.0,8-11,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",18.0,4-4 over 3 years,9.0
+Lightweight,Ilia Topuria,MMA Lab lower,10.0,1.0,1-1,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",10.0,"rating 1889, 3-yr record 3-1",9.0
+Welterweight,Mike Malott,MMA Lab lower,21.0,12.0,11-13,2,"Meta, UFC media",21.0,no wins over top-15 opponents,9.0
+Women's Flyweight,Karine Silva,MMA Lab lower,21.0,12.5,11-14,2,"Meta, UFC media",21.0,no wins over top-15 opponents; 2-3 over 3 years,8.5
+Featherweight,Arnold Allen,MMA Lab lower,14.0,6.0,5-8,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",14.0,2-2 over 3 years,8.0
+Featherweight,Movsar Evloev,MMA Lab lower,9.0,1.0,1-3,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",9.0,"rating 1814, 3-yr record 3-0",8.0
+Light Heavyweight,Jiří Procházka,MMA Lab lower,11.0,3.0,2-3,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",11.0,3-3 over 3 years; bottom-quartile durability,8.0
+Middleweight,Shara Magomedov,MMA Lab lower,23.0,15.0,15-15,2,"Meta, UFC media",23.0,no wins over top-15 opponents,8.0
+Lightweight,Tom Nolan,MMA Lab lower,20.0,12.5,11-14,2,"Meta, UFC media",20.0,no wins over top-15 opponents,7.5
+Welterweight,Belal Muhammad,MMA Lab lower,15.0,7.5,7-9,4,"ESPN (Jun), Fight Matrix, Meta, UFC media",15.0,1-3 over 3 years,7.5
+Women's Strawweight,Mizuki,MMA Lab lower,20.0,12.5,10-15,2,"Meta, UFC media",20.0,336 days inactive,7.5
+Heavyweight,Rizvan Kuniev,MMA Lab lower,12.0,5.0,4-7,3,"Fight Matrix, Meta, UFC media",12.0,only 3 UFC bouts,7.0
+Heavyweight,Sergei Pavlovich,MMA Lab lower,10.0,3.0,2-4,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",10.0,"rating 1850, 3-yr record 3-2",7.0
+Women's Bantamweight,Ketlen Vieira,MMA Lab lower,10.0,3.0,3-6,3,"ESPN (Jun), Fight Matrix, Sherdog",10.0,2-2 over 3 years,7.0
+Women's Bantamweight,Michelle Montague,MMA Lab lower,16.0,9.0,8-12,3,"Fight Matrix, Meta, UFC media",16.0,only 2 UFC bouts; no wins over top-15 opponents,7.0
+Women's Flyweight,Tracy Cortez,MMA Lab lower,17.0,10.0,9-10,3,"Fight Matrix, Meta, UFC media",17.0,1-3 over 3 years,7.0
+Bantamweight,Aiemann Zahabi,MMA Lab lower,14.0,7.5,7-13,4,"ESPN (Jun), Fight Matrix, Meta, UFC media",14.0,"rating 1696, 3-yr record 4-1",6.5
+Light Heavyweight,Alonzo Menifield,MMA Lab lower,19.0,12.5,11-14,2,"Meta, UFC media",19.0,"rating 1651, 3-yr record 5-3",6.5
+Featherweight,Jean Silva,MMA Lab lower,11.0,5.0,3-6,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",11.0,"rating 1749, 3-yr record 7-2",6.0
+Flyweight,Tagir Ulanbekov,MMA Lab lower,19.0,13.0,12-14,2,"Fight Matrix, UFC media",19.0,308 days inactive,6.0
+Flyweight,Tim Elliott,MMA Lab lower,17.0,11.0,11-11,2,"Fight Matrix, UFC media",17.0,"rating 1570, 3-yr record 3-2",6.0
+Light Heavyweight,Jan Błachowicz,MMA Lab lower,15.0,9.0,9-9,2,"Fight Matrix, UFC media",15.0,0-2 over 3 years,6.0
+Middleweight,Dricus Du Plessis,MMA Lab lower,8.0,2.0,2-2,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",8.0,"rating 1910, 3-yr record 4-1",6.0
+Women's Flyweight,Manon Fiorot,MMA Lab lower,9.0,3.0,2-4,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",9.0,2-2 over 3 years,6.0
+Bantamweight,Sean O'Malley,MMA Lab lower,7.0,2.0,2-3,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",7.0,"rating 1822, 3-yr record 3-2",5.0
+Flyweight,Brandon Moreno,MMA Lab lower,12.0,7.0,7-9,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",12.0,3-3 over 3 years,5.0
+Heavyweight,Serghei Spivac,MMA Lab lower,14.0,9.0,7-13,4,"ESPN (Jun), Fight Matrix, Meta, UFC media",14.0,2-3 over 3 years,5.0
+Lightweight,Mauricio Ruffy,MMA Lab lower,12.0,7.0,6-10,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",12.0,"rating 1724, 3-yr record 5-2",5.0
+Women's Flyweight,Maycee Barber,MMA Lab lower,11.0,6.0,6-9,5,"ESPN (Jun), Fight Matrix, Meta, Sherdog, UFC media",11.0,top-quintile offensive output,5.0
+Women's Strawweight,Yan Xiaonan,MMA Lab lower,11.0,6.0,5-9,3,"Meta, Sherdog, UFC media",11.0,1-3 over 3 years,5.0
+Light Heavyweight,Abdul Rakhman Yakhyaev,"MMA Lab top 10, unranked on every board",10.0,,,0,,10.0,only 3 UFC bouts; no wins over top-15 opponents; top-quintile offensive output,10.0
+Welterweight,Daniil Donchenko,"MMA Lab top 10, unranked on every board",8.0,,,0,,8.0,no wins over top-15 opponents; top-quintile offensive output,8.0
+Welterweight,Michael Chiesa,"MMA Lab top 10, unranked on every board",7.0,,,0,,7.0,top-quintile offensive output,7.0
+Featherweight,Vinicius Oliveira,"MMA Lab top 10, unranked on every board",6.0,,,0,,6.0,"rating 1739, 3-yr record 5-1",6.0
+Lightweight,King Green,"MMA Lab top 10, unranked on every board",6.0,,,0,,6.0,top-quintile offensive output,6.0
+Welterweight,Max Holloway,"MMA Lab top 10, unranked on every board",5.0,,,0,,5.0,"rating 1895, 3-yr record 3-2",5.0

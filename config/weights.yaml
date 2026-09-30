@@ -12,6 +12,7 @@ weights:
   durability: 0.10    # strikes absorbed per minute (inverse) and finish-loss rate (inverse)
 
 # Eligibility
+division_rule: latest       # latest = division of most recent bout; mode3 = most common of last three
 active_window_days: 540      # last bout within ~18 months to appear on a board
 min_ufc_bouts: 1
 board_size: 15

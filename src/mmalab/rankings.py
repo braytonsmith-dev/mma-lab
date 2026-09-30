@@ -97,17 +97,21 @@ def build_features(rated: pd.DataFrame, hist: pd.DataFrame, cfg: dict, as_of: pd
     lb["top15_win"] = top15_win_flags(lb, hist, cfg["active_window_days"])
 
     last = lb.groupby("fighter").tail(1).set_index("fighter")
-    # division = most common division over the last three ranked-division bouts,
-    # ties broken by the most recent bout (handles one-off moves up or down)
+    # division: "latest" = division of the most recent ranked-division bout (how the
+    # UFC re-slots movers, e.g. Costa and de Ridder to light heavyweight);
+    # "mode3" = most common of the last three, ties to the most recent
     ranked = lb[lb["division"].isin(RANKED_DIVISIONS)]
-    last3 = ranked.groupby("fighter").tail(3)
+    if cfg.get("division_rule", "latest") == "mode3":
+        last3 = ranked.groupby("fighter").tail(3)
 
-    def pick_div(g: pd.DataFrame) -> str:
-        counts = g["division"].value_counts()
-        top = counts[counts == counts.max()].index
-        return g.iloc[-1]["division"] if len(top) > 1 else top[0]
+        def pick_div(g: pd.DataFrame) -> str:
+            counts = g["division"].value_counts()
+            top = counts[counts == counts.max()].index
+            return g.iloc[-1]["division"] if len(top) > 1 else top[0]
 
-    last_div = last3.groupby("fighter").apply(pick_div, include_groups=False)
+        last_div = last3.groupby("fighter").apply(pick_div, include_groups=False)
+    else:
+        last_div = ranked.groupby("fighter").tail(1).set_index("fighter")["division"]
 
     cutoff_3y = as_of - pd.Timedelta(days=3 * 365)
     cutoff_2y = as_of - pd.Timedelta(days=2 * 365)
@@ -174,6 +178,11 @@ def build_features(rated: pd.DataFrame, hist: pd.DataFrame, cfg: dict, as_of: pd
     # eligibility
     f = f[(f["days_since"] <= cfg["active_window_days"]) & (f["ufc_bouts"] >= cfg["min_ufc_bouts"])]
     f = f[f["division"].isin(RANKED_DIVISIONS)]
+    # fighters no longer on the UFC roster (released, retired); bout data cannot see this
+    roster = ROOT / "config" / "roster_exclusions.yaml"
+    if roster.exists():
+        gone = set((yaml.safe_load(roster.read_text()) or {}).keys())
+        f = f[~f.index.isin(gone)]
     return f.reset_index().rename(columns={"index": "fighter"})
 
 
@@ -187,7 +196,11 @@ def champions(rated: pd.DataFrame, as_of: pd.Timestamp) -> dict[str, str]:
         champs[div] = row["fighter_a"] if row["result_a"] == 1.0 else row["fighter_b"]
     override = ROOT / "config" / "champions_override.yaml"
     if override.exists():
-        champs.update({k: v for k, v in (yaml.safe_load(override.read_text()) or {}).items()})
+        for k, v in (yaml.safe_load(override.read_text()) or {}).items():
+            if str(v).upper() == "VACANT":
+                champs.pop(k, None)
+            else:
+                champs[k] = v
     return champs
 
 
@@ -275,8 +288,10 @@ def main(as_of: str | None = None) -> None:
             lines.append(f"{label}. {r.fighter:<26} score {r.score:.3f}  elo {r.rating:6.0f}  "
                          f"3y {r.record_3y:<5} bouts {int(r.ufc_bouts):>2}  top15W {int(r.top15_wins)}  "
                          f"days {int(r.days_since):>3}  stability {band}")
-        if not g["champion"].any():
-            lines.append(f"    (champion {champs.get(div, 'unknown')} is outside the active window or unranked)")
+        if div not in champs:
+            lines.append("    (title vacant)")
+        elif not g["champion"].any():
+            lines.append(f"    (champion {champs[div]} is outside the active window or unranked)")
     (OUT / "composite_boards.md").write_text("\n".join(lines))
     print("\n".join(lines))
 
