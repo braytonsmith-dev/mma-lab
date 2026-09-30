@@ -16,6 +16,13 @@ Differences from the predictive Elo in elo.py:
        round-one finish by a heavy
        favorite (>= 75% pre-fight)       -> 100%
      A loss right after another loss keeps at least 60% (streaks are not one-offs).
+     A finish counts as dominant in round one, or early (first half of the scheduled
+     rounds) when the loser was clearly behind on stats. A later finish of a fighter
+     who was close on stats (winner ahead by 1.5 per minute or less) is a war.
+  2b. Proof of concept: a close loss (split/majority decision, a decision scored
+     0.70 or less, or a war finish) to a top-5 fighter by someone outside the top 5
+     earns the loser a small gain (10% of K) instead of a loss.
+  2c. A first-round finish by the underdog moves both ratings only 70% as much.
   3. No rating decay for layoffs. Inactivity is handled separately, with an
      injury exemption (config/layoffs.yaml).
   4. Records quality wins as they happen: opponent had >= 5 UFC wins, or was
@@ -57,6 +64,11 @@ class ResumeParams:
     card_weight: float = 0.5             # decisions: share of the score from the judges; the rest from fight stats
     stat_scale: float = 2.0              # dominance per minute that maps to ~73% on the stats side
     dominant_stat_min: float = 0.0       # stats must not contradict the cards (winner not behind on stats)
+    war_stat_max: float = 1.5            # a finish counts as a war if the winner was not ahead by more than this per minute
+    close_s: float = 0.70                # decisions scored at or below this are close
+    proof_top_n: int = 5                 # close fights with a top-5 fighter by someone outside the top 5
+    proof_gain: float = 0.10             # ...earn the loser this share of K instead of a loss
+    upset_quick_finish_mult: float = 0.7 # R1 finish by the underdog moves both ratings 70% as much
     protect_top_n: int = 3
     quality_top_n: int = 7
     quality_min_wins: int = 5
@@ -136,7 +148,8 @@ def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.D
         rec = {"bout_id": row.bout_id, "pos_a": pos_a, "pos_b": pos_b, "r_pre_a": ra, "r_pre_b": rb,
                "wins_pre_a": wins.get(a, 0), "wins_pre_b": wins.get(b, 0),
                "s_a": np.nan, "protected": "", "loss_mult": 1.0, "dominant": False,
-               "decisive_loss": False, "quality_win": False}
+               "decisive_loss": False, "quality_win": False, "proof": False, "close": False,
+               "upset_quick_finish": False, "winner_pos": np.nan, "loser_pos": np.nan}
         if pd.isna(res):
             rows.append({**rec, "r_post_a": ra, "r_post_b": rb})
             continue
@@ -170,15 +183,35 @@ def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.D
         r1_finish = finish and row.round == 1
         dom_winner = (row.dominance_a if res == 1.0 else -row.dominance_a) if res in (0.0, 1.0) else np.nan
         stats_agree = pd.isna(dom_winner) or dom_winner >= p.dominant_stat_min
-        dominant = bool(r1_finish or (not finish and row.card_dominant is True and stats_agree))
+        # finished while losing the fight = dominant; finished late while even or ahead = a war
+        sched = row.sched_rounds if not pd.isna(row.sched_rounds) else 3
+        early = (not pd.isna(row.round)) and row.round <= max(1, int(sched) // 2)
+        behind = pd.isna(dom_winner) or dom_winner > p.war_stat_max
+        finished_while_behind = finish and not r1_finish and early and behind
+        war_finish = finish and not r1_finish and not behind
+        dominant = bool(r1_finish or finished_while_behind
+                        or (not finish and row.card_dominant is True and stats_agree))
+        close = bool(war_finish or (not finish and (row.method in ("S-DEC", "M-DEC") or s_win <= p.close_s)))
         rec["s_win"] = s_win if res in (0.0, 1.0) else np.nan
         rec["dominant"] = dominant if res in (0.0, 1.0) else False
+        rec["close"] = close if res in (0.0, 1.0) else False
         if res in (0.0, 1.0):
             loser = "a" if res == 0.0 else "b"
             winner_pos = pos_b if loser == "a" else pos_a
+            loser_pos = pos_a if loser == "a" else pos_b
             p_winner = (1 - ea) if loser == "a" else ea
             protected_ctx = bool(row.title_fight) or winner_pos <= p.protect_top_n
-            if protected_ctx:
+            k_loser = ka if loser == "a" else kb
+            if close and winner_pos <= p.proof_top_n and loser_pos > p.proof_top_n:
+                # proof of concept: a close fight with a top-5 fighter shows you belong
+                gain = k_loser * p.proof_gain
+                if loser == "a":
+                    da = gain
+                else:
+                    db = gain
+                rec["proof"] = True
+                rec["loss_mult"] = 0.0
+            elif protected_ctx:
                 if r1_finish and p_winner >= p.heavy_favorite_p:
                     mult = 1.0                    # the real gap: a heavy favorite finished it in round one
                 elif dominant:
@@ -194,7 +227,13 @@ def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.D
                     db *= mult
                 rec["protected"] = loser
                 rec["loss_mult"] = mult
-            rec["decisive_loss"] = dominant
+            # a quick first-round upset can be a fluke: move both fighters less
+            if r1_finish and p_winner < 0.5:
+                da *= p.upset_quick_finish_mult
+                db *= p.upset_quick_finish_mult
+                rec["upset_quick_finish"] = True
+            rec["decisive_loss"] = dominant and not rec.get("proof", False)
+            rec["winner_pos"], rec["loser_pos"] = winner_pos, loser_pos
 
         # quality win bookkeeping (opponent strength measured before the bout)
         if res == 1.0:

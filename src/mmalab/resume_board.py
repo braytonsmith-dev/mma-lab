@@ -12,7 +12,8 @@ so a 70-point rating gap counts more than a 5-point one (percentiles would not).
                  time, weighted by age (<=3 yrs 1.0, 3-5 0.6, 5-10 0.3, 10-15 0.1);
                  each dominant loss in the last 3 years cancels one quality win
   head-to-head   if a fighter beat someone in their most recent meeting (last 3
-                 years) and sits at most 3 spots below him, he moves directly above
+                 years) and sits at most 3 spots below him (6 if within 12 months), he
+                 moves directly above; a fighter with a negative last five gets no lift
 
 Display-only: last five (W-L), streak, entrenched (5+ quality wins in 15 years),
 danger-adjusted durability (KO/TKO losses weighted by how dangerous the opponent was).
@@ -105,6 +106,8 @@ def head_to_head(board: pd.DataFrame, out: pd.DataFrame, as_of: pd.Timestamp, ma
     when he is ranked no more than max_gap spots below. Most recent meetings are applied last."""
     notes = []
     max_gap_recent = max_gap_recent or max_gap
+    lf = last_five(out)
+    negative_form = set(lf.index[lf["last5"].apply(lambda r: int(r.split("-")[1]) > int(r.split("-")[0]))])
     d = out[out["result_a"].isin([0.0, 1.0]) & ((as_of - out["date"]).dt.days <= max_years * 365.25)]
     d = d.sort_values("date")
     last_meeting = {}
@@ -119,12 +122,108 @@ def head_to_head(board: pd.DataFrame, out: pd.DataFrame, as_of: pd.Timestamp, ma
                 loser = f2 if winner == f1 else f1
                 iw, il = order.index(winner), order.index(loser)
                 gap_allowed = max_gap_recent if (as_of - date).days <= 365 else max_gap
+                if winner in negative_form:
+                    continue                     # a negative last five forfeits head-to-head lifts
                 if 0 < iw - il <= gap_allowed:
                     order.insert(il, order.pop(iw))
                     notes.append(f"{div}: {winner} moved above {loser} (won {date.date()})")
         fixed.append(pd.DataFrame({"division": div, "fighter": order, "pos": range(1, len(order) + 1)}))
     fixed = pd.concat(fixed)
     return board.drop(columns=["pos"]).merge(fixed, on=["division", "fighter"]), notes
+
+
+def assign_divisions(out: pd.DataFrame, as_of: pd.Timestamp, years: float = 3.0) -> pd.Series:
+    """Two straight bouts in the same division settle it. Otherwise the division where the fighter
+    has fought most in the last `years`; ties go to the division of the most recent win, then the
+    most recent bout. Falls back to the latest ranked division."""
+    rows = []
+    d = out[out["division"].isin(RANKED_DIVISIONS)].sort_values(["date", "bout_id"])
+    for side, other in (("fighter_a", 1.0), ("fighter_b", 0.0)):
+        rows.append(pd.DataFrame({"fighter": d[side], "division": d["division"], "date": d["date"],
+                                  "won": d["result_a"] == other}))
+    long = pd.concat(rows).sort_values("date")
+    res = {}
+    for f, g in long.groupby("fighter"):
+        if len(g) >= 2 and g["division"].iloc[-1] == g["division"].iloc[-2]:
+            res[f] = g["division"].iloc[-1]          # two straight bouts in a division = a committed move
+            continue
+        rec = g[(as_of - g["date"]).dt.days <= years * 365.25]
+        if rec.empty:
+            res[f] = g["division"].iloc[-1]
+            continue
+        counts = rec["division"].value_counts()
+        tied = list(counts[counts == counts.max()].index)
+        if len(tied) == 1:
+            res[f] = tied[0]
+            continue
+        wins = rec[rec["won"] & rec["division"].isin(tied)]
+        res[f] = wins["division"].iloc[-1] if not wins.empty else rec[rec["division"].isin(tied)]["division"].iloc[-1]
+    return pd.Series(res, name="division")
+
+
+def title_cycle(cont: pd.DataFrame, out: pd.DataFrame, as_of: pd.Timestamp, tc: dict) -> tuple[pd.DataFrame, list[str]]:
+    """A challenger who lost a title fight in the last `days` and has not won since is placed no
+    higher than `min_position`: he is still close, but the champion is fighting someone else next.
+    A champion who lost the belt is exempt (immediate rematches are common)."""
+    notes = []
+    t = out[out["title_fight"]].sort_values(["date", "bout_id"])
+    holder: dict[str, str] = {}
+    capped = {}
+    for x in t.itertuples():
+        if x.result_a not in (0.0, 1.0):
+            continue
+        winner = x.fighter_a if x.result_a == 1.0 else x.fighter_b
+        loser = x.fighter_b if x.result_a == 1.0 else x.fighter_a
+        defending = (not x.interim) and holder.get(x.division) == loser
+        if not x.interim:
+            holder[x.division] = winner
+        if (as_of - x.date).days <= tc["days"] and not defending:
+            capped[loser] = x.date
+    # drop anyone who has won since the title loss
+    d = out[out["result_a"].isin([0.0, 1.0])]
+    for name, when in list(capped.items()):
+        later = d[(d["date"] > when) & (((d["fighter_a"] == name) & (d["result_a"] == 1.0)) |
+                                        ((d["fighter_b"] == name) & (d["result_a"] == 0.0)))]
+        if not later.empty:
+            capped.pop(name)
+    beat_recently: dict[str, set] = {}
+    for x in d[(as_of - d["date"]).dt.days <= 365].itertuples():
+        w, l = (x.fighter_a, x.fighter_b) if x.result_a == 1.0 else (x.fighter_b, x.fighter_a)
+        beat_recently.setdefault(w, set()).add(l)
+    fixed = []
+    for div, g in cont.groupby("division"):
+        order = list(g.sort_values("pos")["fighter"])
+        target = min(tc["min_position"] - 1, len(order) - 1)
+        in_div = [n for n in order if n in capped]
+        original = list(order)
+        for _ in range(10):                      # repeat until both rules hold at once
+            before = list(order)
+            # 1) the top (min_position - 1) slots go to fighters without a recent title-fight loss
+            # fighters a capped fighter beat in the last year cannot jump over him either
+            held = capped.keys() | {n for c in in_div for n in beat_recently.get(c, set())}
+            top, rest = [], list(order)
+            while len(top) < target and any(n not in held for n in rest):
+                nxt = next(n for n in rest if n not in held)
+                rest.remove(nxt)
+                top.append(nxt)
+            order = top + rest
+            # 2) anyone a capped fighter beat in the last year stays below him
+            for c in in_div:
+                j = order.index(c)
+                for n in [n for n in order[:j] if n in beat_recently.get(c, set())]:
+                    order.remove(n)
+                    order.insert(order.index(c) + 1, n)
+            if order == before:
+                break
+        for n in order:
+            if order.index(n) != original.index(n) and (n in capped or original.index(n) < order.index(n)):
+                why = (f"lost a title fight {capped[n].date()}; the champion fights someone else next" if n in capped
+                       else "lost to a fighter moved by the title-cycle rule in the last year" if any(
+                           n in beat_recently.get(c, set()) for c in in_div) else "shifted by the rule above")
+                notes.append(f"{div}: {n} #{original.index(n) + 1} -> #{order.index(n) + 1} ({why})")
+        fixed.append(pd.DataFrame({"division": div, "fighter": order, "pos": range(1, len(order) + 1)}))
+    fixed = pd.concat(fixed)
+    return cont.drop(columns=["pos"]).merge(fixed, on=["division", "fighter"]), notes
 
 
 def build(as_of: str | None = None, weights: dict | None = None, stability: bool = True) -> tuple[pd.DataFrame, dict]:
@@ -141,10 +240,11 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
     inact = rc["inactivity"]
 
     last = hist.groupby("fighter").tail(1).set_index("fighter")
-    ranked_hist = hist[hist["division"].isin(RANKED_DIVISIONS)]
-    div_latest = ranked_hist.groupby("fighter").tail(1).set_index("fighter")["division"]
     f = pd.DataFrame({"rating_raw": last["rating"], "last_fight": last["date"]})
-    f["division"] = div_latest.reindex(f.index)
+    f["division"] = assign_divisions(out, as_of_ts).reindex(f.index)
+    for name, div in _yaml("division_overrides.yaml").items():
+        if name in f.index:
+            f.loc[name, "division"] = div
     # last appearance includes no-contests
     appear = pd.concat([out[["date", "fighter_a"]].rename(columns={"fighter_a": "fighter"}),
                         out[["date", "fighter_b"]].rename(columns={"fighter_b": "fighter"})]).groupby("fighter")["date"].max()
@@ -163,20 +263,20 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
     d["age"] = (as_of_ts - d["date"]).dt.days / 365.25
     hz = {float(k): v for k, v in rc["horizons"].items()}
     d["hw"] = d["age"].apply(lambda a: horizon_weight(a, hz))
-    qw = d[d["quality_win"]].groupby("winner")["hw"].sum()
-    # a blowout loss says the gap is real now: only dominant losses in the last 3 years cancel wins
-    dl = d[d["decisive_loss"] & (d["age"] <= rc.get("decisive_loss_years", 3))].groupby("loser")["hw"].sum()
+    L = rc["ledger"]
+    recent = d["age"] <= rc.get("decisive_loss_years", 3)
+    qw = d[d["quality_win"]].groupby("winner")["hw"].sum() * L["quality_win"]
+    proof = d[d["proof"]].groupby("loser")["hw"].sum() * L["proof_of_concept"]
+    dl = d[d["decisive_loss"] & recent].groupby("loser")["hw"].sum() * L["dominant_loss"]
+    weak = d[recent & ~d["decisive_loss"] & ~d["proof"] & (d["winner_pos"] > rc["engine"].get("proof_top_n", 5))]
+    wl = weak.groupby("loser")["hw"].sum() * L["loss_outside_top5"]
     q15 = d[d["quality_win"] & (d["age"] <= 15)].groupby("winner").size()
-    f["quality_wins"] = (qw.reindex(f.index).fillna(0) - dl.reindex(f.index).fillna(0)).clip(lower=0)
-    if rc.get("declining_guard", False):
-        # a negative last five means older wins (3+ years) stop propping the fighter up
-        recent_qw = d[d["quality_win"] & (d["age"] <= 3)].groupby("winner")["hw"].sum()
-        lf = last_five(out)
-        neg = lf["last5"].apply(lambda r: int(r.split("-")[1]) > int(r.split("-")[0]))
-        declining = set(neg[neg].index)
-        mask = f.index.isin(declining)
-        f.loc[mask, "quality_wins"] = (recent_qw.reindex(f.index[mask]).fillna(0)
-                                       - dl.reindex(f.index[mask]).fillna(0)).clip(lower=0).values
+    parts = pd.concat([qw.rename("qw"), proof.rename("proof"), dl.rename("dl"), wl.rename("wl")], axis=1).fillna(0)
+    parts = parts.reindex(f.index).fillna(0)
+    # the ledger: quality wins + proof-of-concept losses - blowout losses - losses outside the top 5
+    f["quality_wins"] = parts["qw"] + parts["proof"] - parts["dl"] - parts["wl"]
+    f["ledger_detail"] = [f"+{a:.1f} QW +{b:.1f} proof -{c:.1f} blowout -{e:.1f} weak"
+                          for a, b, c, e in parts[["qw", "proof", "dl", "wl"]].itertuples(index=False)]
     f["quality_wins_15y"] = q15.reindex(f.index).fillna(0).astype(int)
     f["entrenched"] = f["quality_wins_15y"] >= 5
     ufc_bouts = pd.concat([out["fighter_a"], out["fighter_b"]]).value_counts()
@@ -184,8 +284,13 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
     f = f.join(last_five(out)).join(durability(out, as_of_ts))
     f = f.reset_index().rename(columns={"index": "fighter"})
 
+    fp = {str(k): float(v) for k, v in rc["form_penalty"].items()}
+    f["form_penalty"] = f["last5"].map(lambda r: fp.get(r, 0.0)).fillna(0.0)
+
     champs = champions(out, as_of_ts)
     interim = _yaml("interim_champions.yaml")
+    for div, name in list(champs.items()) + list(interim.items()):
+        f.loc[f["fighter"] == name, "division"] = div      # a title holder is ranked in his title's division
     f["champion"] = f.apply(lambda r: champs.get(r["division"]) == r["fighter"], axis=1)
     f["interim"] = f.apply(lambda r: interim.get(r["division"]) == r["fighter"], axis=1)
 
@@ -193,7 +298,9 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
         parts = []
         for div, g in frame.groupby("division"):
             g = g.copy()
-            g["score"] = wts["rating"] * idr_scale(g["rating"]) + wts["quality_wins"] * idr_scale(g["quality_wins"])
+            g["rating_term"] = wts["rating"] * idr_scale(g["rating"])
+            g["ledger_term"] = wts["quality_wins"] * idr_scale(g["quality_wins"])
+            g["score"] = g["rating_term"] + g["ledger_term"] - g["form_penalty"]
             cont = g[~g["champion"] & ~g["interim"]].sort_values("score", ascending=False)
             g["pos"] = np.nan
             g.loc[cont.index, "pos"] = range(1, len(cont) + 1)
@@ -203,9 +310,14 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
     board = score(f, w)
     titled = board[board["pos"].isna()].copy()
     cont = board[board["pos"].notna()].copy()
+    cont["pos_score"] = cont["pos"]
     h2h = rc["head_to_head"]
     cont, h2h_notes = head_to_head(cont, out, as_of_ts, h2h["max_gap"], h2h["max_years"],
                                    h2h.get("max_gap_recent"))
+
+    cont["pos_h2h"] = cont["pos"]
+    cont, cycle_notes = title_cycle(cont, out, as_of_ts, rc["title_cycle"])
+    h2h_notes += cycle_notes
 
     # stability: interdecile range of position across weight vectors near the chosen weights
     if stability:
@@ -226,6 +338,20 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
     board = pd.concat([titled, cont], ignore_index=True)
     board["rank"] = board["pos"].fillna(0).astype(int)
     board = board.sort_values(["division", "rank", "interim"], ascending=[True, True, True])
+
+    overrides = _yaml("division_overrides.yaml")
+    board["division_source"] = np.where(board["champion"] | board["interim"], "title holder",
+                                np.where(board["fighter"].isin(list(overrides)), "override (config)", "fight record"))
+    def why(r) -> str:
+        if r["champion"] or r["interim"]:
+            return "title holder"
+        steps = [f"score order #{int(r['pos_score'])}"]
+        if r["pos_h2h"] != r["pos_score"]:
+            steps.append(f"head-to-head -> #{int(r['pos_h2h'])}")
+        if r["rank"] != r["pos_h2h"]:
+            steps.append(f"title cycle -> #{int(r['rank'])}")
+        return "; ".join(steps)
+    board["placement"] = board.apply(why, axis=1)
 
     # columns expected by publish.py / compare.py
     board["record_3y"] = board["last5"]
@@ -262,6 +388,11 @@ def main(as_of: str | None = None) -> None:
                          f"days {int(r.days_since):>3}{inj}  band [{int(r.rank_p10)}-{int(r.rank_p90)}]")
     lines += ["", "## Head-to-head moves applied"] + [f"- {n}" for n in meta["h2h"]]
     (OUT / "composite_boards.md").write_text("\n".join(lines))
+    audit_cols = ["division", "rank", "fighter", "placement", "division_source", "score", "rating_term",
+                  "ledger_term", "form_penalty", "rating", "rating_raw", "inactivity_penalty", "injury",
+                  "quality_wins", "ledger_detail", "quality_wins_15y", "entrenched", "last5", "streak",
+                  "days_since", "ko_risk", "rank_p10", "rank_p90"]
+    top[[c for c in audit_cols if c in top.columns]].round(3).to_csv(OUT / "audit_top30.csv", index=False)
     print("\n".join(lines))
 
 

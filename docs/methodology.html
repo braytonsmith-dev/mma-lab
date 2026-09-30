@@ -1,0 +1,316 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Methodology</title><style>body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;max-width:900px;margin:0 auto;padding:24px 16px;line-height:1.5;color:#0b0b0b;background:#fcfcfb}table{border-collapse:collapse;width:100%;font-size:.88rem;display:block;overflow-x:auto}th,td{border-bottom:1px solid #e1e0d9;padding:5px 8px;text-align:left;vertical-align:top}@media (prefers-color-scheme: dark){body{color:#fff;background:#1a1a19}th,td{border-color:#2c2c2a}}</style></head><body><p><a href='index.html'>Back to the boards</a></p><h1>REAL Fighter Rankings: Methodology</h1>
+<p><em>Results, Evidence, Analytics, Ledger.</em> Data through 2026-09-26. This document is generated from the live configuration (<code>config/weights.yaml</code>) and the audit trail (<code>outputs/audit_top30.csv</code>) on every rebuild.</p>
+<h2>1. What the rank means</h2>
+<p>A resume rank: who has earned the position as of today, updated weekly after each event. It is not a prediction of who would win a fight tomorrow; that is a separate model (section 8), tracked on its own. Champions and interim champions sit above the numbered board. Contenders are numbered 1 to 30.</p>
+<h2>2. Data and how far to trust it</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>What it provides</th>
+<th>Coverage</th>
+<th>Reliability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UFCStats (official UFC statistics), via the Greco1899 open scraper</td>
+<td>Every UFC bout: result, method, round, time, judges' scorecards, round-by-round strikes, knockdowns, takedowns, submission attempts, control time</td>
+<td>8,911 bouts, 1994 to 2026-09-26; round stats for 99.8%; all three judges' cards for 98.6% of decisions (100% since 2005)</td>
+<td>High for what it records. Strike counts are hand-coded and do not measure damage. Judges' cards are official but can be wrong.</td>
+</tr>
+<tr>
+<td>Hand-kept configuration files</td>
+<td>Retirements and releases, documented injury layoffs, announced division moves, vacant titles, interim champions</td>
+<td>As maintained, each entry carries its reason and source</td>
+<td>Only as current as the last edit; every entry is listed in <code>config/</code></td>
+</tr>
+<tr>
+<td>Public boards (UFC media panel, Meta UFC Rankings, Sherdog, Fight Matrix, ESPN)</td>
+<td>Comparison only; never an input to the score</td>
+<td>Snapshots stored in <code>data/external/</code> with their dates</td>
+<td>Used to find disagreements, not to copy</td>
+</tr>
+</tbody>
+</table>
+<p>Known gaps: no pre-UFC records (debutants start at the same rating), no injury data beyond the hand-kept list, no contract or matchmaking information, and statistics before about 2001 are sparse.</p>
+<h2>3. How A + B = C: the pipeline, in order</h2>
+<ol>
+<li><strong>Resume rating.</strong> Every UFC bout since 1994 is processed in date order. Each fighter's rating moves by K x (actual score - expected score), where the expected score comes from the two ratings (Elo). Rules for scoring a result are in section 4.</li>
+<li><strong>Eligibility.</strong> A fighter must have fought within the active window, be on the roster, and be in a ranked division (section 6).</li>
+<li><strong>Quality ledger.</strong> Wins and losses are re-read for resume value (section 5).</li>
+<li><strong>Score.</strong> Score = rating weight x scaled rating + ledger weight x scaled ledger - form penalty. Both inputs are scaled within the division by their interdecile range: (value - median) / (90th percentile - 10th percentile).</li>
+<li><strong>Head-to-head.</strong> The winner of the latest meeting moves above the loser when close enough (section 7).</li>
+<li><strong>Title cycle.</strong> Recent title-fight challengers who lost step back from the top slots (section 7).</li>
+<li><strong>Stability band.</strong> The same board is rebuilt with nearby weights; the band is each fighter's 10th to 90th percentile position.</li>
+<li><strong>Audit.</strong> Every contender's placement records where the score put him and which rule moved him.</li>
+</ol>
+<h2>4. Scoring a single fight (the rating)</h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Winner's score (loser gets 1 minus this)</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Knockout, TKO or submission</td>
+<td>1.0</td>
+<td>A finish is a complete result</td>
+</tr>
+<tr>
+<td>Decision</td>
+<td>50% judges' cards + 50% fight statistics, never below 0.5 for the official winner</td>
+<td>Judges alone can be wrong (Jones vs. Reyes); stats alone ignore what judges see. The official result always stands.</td>
+</tr>
+<tr>
+<td>Judges' card, per judge</td>
+<td>1-point margin (29-28, 48-47) = 0.6; 2 points = 0.8; 3+ points (30-27, 49-46, 50-45) = 1.0</td>
+<td>29-28 and 48-47 are close; 49-46 is a clear win</td>
+</tr>
+<tr>
+<td>Fight statistics</td>
+<td>Logistic of the winner's dominance per minute: significant strike difference + 5 x knockdowns + 2 x takedowns + 2 x submission attempts + control-time difference in minutes</td>
+<td>Same formula as the validated predictive model</td>
+</tr>
+</tbody>
+</table>
+<p>K = 60, and 1.5 x K for a fighter's first 5 UFC bouts. There is no rating decay for time off; inactivity is handled in section 6.</p>
+<p><strong>Loss rules.</strong> A loss is <strong>dominant</strong> when it is a first-round finish, an early finish (first half of the scheduled rounds) while clearly behind on the stats, or a decision with 2 of 3 cards at 3+ points where the stats do not contradict the cards. A late finish while close on the stats (winner ahead by 1.5 or less per minute), a split or majority decision, or a decision scored 0.7 or less is <strong>close</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Loss</th>
+<th>Rating cost</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Close loss to a top-5 fighter by someone outside the top 5</td>
+<td>A gain of 10% of K</td>
+<td>Proof of concept: you showed you belong at that level</td>
+</tr>
+<tr>
+<td>Loss to a top-3 fighter or in a title fight, not dominant</td>
+<td>15% of the normal drop (60% if the previous bout was also a loss)</td>
+<td>Losing to the best is expected; a losing streak is not a one-off</td>
+</tr>
+<tr>
+<td>Same, but dominant</td>
+<td>75%</td>
+<td>A blowout says the gap is real, even at the top (Della Maddalena vs. Makhachev)</td>
+</tr>
+<tr>
+<td>First-round finish by a heavy favorite (75%+ pre-fight win probability)</td>
+<td>100%</td>
+<td>The real gap, confirmed; no need to run it back</td>
+</tr>
+<tr>
+<td>Any other loss</td>
+<td>100%</td>
+<td></td>
+</tr>
+<tr>
+<td>First-round finish by the underdog</td>
+<td>Both fighters move 70% as much</td>
+<td>Quick early finishes can be flukes</td>
+</tr>
+</tbody>
+</table>
+<h2>5. The quality ledger</h2>
+<p>A <strong>quality win</strong> is a win over a UFC fighter who had 5+ UFC wins or was ranked in the division top 7 at the time. Every ledger item is weighted by its age:</p>
+<table>
+<thead>
+<tr>
+<th>Age of the result</th>
+<th>up to 3 years</th>
+<th>up to 5 years</th>
+<th>up to 10 years</th>
+<th>up to 15 years</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weight</td>
+<td>1.0</td>
+<td>0.6</td>
+<td>0.3</td>
+<td>0.1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Ledger item</th>
+<th>Value</th>
+<th>Window</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quality win</td>
+<td>+1.0</td>
+<td>15 years, age-weighted</td>
+</tr>
+<tr>
+<td>Proof-of-concept loss (close loss to a top-5 fighter)</td>
+<td>+0.5</td>
+<td>15 years, age-weighted</td>
+</tr>
+<tr>
+<td>Dominant loss</td>
+<td>-1.0</td>
+<td>last 3 years</td>
+</tr>
+<tr>
+<td>Any other loss to someone outside the top 5</td>
+<td>-1.0</td>
+<td>last 3 years</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Entrenched</strong> (shown as E) = 5 or more quality wins in 15 years. Activity alone earns nothing: a fighter who takes many fights and loses to non-elite opponents gives the ledger back.</p>
+<h2>6. Eligibility, form and division</h2>
+<ul>
+<li><strong>Inactivity.</strong> No penalty for the first 365 days; up to 50 rating points by 540 days; off the board after that. Documented injury layoffs (<code>config/layoffs.yaml</code>) carry no penalty and stay eligible up to 730 days.</li>
+<li><strong>Form (last five UFC bouts).</strong> Subtracted from the score: 2-3: 0.15, 1-4: 0.45, 0-5: 0.6. A 2-3 is a warning; 1-4 counts seriously against a fighter. A fighter with a negative last five also gets no head-to-head lift.</li>
+<li><strong>Division.</strong> Two straight bouts in a division settle it. Otherwise the division fought in most over the last 3 years, with ties going to the division of the most recent win. Title holders are ranked in their title's division. Announced moves are in <code>config/division_overrides.yaml</code>, each with its reason.</li>
+<li><strong>Roster.</strong> Retirements and releases are removed (<code>config/roster_exclusions.yaml</code>).</li>
+</ul>
+<h2>7. Matchmaking reality rules</h2>
+<ul>
+<li><strong>Head-to-head.</strong> If a fighter beat someone in their most recent meeting within 3 years and sits no more than 3 places below him (6 if the fight was in the last 12 months), he moves directly above him.</li>
+<li><strong>Title cycle.</strong> A challenger who lost a title fight in the last 365 days and has not won since is placed no higher than #4: still close, but the champion is fighting someone else next. A champion who lost the belt is exempt (immediate rematches are common). Anyone that challenger beat in the last year stays below him.</li>
+</ul>
+<h2>8. Validation</h2>
+<p>Agreement with the public boards (UFC contenders only, champions removed): our average gap is 1.9 to 2.2 places; the public boards differ from each other by 0.9 to 1.6. Disagreement is expected and reported, not removed: <code>outputs/compare_flags.csv</code> lists every large gap with its cause.</p>
+<p>The separate predictive model (performance-adjusted Elo) scores 61.2% accuracy and 0.6621 log loss on 3,390 held-out bouts from 2020 on, against 58.1% for results-only Elo and 65.2% for the betting market (2014-2023).</p>
+<h2>9. Worked examples (from this rebuild's audit trail)</h2>
+<table>
+<thead>
+<tr>
+<th>Division</th>
+<th>Fighter</th>
+<th>Final</th>
+<th>How he got there</th>
+<th>Rating term</th>
+<th>Ledger term</th>
+<th>Form</th>
+<th>Ledger detail</th>
+<th>Last 5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bantamweight</td>
+<td>Mario Bautista</td>
+<td>#5</td>
+<td>score order #5</td>
+<td>+0.50</td>
+<td>+0.22</td>
+<td>-0.00</td>
+<td>+3.6 QW +0.0 proof -1.0 blowout -0.0 weak</td>
+<td>4-1</td>
+</tr>
+<tr>
+<td>Bantamweight</td>
+<td>Cory Sandhagen</td>
+<td>#9</td>
+<td>score order #7; head-to-head -&gt; #9</td>
+<td>+0.67</td>
+<td>+0.14</td>
+<td>-0.15</td>
+<td>+4.3 QW +0.0 proof -2.0 blowout -1.0 weak</td>
+<td>2-3</td>
+</tr>
+<tr>
+<td>Light Heavyweight</td>
+<td>Jiri Prochazka</td>
+<td>#4</td>
+<td>score order #2; title cycle -&gt; #4</td>
+<td>+0.57</td>
+<td>+0.19</td>
+<td>-0.00</td>
+<td>+4.2 QW +0.5 proof -2.0 blowout -0.0 weak</td>
+<td>3-2</td>
+</tr>
+<tr>
+<td>Light Heavyweight</td>
+<td>Khalil Rountree Jr.</td>
+<td>#8</td>
+<td>score order #8</td>
+<td>+0.26</td>
+<td>+0.21</td>
+<td>-0.00</td>
+<td>+2.6 QW +0.5 proof -0.0 blowout -0.0 weak</td>
+<td>3-2</td>
+</tr>
+<tr>
+<td>Heavyweight</td>
+<td>Alex Pereira</td>
+<td>#4</td>
+<td>score order #1; title cycle -&gt; #4</td>
+<td>+0.76</td>
+<td>+0.51</td>
+<td>-0.00</td>
+<td>+7.4 QW +0.0 proof -1.0 blowout -0.0 weak</td>
+<td>3-2</td>
+</tr>
+<tr>
+<td>Welterweight</td>
+<td>Kamaru Usman</td>
+<td>#9</td>
+<td>score order #9</td>
+<td>+0.75</td>
+<td>+0.15</td>
+<td>-0.45</td>
+<td>+4.3 QW +0.0 proof -1.0 blowout -1.0 weak</td>
+<td>1-4</td>
+</tr>
+<tr>
+<td>Welterweight</td>
+<td>Kevin Holland</td>
+<td>#11</td>
+<td>score order #10; head-to-head -&gt; #11</td>
+<td>+0.30</td>
+<td>+0.13</td>
+<td>-0.00</td>
+<td>+7.0 QW +0.0 proof -2.0 blowout -3.0 weak</td>
+<td>3-2</td>
+</tr>
+<tr>
+<td>Flyweight</td>
+<td>Brandon Moreno</td>
+<td>#6</td>
+<td>score order #5; title cycle -&gt; #6</td>
+<td>+0.39</td>
+<td>+0.14</td>
+<td>-0.00</td>
+<td>+3.7 QW +0.0 proof -0.0 blowout -2.0 weak</td>
+<td>3-2</td>
+</tr>
+<tr>
+<td>Lightweight</td>
+<td>Max Holloway</td>
+<td>#3</td>
+<td>score order #1; head-to-head -&gt; #3</td>
+<td>+0.92</td>
+<td>+0.43</td>
+<td>-0.00</td>
+<td>+7.1 QW +0.0 proof -1.0 blowout -0.0 weak</td>
+<td>3-2</td>
+</tr>
+</tbody>
+</table>
+<h2>10. Limits and open decisions</h2>
+<ul>
+<li>Pre-UFC records are not yet used; they will set starting ratings and judge debut opponents' quality, never award ranking credit directly.</li>
+<li>Division overrides, injuries and retirements are hand-kept and need weekly review.</li>
+<li>Weights and thresholds were set by stated judgment and checked against the public boards; they have not been fitted to any outcome.</li>
+<li>Card-quality and matchmaking analyses use the predictive model's positions, not these boards.</li>
+</ul>
+<p>Independent fan and research project. Not affiliated with, sponsored or endorsed by UFC, Zuffa, LLC, TKO Group Holdings, or any athlete.</p></body></html>

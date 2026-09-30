@@ -1,7 +1,8 @@
 # Brayton's Top Ten Favorite Fighters. Order and membership are set by hand;
 # last-five records are computed from the fight data on every rebuild, so they
 # are never typed in. Favorite is not the same as best.
-title: "Brayton's Top Ten Favorite Fighters"
+title: "Personal Top Ten Favorite Fighters"
+curator: "Brayton Smith, PhD, MBA"
 list_set: 2026-08-01          # date the order below was last set by Brayton
 
 top_ten:

@@ -15,7 +15,7 @@ from pathlib import Path
 
 import yaml
 
-from mmalab import ingest, bout_stats, backtest, rankings, resume_board, card_quality, figures, publish, compare
+from mmalab import ingest, bout_stats, backtest, rankings, resume_board, card_quality, figures, publish, compare, methodology
 
 
 def main(quick: bool = False) -> None:
@@ -25,7 +25,7 @@ def main(quick: bool = False) -> None:
     cfg = yaml.safe_load((Path(__file__).resolve().parents[2] / "config" / "weights.yaml").read_text())
     board = resume_board.main if cfg.get("board_model") == "resume" else rankings.main
     steps += [("boards", board), ("card_quality", card_quality.main), ("compare", compare.main),
-              ("figures", figures.main), ("publish", publish.main)]
+              ("figures", figures.main), ("methodology", methodology.main), ("publish", publish.main)]
     for name, fn in steps:
         t = time.time()
         print(f"\n===== {name} =====")
