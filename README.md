@@ -18,16 +18,16 @@ Data through the last event in `data/raw/ufc_event_details.csv` (currently Septe
 
 ## Headline results (as of 2026-09-26)
 
-Prediction, held-out 2020-2026 (3,412 bouts; parameters fixed on 2010-2019):
+Prediction, held-out 2020-2026 (3,390 bouts; parameters fixed on 2010-2019):
 
 | Model | Log loss | Accuracy |
 |---|---|---|
 | Coin flip | 0.693 | 50.0% |
-| Classic Elo, results only, tuned | 0.673 | 58.2% |
-| Performance-adjusted Elo (in-fight dominance), interpretable floors | 0.661 | 61.3% |
+| Classic Elo, results only, tuned | 0.674 | 58.1% |
+| Performance-adjusted Elo (in-fight dominance), interpretable floors | 0.662 | 61.2% |
 | Betting market, de-vigged, same-bout comparison 2014-2023 | 0.616 | 65.2% |
 
-Card quality, 203 cards 2022 to Sept 2026: 1.2 top-10 vs top-10 bouts per card; numbered events 2.2, Fight Nights 0.7; 36% to 57% of Fight Nights carry none. Fighters starting a year inside a division top 11 average 1.3 to 1.5 bouts that year and 12% to 16% do not fight at all.
+Card quality, 203 cards 2022 to Sept 2026: 1.2 top-10 vs top-10 bouts per card; numbered events 2.2, Fight Nights 0.7; 31% to 54% of Fight Nights carry none. Fighters starting a year inside a division top 11 average 1.3 to 1.4 bouts that year and 12% to 16% do not fight at all.
 
 ## Build it yourself, step by step
 
@@ -69,7 +69,7 @@ Check: ingest prints `unmatched event dates: 0`, and bout_stats prints that the 
 PYTHONPATH=src python3 -m mmalab.backtest
 ```
 
-What it does, in order: (1) scores an untuned classic Elo, (2) grid-searches K, the new-fighter multiplier, layoff regression, dominance weight, and win and finish floors on 2010-2019 bouts by log loss, (3) evaluates the winner and the best results-only model once on 2020-2026, (4) compares against de-vigged closing odds on the 3,507 bouts where both exist, (5) writes calibration and year-by-year tables.
+What it does, in order: (1) scores an untuned classic Elo, (2) grid-searches K, the new-fighter multiplier, layoff regression, dominance weight, and win and finish floors on 2010-2019 bouts by log loss, (3) evaluates the winner and the best results-only model once on 2020-2026, (4) compares against de-vigged closing odds on the 3,499 bouts where both exist, (5) writes calibration and year-by-year tables.
 
 Why the split matters: any number reported from the tuning window is optimistic. Only the 2020-2026 column in `outputs/table_backtest.md` should be quoted.
 
