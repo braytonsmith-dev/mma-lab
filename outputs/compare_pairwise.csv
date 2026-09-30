@@ -3,14 +3,14 @@ UFC media,Meta,139,1.53,0.864
 UFC media,Sherdog,83,0.88,0.736
 UFC media,Fight Matrix,120,1.37,0.855
 UFC media,ESPN (Jun),88,1.22,0.755
-UFC media,MMA Lab,119,3.19,0.673
+UFC media,MMA Lab,119,3.24,0.664
 Meta,Sherdog,82,1.38,0.709
 Meta,Fight Matrix,110,1.52,0.827
 Meta,ESPN (Jun),87,1.64,0.7
-Meta,MMA Lab,130,2.7,0.755
+Meta,MMA Lab,130,2.71,0.755
 Sherdog,Fight Matrix,83,1.16,0.908
 Sherdog,ESPN (Jun),75,0.92,0.862
-Sherdog,MMA Lab,79,2.96,0.782
+Sherdog,MMA Lab,79,2.95,0.793
 Fight Matrix,ESPN (Jun),87,1.31,0.745
-Fight Matrix,MMA Lab,105,3.07,0.7
-ESPN (Jun),MMA Lab,83,2.96,0.691
+Fight Matrix,MMA Lab,105,3.05,0.709
+ESPN (Jun),MMA Lab,83,2.94,0.691
