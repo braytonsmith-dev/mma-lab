@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+raw_greco/
+raw_jansen/
+data/processed/round_stats.csv
+outputs/backtest_stdout.txt
+.DS_Store

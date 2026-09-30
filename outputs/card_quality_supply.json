@@ -1,0 +1,52 @@
+{
+  "2022": {
+    "top11_fighters_on_jan1": 121,
+    "mean_bouts_per_fighter": 1.33,
+    "annualized_bouts_per_fighter": 1.33,
+    "share_with_zero_bouts": 0.14,
+    "share_of_their_bouts_vs_top11": 0.602,
+    "top10_vs_top10_bouts_total": 50,
+    "events": 42,
+    "days_covered": 365
+  },
+  "2023": {
+    "top11_fighters_on_jan1": 121,
+    "mean_bouts_per_fighter": 1.33,
+    "annualized_bouts_per_fighter": 1.33,
+    "share_with_zero_bouts": 0.157,
+    "share_of_their_bouts_vs_top11": 0.609,
+    "top10_vs_top10_bouts_total": 49,
+    "events": 43,
+    "days_covered": 365
+  },
+  "2024": {
+    "top11_fighters_on_jan1": 121,
+    "mean_bouts_per_fighter": 1.38,
+    "annualized_bouts_per_fighter": 1.38,
+    "share_with_zero_bouts": 0.14,
+    "share_of_their_bouts_vs_top11": 0.563,
+    "top10_vs_top10_bouts_total": 49,
+    "events": 42,
+    "days_covered": 366
+  },
+  "2025": {
+    "top11_fighters_on_jan1": 121,
+    "mean_bouts_per_fighter": 1.47,
+    "annualized_bouts_per_fighter": 1.47,
+    "share_with_zero_bouts": 0.124,
+    "share_of_their_bouts_vs_top11": 0.579,
+    "top10_vs_top10_bouts_total": 53,
+    "events": 43,
+    "days_covered": 365
+  },
+  "2026": {
+    "top11_fighters_on_jan1": 121,
+    "mean_bouts_per_fighter": 1.02,
+    "annualized_bouts_per_fighter": 1.39,
+    "share_with_zero_bouts": 0.24,
+    "share_of_their_bouts_vs_top11": 0.613,
+    "top10_vs_top10_bouts_total": 38,
+    "events": 33,
+    "days_covered": 269
+  }
+}

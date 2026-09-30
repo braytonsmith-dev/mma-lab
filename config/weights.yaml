@@ -1,0 +1,38 @@
+# Composite ranking weights. Must sum to 1.0. Change these and re-run
+#   python -m mmalab.rankings
+# Each dimension is percentile-ranked within the division before weighting,
+# so a weight is "how much of the final score this dimension controls".
+
+weights:
+  rating: 0.45        # current performance-adjusted Elo (opponent quality + dominance)
+  form_3y: 0.10       # net Elo gained over the last 36 months, after the first two UFC bouts
+  entrenchment: 0.20  # UFC tenure and wins over division top-15 opponents
+  offense: 0.10       # strike output, differential, knockdowns, takedowns, sub attempts
+  activity: 0.05      # bouts in last 24 months, penalty for days since last bout
+  durability: 0.10    # strikes absorbed per minute (inverse) and finish-loss rate (inverse)
+
+# Eligibility
+active_window_days: 540      # last bout within ~18 months to appear on a board
+min_ufc_bouts: 1
+board_size: 15
+
+# Elo parameters for the rating dimension. This is the "interpretable" model:
+# 75% of each update listens to in-fight dominance, a win never scores below
+# 0.5, a finish never below 0.75. outputs/backtest_report.json reports how
+# little predictive accuracy this costs versus the unconstrained optimum.
+elo:
+  k: 100
+  k_new_mult: 2.0
+  n_new: 5
+  finish_mult: 1.0
+  split_mult: 0.8
+  layoff_days: 365
+  layoff_regress_per_year: 0.25
+  mov_weight: 0.75
+  mov_scale: 2.0
+  win_floor: 0.5
+  finish_floor: 0.75
+
+# Rank stability: number of random weight vectors drawn around the weights above
+stability_draws: 300
+stability_concentration: 40   # higher = draws stay closer to the configured weights

@@ -1,0 +1,4 @@
+# Champions that bout data cannot see (title promotions, vacated belts).
+# The rankings module derives each champion from the last undisputed title
+# bout; entries here override that. Keep the reason so the file audits itself.
+Heavyweight: Tom Aspinall    # promoted from interim to undisputed when Jon Jones retired, June 2025
