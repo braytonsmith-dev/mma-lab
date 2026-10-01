@@ -1,0 +1,2 @@
+1d20d6ff437794127ddcde0868c28e3d7efb3f5a
+REAL v1.0 freeze commit on main: 1d20d6ff437794127ddcde0868c28e3d7efb3f5a (Oct 1, 2026). Recorded by the following commit, as PREREGISTRATION.md section 1 states.
