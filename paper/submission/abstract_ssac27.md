@@ -1,0 +1,19 @@
+# Performance-Adjusted Elo for the UFC: Round Statistics Improve Forecasts and Quantify Ranked-Matchup Concentration
+
+Track: Other Sports. Author: Brayton Smith, PhD, MBA. Repository: https://github.com/braytonsmith-dev/mma-lab
+
+## Introduction
+
+In June 2026, UFC began transitioning from media-voted rankings to a data-driven system developed with Meta. We ask two questions an open alternative must answer: does within-fight performance add forecasting information to a transparent Elo rating beyond win-loss results, and how are bouts between highly rated fighters distributed across UFC events? Both are answered from public UFCStats data in a repository that regenerates every number.
+
+## Methods
+
+We assembled 8,911 UFC bouts from March 1994 through September 2026 with round-level statistics for 99.8%. A results-only Elo is compared with a performance-adjusted Elo whose post-bout update blends the result with a logistic transform of per-minute dominance (significant-strike differential, knockdowns, takedowns, submission attempts, control time), floored so a win never scores below 0.5. Both use a larger K for a fighter's first five UFC bouts and mean regression after layoffs over a year. Predictions use only ratings available before each bout. A 520-point grid selected parameters on 4,116 bouts (2010-2019, after a 1994-2009 warm-up); the selected specification was scored once on 3,390 held-out bouts (2020-2026) and compared with de-vigged closing odds on the 1,445 held-out bouts with odds (2020-2023). For 203 events from 2022 through September 2026, a bout is "champion-or-top-10" when both fighters rank among the top 11 active fighters in their division by pre-fight rating.
+
+## Results
+
+Table 1: performance adjustment lowered held-out log loss from 0.674 to 0.663 (paired difference 0.011; 95% event-block bootstrap interval 0.006 to 0.016), Brier score from 0.241 to 0.235, and accuracy from 58.1% to 60.6% (McNemar p = 0.002). Probabilities are calibrated by bin, but the model under-predicts the red corner by 3.7 points in aggregate. On the same held-out bouts with odds, the closing market remained stronger (0.609 log loss, 67.1% accuracy, versus 0.669 and 60.0%). Figure 1: numbered cards averaged 2.19 champion-or-top-10 bouts versus 0.72 on Fight Nights; excluding title bouts, 1.26 versus 0.71, or 0.99 versus 0.59 per ten scheduled bouts; 44% of Fight Nights had none. In 2022-2025, fighters starting a year in a division's top 11 averaged 1.30-1.44 bouts, 12-17% did not compete, and 52-61% of their bouts were against another top-11 opponent; observed top-11-versus-top-11 bouts totaled 45-58 per year.
+
+## Conclusion
+
+Round-level performance improves this Elo model's out-of-sample forecasts but does not match the betting market; the uncaptured corner effect is the clearest remaining gain. Ranked matchups are concentrated on numbered events even after title bouts are removed. The supply figures describe the current allocation of elite appearances; whether they could be redistributed without adding supply is a scheduling counterfactual we do not test. The repository also publishes REAL Fighter Rankings, a versioned resume board frozen on October 1, 2026 under a pre-registered prospective validation protocol.
