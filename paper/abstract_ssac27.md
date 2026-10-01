@@ -1,6 +1,6 @@
 # Performance-Adjusted Elo for the UFC: Round Statistics Improve Forecasts and Quantify Ranked-Matchup Concentration
 
-Track: Other Sports. Author: Brayton Smith, PhD, MBA. Repository: https://github.com/braytonsmith-dev/mma-lab
+Track: Other Sports. Author: Brayton Smith, PhD, MBA. Repository: https://github.com/braytonsmith-dev/real-fighter-rankings
 
 ## Introduction
 

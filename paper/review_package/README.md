@@ -2,7 +2,7 @@
 
 Results, Evidence, Analytics, Ledger. Open, reproducible UFC rankings built from public data: a weekly resume board (who has earned it), a separately graded prediction model (who would be favored), and a card-quality index for matchmaking research. Companion to the SSAC27 abstract in `paper/abstract_ssac27.md`.
 
-- Site: https://braytonsmith-dev.github.io/mma-lab/ (boards, side-by-side with public boards, prediction model, methodology)
+- Site: https://braytonsmith-dev.github.io/real-fighter-rankings/ (boards, side-by-side with public boards, prediction model, methodology)
 - Methodology, version 1.0, with every rule, weight, and worked example: [METHODOLOGY.md](METHODOLOGY.md) (regenerated on every rebuild from `config/weights.yaml` and the audit trail)
 - Per-fighter audit trail: `outputs/audit_top30.csv`; forward validation: `outputs/forward_validation.json`
 
