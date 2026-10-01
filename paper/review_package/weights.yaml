@@ -1,0 +1,81 @@
+site_name: "REAL Fighter Rankings"
+site_tagline: "Results, Evidence, Analytics, Ledger"
+method_version: "1.0"
+
+# Composite ranking weights. Must sum to 1.0. Change these and re-run
+#   python -m mmalab.rankings
+# Each dimension is percentile-ranked within the division before weighting,
+# so a weight is "how much of the final score this dimension controls".
+
+weights:
+  rating: 0.45        # current performance-adjusted Elo (opponent quality + dominance)
+  form_3y: 0.10       # net Elo gained over the last 36 months, after the first two UFC bouts
+  entrenchment: 0.20  # UFC tenure and wins over division top-15 opponents
+  offense: 0.10       # strike output, differential, knockdowns, takedowns, sub attempts
+  activity: 0.05      # bouts in last 24 months, penalty for days since last bout
+  durability: 0.10    # strikes absorbed per minute (inverse) and finish-loss rate (inverse)
+
+# Eligibility
+division_rule: latest       # latest = division of most recent bout; mode3 = most common of last three
+active_window_days: 540      # last bout within ~18 months to appear on a board
+min_ufc_bouts: 1
+board_size: 30
+
+# Elo parameters for the rating dimension. This is the "interpretable" model:
+# 75% of each update listens to in-fight dominance, a win never scores below
+# 0.5, a finish never below 0.75. outputs/backtest_report.json reports how
+# little predictive accuracy this costs versus the unconstrained optimum.
+elo:
+  k: 100
+  k_new_mult: 2.0
+  n_new: 5
+  finish_mult: 1.0
+  split_mult: 0.8
+  layoff_days: 365
+  layoff_regress_per_year: 0.25
+  mov_weight: 0.75
+  mov_scale: 2.0
+  win_floor: 0.5
+  finish_floor: 0.75
+
+# Rank stability: number of random weight vectors drawn around the weights above
+stability_draws: 300
+stability_concentration: 40   # higher = draws stay closer to the configured weights
+
+# ---------------------------------------------------------------------------
+# Resume board (Option B, adopted Sept 30, 2026). run_all uses this when
+# board_model is "resume"; the older composite above stays available as "composite".
+board_model: resume
+resume:
+  weights: {rating: 0.70, quality_wins: 0.30}
+  horizons: {3: 1.0, 5: 0.6, 10: 0.3, 15: 0.1}     # age of a quality win in years -> weight
+  engine:
+    k: 60
+    k_new_mult: 1.5
+    n_new: 5
+    protected_loss_mult: 0.15      # loss to a top-3 fighter or in a title fight, not dominant
+    dominant_loss_mult: 0.75       # same, but dominant (2 of 3 cards at 3+ points, stats agree, or R1 finish)
+    heavy_favorite_p: 0.75         # R1 finish by a >= 75% favorite: full cost
+    consecutive_loss_mult: 0.60    # protection is weaker on a second straight loss
+    card_weight: 0.5               # decisions: half judges' cards, half fight stats
+    protect_top_n: 3
+    quality_top_n: 7
+    quality_min_wins: 5
+  inactivity:
+    grace_days: 365                # no penalty for the first 12 months
+    max_days: 540                  # gradual penalty to 18 months, then off the board
+    max_penalty_points: 50
+    injury_max_days: 730           # documented injuries (config/layoffs.yaml): no penalty, eligible 24 months
+  decisive_loss_years: 3         # losses this recent count against the ledger
+  ledger:                        # quality ledger, each item weighted by the age horizons above
+    quality_win: 1.0             # multiplier on tiered wins: champion 2.0, top 5 1.5, top 10 1.0, top 15 0.5, proven unranked vet 0.25
+    proof_of_concept: 0.5        # close loss to a top-5 fighter by someone outside the top 5
+    dominant_loss: 1.0           # blowout loss (last 3 years)
+    loss_outside_top5: 1.0       # any other loss to someone outside the top 5 (last 3 years)
+  form_penalty: {"2-3": 0.15, "1-4": 0.60, "0-5": 0.80}   # score units subtracted for the last five
+  title_cycle: {days: 270, min_position: 4, release_top10_wins: 1, release_wins: 2}   # losing challengers; released by 1 top-10 win or 2 wins
+  entrenched: {top10_wins: 4, top15_wins: 5}              # in the last 15 years
+  head_to_head: {max_gap: 3, max_gap_recent: 6, max_years: 3}   # recent = last 12 months
+  declining_guard: false         # proposal: negative last five -> only last-3-year quality wins count
+  stability_draws: 200
+  stability_concentration: 20

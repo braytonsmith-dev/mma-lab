@@ -1,0 +1,227 @@
+snapshot,date,division,fighter_a,pos_a,fighter_b,pos_b,winner,ours_correct,official_a,official_b,official_correct,predictive_correct
+2023-10-13,2023-10-14,Featherweight,Sodiq Yusuff,11,Edson Barboza,13,Edson Barboza,False,11.0,13.0,False,False
+2023-10-20,2023-10-21,Flyweight,Tim Elliott,15,Muhammad Mokaev,6,Muhammad Mokaev,True,10.0,11.0,False,True
+2023-11-10,2023-11-11,Women's Strawweight,Jessica Andrade,8,Mackenzie Dern,10,Jessica Andrade,True,5.0,7.0,True,False
+2023-11-10,2023-11-11,Women's Strawweight,Tabatha Ricci,12,Loopy Godinez,11,Loopy Godinez,True,10.0,13.0,False,True
+2023-11-10,2023-11-11,Heavyweight,Sergei Pavlovich,2,Tom Aspinall,0,Tom Aspinall,True,2.0,4.0,False,False
+2023-12-01,2023-12-02,Lightweight,Beneil Dariush,3,Arman Tsarukyan,5,Arman Tsarukyan,False,4.0,8.0,False,True
+2023-12-08,2023-12-09,Bantamweight,Song Yadong,8,Chris Gutierrez,15,Song Yadong,True,7.0,15.0,True,True
+2023-12-15,2023-12-16,Welterweight,Shavkat Rakhmonov,4,Stephen Thompson,8,Shavkat Rakhmonov,True,5.0,6.0,True,True
+2023-12-15,2023-12-16,Featherweight,Josh Emmett,9,Bryce Mitchell,12,Josh Emmett,True,6.0,10.0,True,False
+2023-12-15,2023-12-16,Flyweight,Alexandre Pantoja,0,Brandon Royval,2,Alexandre Pantoja,True,0.0,2.0,True,True
+2023-12-15,2023-12-16,Women's Bantamweight,Irene Aldana,4,Karol Rosa,9,Irene Aldana,True,5.0,9.0,True,False
+2024-01-12,2024-01-13,Light Heavyweight,Magomed Ankalaev,4,Johnny Walker,7,Magomed Ankalaev,True,3.0,7.0,True,True
+2024-01-19,2024-01-20,Middleweight,Sean Strickland,0,Dricus Du Plessis,2,Dricus Du Plessis,False,0.0,2.0,False,True
+2024-01-19,2024-01-20,Featherweight,Arnold Allen,2,Movsar Evloev,6,Movsar Evloev,False,4.0,9.0,False,True
+2024-01-19,2024-01-20,Women's Bantamweight,Raquel Pennington,1,Mayra Bueno Silva,7,Raquel Pennington,True,2.0,3.0,True,True
+2024-02-02,2024-02-03,Middleweight,Roman Dolidze,7,Nassourdine Imavov,14,Nassourdine Imavov,False,8.0,11.0,False,False
+2024-02-16,2024-02-17,Women's Strawweight,Amanda Lemos,5,Mackenzie Dern,12,Amanda Lemos,True,3.0,7.0,True,True
+2024-02-16,2024-02-17,Bantamweight,Merab Dvalishvili,4,Henry Cejudo,3,Merab Dvalishvili,False,2.0,3.0,True,True
+2024-02-16,2024-02-17,Women's Flyweight,Andrea Lee,14,Miranda Maverick,13,Miranda Maverick,True,15.0,99.0,,True
+2024-02-16,2024-02-17,Featherweight,Alexander Volkanovski,0,Ilia Topuria,2,Ilia Topuria,False,0.0,3.0,False,False
+2024-02-23,2024-02-24,Flyweight,Brandon Moreno,4,Brandon Royval,7,Brandon Royval,False,1.0,3.0,False,False
+2024-03-01,2024-03-02,Heavyweight,Jairzinho Rozenstruik,8,Shamil Gaziev,10,Jairzinho Rozenstruik,True,12.0,99.0,,True
+2024-03-08,2024-03-09,Women's Flyweight,Katlyn Cerminara,8,Maycee Barber,5,Maycee Barber,True,4.0,6.0,False,True
+2024-03-08,2024-03-09,Welterweight,Gilbert Burns,5,Jack Della Maddalena,12,Jack Della Maddalena,False,4.0,11.0,False,True
+2024-03-08,2024-03-09,Bantamweight,Sean O'Malley,0,Marlon Vera,5,Sean O'Malley,True,0.0,5.0,True,True
+2024-03-15,2024-03-16,Heavyweight,Tai Tuivasa,11,Marcin Tybura,3,Marcin Tybura,True,9.0,10.0,False,True
+2024-03-29,2024-03-30,Women's Strawweight,Virna Jandiroba,5,Loopy Godinez,8,Virna Jandiroba,True,5.0,10.0,True,False
+2024-03-29,2024-03-30,Women's Flyweight,Erin Blanchfield,3,Manon Fiorot,1,Manon Fiorot,True,2.0,3.0,False,False
+2024-04-05,2024-04-06,Women's Bantamweight,Melissa Mullins,15,Nora Cornolle,14,Nora Cornolle,True,15.0,99.0,,False
+2024-04-12,2024-04-13,Lightweight,Charles Oliveira,1,Arman Tsarukyan,3,Arman Tsarukyan,False,1.0,4.0,False,False
+2024-04-12,2024-04-13,Lightweight,Jalin Turner,13,Renato Moicano,11,Renato Moicano,True,10.0,13.0,False,False
+2024-04-12,2024-04-13,Women's Strawweight,Jessica Andrade,3,Marina Rodriguez,6,Jessica Andrade,True,4.0,6.0,True,False
+2024-04-12,2024-04-13,Women's Strawweight,Zhang Weili,0,Yan Xiaonan,2,Zhang Weili,True,0.0,1.0,True,True
+2024-04-12,2024-04-13,Light Heavyweight,Alex Pereira,0,Jamahal Hill,2,Alex Pereira,True,0.0,1.0,True,True
+2024-04-26,2024-04-27,Women's Flyweight,Ariane da Silva,14,Karine Silva,9,Karine Silva,True,12.0,13.0,False,True
+2024-04-26,2024-04-27,Flyweight,Matheus Nicolau,9,Alex Perez,14,Alex Perez,False,5.0,8.0,False,True
+2024-05-03,2024-05-04,Flyweight,Alexandre Pantoja,0,Steve Erceg,8,Alexandre Pantoja,True,0.0,10.0,True,True
+2024-05-10,2024-05-11,Light Heavyweight,Alonzo Menifield,7,Carlos Ulberg,13,Carlos Ulberg,False,11.0,99.0,,True
+2024-05-17,2024-05-18,Featherweight,Edson Barboza,11,Lerone Murphy,12,Lerone Murphy,False,12.0,99.0,,False
+2024-06-07,2024-06-08,Middleweight,Jared Cannonier,4,Nassourdine Imavov,9,Nassourdine Imavov,False,4.0,7.0,False,False
+2024-06-14,2024-06-15,Flyweight,Alex Perez,9,Tatsuro Taira,4,Tatsuro Taira,True,5.0,13.0,False,True
+2024-06-21,2024-06-22,Heavyweight,Sergei Pavlovich,4,Alexander Volkov,3,Alexander Volkov,True,3.0,5.0,False,True
+2024-06-28,2024-06-29,Women's Bantamweight,Mayra Bueno Silva,11,Macy Chiasson,3,Macy Chiasson,True,3.0,7.0,False,True
+2024-06-28,2024-06-29,Light Heavyweight,Alex Pereira,0,Jiri Prochazka,3,Alex Pereira,True,0.0,1.0,True,True
+2024-07-12,2024-07-13,Women's Flyweight,Rose Namajunas,2,Tracy Cortez,11,Rose Namajunas,True,6.0,11.0,True,True
+2024-07-19,2024-07-20,Women's Strawweight,Amanda Lemos,3,Virna Jandiroba,4,Virna Jandiroba,False,3.0,5.0,False,False
+2024-07-26,2024-07-27,Lightweight,King Green,7,Paddy Pimblett,9,Paddy Pimblett,False,15.0,99.0,,False
+2024-07-26,2024-07-27,Featherweight,Arnold Allen,6,Giga Chikadze,9,Arnold Allen,True,6.0,10.0,True,True
+2024-07-26,2024-07-27,Flyweight,Muhammad Mokaev,4,Manel Kape,5,Muhammad Mokaev,True,6.0,8.0,True,False
+2024-07-26,2024-07-27,Heavyweight,Tom Aspinall,0,Curtis Blaydes,3,Tom Aspinall,True,1.0,4.0,True,True
+2024-07-26,2024-07-27,Welterweight,Leon Edwards,0,Belal Muhammad,3,Belal Muhammad,False,0.0,2.0,False,True
+2024-08-02,2024-08-03,Bantamweight,Cory Sandhagen,3,Umar Nurmagomedov,9,Umar Nurmagomedov,False,2.0,10.0,False,False
+2024-08-02,2024-08-03,Bantamweight,Marlon Vera,8,Deiveson Figueiredo,2,Deiveson Figueiredo,True,4.0,6.0,False,True
+2024-08-02,2024-08-03,Women's Strawweight,Mackenzie Dern,12,Loopy Godinez,9,Mackenzie Dern,False,7.0,10.0,True,False
+2024-08-02,2024-08-03,Light Heavyweight,Azamat Murzakanov,13,Alonzo Menifield,10,Azamat Murzakanov,False,14.0,15.0,True,True
+2024-08-09,2024-08-10,Heavyweight,Jhonata Diniz,13,Karl Williams,12,Jhonata Diniz,False,99.0,99.0,,False
+2024-08-09,2024-08-10,Heavyweight,Marcin Tybura,5,Serghei Spivac,6,Serghei Spivac,False,8.0,9.0,False,True
+2024-08-16,2024-08-17,Lightweight,Mateusz Gamrot,5,Dan Hooker,12,Dan Hooker,False,5.0,11.0,False,False
+2024-08-16,2024-08-17,Middleweight,Dricus Du Plessis,0,Israel Adesanya,2,Dricus Du Plessis,True,0.0,2.0,True,True
+2024-08-16,2024-08-17,Flyweight,Kai Kara-France,5,Steve Erceg,8,Kai Kara-France,True,4.0,7.0,True,True
+2024-08-23,2024-08-24,Middleweight,Jared Cannonier,6,Caio Borralho,10,Caio Borralho,False,5.0,12.0,False,False
+2024-08-23,2024-08-24,Women's Strawweight,Angela Hill,13,Tabatha Ricci,12,Tabatha Ricci,True,9.0,11.0,False,False
+2024-09-06,2024-09-07,Welterweight,Gilbert Burns,13,Sean Brady,8,Sean Brady,True,6.0,8.0,False,False
+2024-09-13,2024-09-14,Featherweight,Brian Ortega,3,Diego Lopes,13,Diego Lopes,False,3.0,13.0,False,True
+2024-09-13,2024-09-14,Women's Bantamweight,Irene Aldana,3,Norma Dumont,6,Norma Dumont,False,5.0,8.0,False,True
+2024-09-13,2024-09-14,Bantamweight,Sean O'Malley,0,Merab Dvalishvili,3,Merab Dvalishvili,False,0.0,1.0,False,True
+2024-09-13,2024-09-14,Women's Flyweight,Alexa Grasso,4,Valentina Shevchenko,0,Valentina Shevchenko,True,0.0,1.0,False,True
+2024-09-27,2024-09-28,Middleweight,Nassourdine Imavov,5,Brendan Allen,3,Nassourdine Imavov,False,4.0,8.0,True,True
+2024-09-27,2024-09-28,Lightweight,Renato Moicano,8,Benoit Saint Denis,11,Renato Moicano,True,11.0,12.0,True,False
+2024-09-27,2024-09-28,Women's Bantamweight,Nora Cornolle,10,Jacqueline Cavalcanti,11,Jacqueline Cavalcanti,False,99.0,99.0,,True
+2024-10-04,2024-10-05,Bantamweight,Jose Aldo,6,Mario Bautista,15,Mario Bautista,False,10.0,11.0,False,True
+2024-10-04,2024-10-05,Welterweight,Stephen Thompson,10,Joaquin Buckley,12,Joaquin Buckley,False,9.0,11.0,False,True
+2024-10-04,2024-10-05,Light Heavyweight,Alex Pereira,0,Khalil Rountree Jr.,9,Alex Pereira,True,0.0,8.0,True,True
+2024-10-04,2024-10-05,Women's Bantamweight,Ketlen Vieira,9,Kayla Harrison,4,Kayla Harrison,True,2.0,3.0,False,True
+2024-10-04,2024-10-05,Women's Strawweight,Marina Rodriguez,7,Iasmin Lucindo,11,Iasmin Lucindo,False,6.0,14.0,False,False
+2024-10-11,2024-10-12,Flyweight,Brandon Royval,1,Tatsuro Taira,4,Brandon Royval,True,1.0,5.0,True,False
+2024-10-18,2024-10-19,Middleweight,Anthony Hernandez,9,Michel Pereira,8,Anthony Hernandez,False,13.0,14.0,True,False
+2024-10-18,2024-10-19,Flyweight,Matheus Nicolau,12,Asu Almabayev,8,Asu Almabayev,True,7.0,14.0,False,True
+2024-10-25,2024-10-26,Light Heavyweight,Magomed Ankalaev,1,Aleksandar Rakic,8,Magomed Ankalaev,True,1.0,5.0,True,True
+2024-10-25,2024-10-26,Featherweight,Ilia Topuria,0,Max Holloway,1,Ilia Topuria,True,0.0,2.0,True,False
+2024-11-01,2024-11-02,Women's Flyweight,Erin Blanchfield,3,Rose Namajunas,1,Erin Blanchfield,False,3.0,5.0,True,False
+2024-11-01,2024-11-02,Flyweight,Brandon Moreno,2,Amir Albazi,8,Brandon Moreno,True,2.0,3.0,True,True
+2024-11-15,2024-11-16,Heavyweight,Marcin Tybura,7,Jhonata Diniz,11,Marcin Tybura,True,9.0,99.0,,True
+2024-11-22,2024-11-23,Light Heavyweight,Volkan Oezdemir,3,Carlos Ulberg,7,Carlos Ulberg,False,8.0,10.0,False,False
+2024-11-22,2024-11-23,Women's Strawweight,Yan Xiaonan,10,Tabatha Ricci,11,Yan Xiaonan,True,2.0,10.0,True,True
+2024-11-22,2024-11-23,Bantamweight,Petr Yan,11,Deiveson Figueiredo,1,Petr Yan,False,3.0,5.0,True,True
+2024-12-06,2024-12-07,Welterweight,Shavkat Rakhmonov,3,Ian Machado Garry,5,Shavkat Rakhmonov,True,3.0,7.0,True,True
+2024-12-06,2024-12-07,Heavyweight,Ciryl Gane,0,Alexander Volkov,2,Ciryl Gane,True,2.0,3.0,True,False
+2024-12-13,2024-12-14,Welterweight,Colby Covington,5,Joaquin Buckley,9,Joaquin Buckley,False,6.0,9.0,False,False
+2025-01-17,2025-01-18,Women's Bantamweight,Karol Rosa,8,Ailin Perez,10,Ailin Perez,False,9.0,13.0,False,True
+2025-01-17,2025-01-18,Light Heavyweight,Jiri Prochazka,4,Jamahal Hill,3,Jiri Prochazka,False,2.0,3.0,True,False
+2025-01-17,2025-01-18,Lightweight,Grant Dawson,8,Diego Ferreira,14,Grant Dawson,True,99.0,99.0,,True
+2025-01-17,2025-01-18,Lightweight,Islam Makhachev,0,Renato Moicano,4,Islam Makhachev,True,0.0,10.0,True,True
+2025-01-17,2025-01-18,Flyweight,Tagir Ulanbekov,10,Clayton Carpenter,9,Tagir Ulanbekov,False,11.0,99.0,,True
+2025-01-17,2025-01-18,Bantamweight,Merab Dvalishvili,1,Umar Nurmagomedov,3,Merab Dvalishvili,True,0.0,2.0,True,True
+2025-01-31,2025-02-01,Heavyweight,Sergei Pavlovich,3,Jairzinho Rozenstruik,6,Sergei Pavlovich,True,4.0,9.0,True,True
+2025-01-31,2025-02-01,Middleweight,Israel Adesanya,4,Nassourdine Imavov,5,Nassourdine Imavov,False,2.0,5.0,False,False
+2025-02-07,2025-02-08,Middleweight,Dricus Du Plessis,0,Sean Strickland,2,Dricus Du Plessis,True,0.0,1.0,True,True
+2025-02-21,2025-02-22,Middleweight,Brendan Allen,5,Anthony Hernandez,9,Anthony Hernandez,False,9.0,12.0,False,True
+2025-02-21,2025-02-22,Bantamweight,Henry Cejudo,3,Song Yadong,6,Song Yadong,False,7.0,8.0,False,True
+2025-02-28,2025-03-01,Flyweight,Manel Kape,6,Asu Almabayev,7,Manel Kape,True,6.0,8.0,True,True
+2025-03-07,2025-03-08,Women's Strawweight,Amanda Lemos,7,Iasmin Lucindo,10,Amanda Lemos,True,5.0,7.0,True,False
+2025-03-07,2025-03-08,Light Heavyweight,Alex Pereira,0,Magomed Ankalaev,1,Magomed Ankalaev,False,0.0,1.0,False,False
+2025-03-21,2025-03-22,Welterweight,Leon Edwards,1,Sean Brady,5,Sean Brady,False,1.0,5.0,False,True
+2025-03-21,2025-03-22,Heavyweight,Marcin Tybura,8,Mick Parkin,12,Marcin Tybura,True,8.0,13.0,True,True
+2025-03-28,2025-03-29,Flyweight,Brandon Moreno,1,Steve Erceg,13,Brandon Moreno,True,2.0,8.0,True,True
+2025-04-04,2025-04-05,Featherweight,Josh Emmett,15,Lerone Murphy,10,Lerone Murphy,True,8.0,10.0,False,True
+2025-04-11,2025-04-12,Women's Strawweight,Yan Xiaonan,2,Virna Jandiroba,1,Virna Jandiroba,True,1.0,3.0,False,False
+2025-04-11,2025-04-12,Featherweight,Alexander Volkanovski,3,Diego Lopes,7,Alexander Volkanovski,True,1.0,3.0,True,True
+2025-04-25,2025-04-26,Welterweight,Ian Machado Garry,4,Carlos Prates,8,Ian Machado Garry,True,7.0,13.0,True,True
+2025-05-02,2025-05-03,Bantamweight,Cory Sandhagen,5,Deiveson Figueiredo,1,Cory Sandhagen,False,4.0,5.0,True,True
+2025-05-09,2025-05-10,Women's Flyweight,Alexa Grasso,6,Natalia Silva,4,Natalia Silva,True,1.0,5.0,False,True
+2025-05-09,2025-05-10,Women's Flyweight,Valentina Shevchenko,0,Manon Fiorot,1,Valentina Shevchenko,True,0.0,2.0,True,True
+2025-05-09,2025-05-10,Welterweight,Belal Muhammad,0,Jack Della Maddalena,6,Jack Della Maddalena,False,0.0,5.0,False,False
+2025-06-06,2025-06-07,Women's Bantamweight,Julianna Pena,0,Kayla Harrison,5,Kayla Harrison,False,0.0,2.0,False,True
+2025-06-06,2025-06-07,Heavyweight,Serghei Spivac,7,Waldo Cortes Acosta,11,Waldo Cortes Acosta,False,7.0,11.0,False,False
+2025-06-06,2025-06-07,Middleweight,Kelvin Gastelum,12,Joe Pyfer,10,Joe Pyfer,True,99.0,99.0,,True
+2025-06-06,2025-06-07,Bantamweight,Merab Dvalishvili,0,Sean O'Malley,1,Merab Dvalishvili,True,0.0,1.0,True,True
+2025-06-13,2025-06-14,Women's Flyweight,Rose Namajunas,3,Miranda Maverick,8,Rose Namajunas,True,7.0,11.0,True,True
+2025-06-20,2025-06-21,Light Heavyweight,Jamahal Hill,5,Khalil Rountree Jr.,12,Khalil Rountree Jr.,False,4.0,7.0,False,False
+2025-06-20,2025-06-21,Lightweight,Rafael Fiziev,15,Ignacio Bahamondes,11,Rafael Fiziev,False,11.0,99.0,,False
+2025-06-27,2025-06-28,Flyweight,Alexandre Pantoja,0,Kai Kara-France,6,Alexandre Pantoja,True,0.0,4.0,True,True
+2025-06-27,2025-06-28,Flyweight,Brandon Royval,3,Joshua Van,10,Joshua Van,False,1.0,12.0,False,False
+2025-07-11,2025-07-12,Heavyweight,Kennedy Nzechukwu,11,Valter Walker,15,Valter Walker,False,99.0,99.0,,True
+2025-07-18,2025-07-19,Bantamweight,Kyler Phillips,14,Vinicius Oliveira,15,Vinicius Oliveira,False,12.0,15.0,False,True
+2025-07-25,2025-07-26,Light Heavyweight,Nikita Krylov,7,Bogdan Guskov,15,Bogdan Guskov,False,10.0,13.0,False,False
+2025-07-25,2025-07-26,Bantamweight,Petr Yan,3,Marcus McGhee,14,Petr Yan,True,3.0,12.0,True,True
+2025-08-01,2025-08-02,Flyweight,Tatsuro Taira,5,HyunSung Park,10,Tatsuro Taira,True,6.0,99.0,,True
+2025-08-01,2025-08-02,Women's Bantamweight,Karol Rosa,13,Nora Cornolle,10,Karol Rosa,False,10.0,12.0,True,True
+2025-08-08,2025-08-09,Women's Strawweight,Iasmin Lucindo,8,Angela Hill,13,Iasmin Lucindo,True,8.0,12.0,True,False
+2025-08-08,2025-08-09,Middleweight,Roman Dolidze,6,Anthony Hernandez,3,Anthony Hernandez,True,9.0,10.0,False,True
+2025-08-15,2025-08-16,Middleweight,Dricus Du Plessis,0,Khamzat Chimaev,1,Khamzat Chimaev,False,0.0,3.0,False,True
+2025-08-15,2025-08-16,Welterweight,Geoff Neal,10,Carlos Prates,11,Carlos Prates,False,11.0,12.0,False,False
+2025-08-22,2025-08-23,Light Heavyweight,Johnny Walker,14,Zhang Mingyang,12,Johnny Walker,False,13.0,14.0,True,False
+2025-08-22,2025-08-23,Heavyweight,Sergei Pavlovich,5,Waldo Cortes Acosta,10,Sergei Pavlovich,True,3.0,6.0,True,True
+2025-09-05,2025-09-06,Middleweight,Nassourdine Imavov,2,Caio Borralho,7,Nassourdine Imavov,True,2.0,7.0,True,True
+2025-09-12,2025-09-13,Women's Strawweight,Tatiana Suarez,4,Amanda Lemos,5,Tatiana Suarez,True,2.0,4.0,True,False
+2025-09-12,2025-09-13,Featherweight,Diego Lopes,9,Jean Silva,5,Diego Lopes,False,2.0,10.0,True,True
+2025-09-26,2025-09-27,Light Heavyweight,Carlos Ulberg,2,Dominick Reyes,4,Carlos Ulberg,True,3.0,7.0,True,True
+2025-10-03,2025-10-04,Light Heavyweight,Jiri Prochazka,1,Khalil Rountree Jr.,6,Jiri Prochazka,True,2.0,4.0,True,True
+2025-10-03,2025-10-04,Women's Bantamweight,Macy Chiasson,4,Yana Santos,14,Yana Santos,False,5.0,10.0,False,True
+2025-10-03,2025-10-04,Bantamweight,Merab Dvalishvili,0,Cory Sandhagen,1,Merab Dvalishvili,True,0.0,4.0,True,True
+2025-10-10,2025-10-11,Lightweight,Charles Oliveira,4,Mateusz Gamrot,6,Charles Oliveira,True,4.0,8.0,True,False
+2025-10-10,2025-10-11,Bantamweight,Deiveson Figueiredo,5,Montel Jackson,8,Deiveson Figueiredo,True,6.0,15.0,True,False
+2025-10-17,2025-10-18,Women's Flyweight,Manon Fiorot,4,Jasmine Jasudavicius,7,Manon Fiorot,True,2.0,5.0,True,True
+2025-10-24,2025-10-25,Women's Strawweight,Virna Jandiroba,1,Mackenzie Dern,3,Mackenzie Dern,False,1.0,5.0,False,False
+2025-10-24,2025-10-25,Bantamweight,Umar Nurmagomedov,3,Mario Bautista,11,Umar Nurmagomedov,True,2.0,9.0,True,True
+2025-10-24,2025-10-25,Light Heavyweight,Aleksandar Rakic,12,Azamat Murzakanov,5,Azamat Murzakanov,True,7.0,10.0,False,True
+2025-10-31,2025-11-01,Featherweight,Steve Garcia,10,David Onama,13,Steve Garcia,True,12.0,13.0,True,True
+2025-10-31,2025-11-01,Women's Bantamweight,Ketlen Vieira,4,Norma Dumont,3,Norma Dumont,True,3.0,4.0,False,True
+2025-10-31,2025-11-01,Heavyweight,Waldo Cortes Acosta,8,Ante Delija,10,Waldo Cortes Acosta,True,6.0,9.0,True,True
+2025-11-07,2025-11-08,Women's Strawweight,Tecia Pennington,7,Denise Gomes,15,Denise Gomes,False,13.0,15.0,False,True
+2025-11-14,2025-11-15,Welterweight,Leon Edwards,4,Carlos Prates,10,Carlos Prates,False,4.0,9.0,False,True
+2025-11-14,2025-11-15,Welterweight,Sean Brady,3,Michael Morales,8,Michael Morales,False,2.0,8.0,False,True
+2025-11-14,2025-11-15,Women's Flyweight,Erin Blanchfield,3,Tracy Cortez,6,Erin Blanchfield,True,4.0,8.0,True,True
+2025-11-14,2025-11-15,Lightweight,Beneil Dariush,6,Benoit Saint Denis,11,Benoit Saint Denis,False,9.0,13.0,False,True
+2025-11-14,2025-11-15,Featherweight,Pat Sabatini,15,Chepe Mariscal,11,Pat Sabatini,False,99.0,99.0,,False
+2025-11-21,2025-11-22,Light Heavyweight,Volkan Oezdemir,9,Alonzo Menifield,14,Volkan Oezdemir,True,9.0,14.0,True,True
+2025-11-21,2025-11-22,Welterweight,Belal Muhammad,3,Ian Machado Garry,5,Ian Machado Garry,False,2.0,6.0,False,True
+2025-11-21,2025-11-22,Heavyweight,Waldo Cortes Acosta,7,Shamil Gaziev,12,Waldo Cortes Acosta,True,6.0,11.0,True,True
+2025-12-05,2025-12-06,Bantamweight,Merab Dvalishvili,0,Petr Yan,1,Petr Yan,False,0.0,3.0,False,False
+2025-12-05,2025-12-06,Flyweight,Alexandre Pantoja,0,Joshua Van,6,Joshua Van,False,0.0,1.0,False,False
+2025-12-05,2025-12-06,Flyweight,Brandon Moreno,1,Tatsuro Taira,2,Tatsuro Taira,False,2.0,5.0,False,True
+2025-12-12,2025-12-13,Flyweight,Brandon Royval,7,Manel Kape,6,Manel Kape,True,2.0,6.0,False,True
+2026-01-23,2026-01-24,Bantamweight,Sean O'Malley,6,Song Yadong,2,Sean O'Malley,False,3.0,5.0,True,True
+2026-01-23,2026-01-24,Bantamweight,Umar Nurmagomedov,3,Deiveson Figueiredo,5,Umar Nurmagomedov,True,2.0,6.0,True,True
+2026-01-23,2026-01-24,Women's Flyweight,Natalia Silva,4,Rose Namajunas,3,Natalia Silva,False,2.0,6.0,True,True
+2026-01-23,2026-01-24,Heavyweight,Waldo Cortes Acosta,7,Derrick Lewis,6,Waldo Cortes Acosta,False,5.0,8.0,True,True
+2026-01-23,2026-01-24,Lightweight,Justin Gaethje,3,Paddy Pimblett,5,Justin Gaethje,True,4.0,5.0,True,True
+2026-01-30,2026-01-31,Lightweight,Dan Hooker,9,Benoit Saint Denis,6,Benoit Saint Denis,True,6.0,8.0,False,True
+2026-01-30,2026-01-31,Featherweight,Alexander Volkanovski,0,Diego Lopes,6,Alexander Volkanovski,True,0.0,2.0,True,True
+2026-02-06,2026-02-07,Flyweight,Amir Albazi,9,Kyoji Horiguchi,5,Kyoji Horiguchi,True,6.0,8.0,False,False
+2026-02-06,2026-02-07,Bantamweight,Mario Bautista,11,Vinicius Oliveira,10,Mario Bautista,False,9.0,11.0,True,False
+2026-02-20,2026-02-21,Middleweight,Sean Strickland,5,Anthony Hernandez,3,Sean Strickland,False,3.0,4.0,True,False
+2026-02-20,2026-02-21,Women's Bantamweight,Nora Cornolle,12,Joselyne Edwards,11,Joselyne Edwards,True,12.0,14.0,False,True
+2026-02-27,2026-02-28,Women's Bantamweight,Ailin Perez,8,Macy Chiasson,5,Ailin Perez,False,7.0,8.0,True,True
+2026-03-13,2026-03-14,Women's Strawweight,Amanda Lemos,8,Gillian Robertson,2,Gillian Robertson,True,5.0,8.0,False,True
+2026-03-20,2026-03-21,Featherweight,Movsar Evloev,4,Lerone Murphy,3,Movsar Evloev,False,1.0,3.0,True,True
+2026-03-27,2026-03-28,Women's Flyweight,Alexa Grasso,6,Maycee Barber,5,Alexa Grasso,False,3.0,5.0,True,False
+2026-04-03,2026-04-04,Women's Strawweight,Virna Jandiroba,5,Tabatha Ricci,8,Virna Jandiroba,True,3.0,7.0,True,True
+2026-04-10,2026-04-11,Heavyweight,Curtis Blaydes,4,Josh Hokit,11,Josh Hokit,False,5.0,99.0,,False
+2026-04-10,2026-04-11,Light Heavyweight,Jiri Prochazka,1,Carlos Ulberg,3,Carlos Ulberg,False,2.0,3.0,False,True
+2026-04-10,2026-04-11,Light Heavyweight,Azamat Murzakanov,4,Paulo Costa,9,Paulo Costa,False,6.0,14.0,False,False
+2026-04-10,2026-04-11,Light Heavyweight,Dominick Reyes,6,Johnny Walker,10,Dominick Reyes,True,10.0,12.0,True,True
+2026-04-10,2026-04-11,Women's Strawweight,Tatiana Suarez,2,Loopy Godinez,6,Tatiana Suarez,True,2.0,6.0,True,True
+2026-04-17,2026-04-18,Women's Flyweight,Jasmine Jasudavicius,8,Karine Silva,11,Jasmine Jasudavicius,True,7.0,9.0,True,True
+2026-04-24,2026-04-25,Bantamweight,Montel Jackson,9,Raoni Barcelos,13,Raoni Barcelos,False,14.0,99.0,,False
+2026-04-24,2026-04-25,Women's Bantamweight,Norma Dumont,1,Joselyne Edwards,8,Joselyne Edwards,False,3.0,11.0,False,False
+2026-04-24,2026-04-25,Featherweight,Aljamain Sterling,1,Youssef Zalal,8,Aljamain Sterling,True,5.0,7.0,True,True
+2026-05-01,2026-05-02,Lightweight,Beneil Dariush,13,Quillan Salkilld,12,Quillan Salkilld,True,12.0,99.0,,True
+2026-05-01,2026-05-02,Welterweight,Jack Della Maddalena,2,Carlos Prates,9,Carlos Prates,False,1.0,5.0,False,False
+2026-05-08,2026-05-09,Heavyweight,Alexander Volkov,3,Waldo Cortes Acosta,5,Alexander Volkov,True,2.0,4.0,True,True
+2026-05-08,2026-05-09,Middleweight,Khamzat Chimaev,0,Sean Strickland,2,Sean Strickland,False,0.0,3.0,False,False
+2026-05-08,2026-05-09,Welterweight,Sean Brady,8,Joaquin Buckley,7,Sean Brady,False,6.0,9.0,True,False
+2026-05-08,2026-05-09,Flyweight,Joshua Van,0,Tatsuro Taira,2,Joshua Van,True,0.0,3.0,True,False
+2026-05-15,2026-05-16,Women's Bantamweight,Ketlen Vieira,11,Jacqueline Cavalcanti,6,Ketlen Vieira,False,5.0,11.0,True,False
+2026-05-29,2026-05-30,Bantamweight,Song Yadong,5,Deiveson Figueiredo,6,Song Yadong,True,5.0,7.0,True,True
+2026-06-05,2026-06-06,Welterweight,Belal Muhammad,3,Gabriel Bonfim,15,Gabriel Bonfim,False,5.0,11.0,False,False
+2026-06-13,2026-06-14,Featherweight,Diego Lopes,5,Steve Garcia,7,Diego Lopes,True,2.0,9.0,True,True
+2026-06-13,2026-06-14,Heavyweight,Josh Hokit,6,Derrick Lewis,5,Josh Hokit,False,5.0,9.0,True,True
+2026-06-13,2026-06-14,Heavyweight,Alex Pereira,1,Ciryl Gane,0,Ciryl Gane,True,2.0,1.0,True,False
+2026-06-13,2026-06-14,Bantamweight,Sean O'Malley,2,Aiemann Zahabi,14,Sean O'Malley,True,3.0,6.0,True,True
+2026-06-13,2026-06-14,Lightweight,Ilia Topuria,0,Justin Gaethje,3,Justin Gaethje,False,0.0,1.0,False,False
+2026-06-19,2026-06-20,Flyweight,Manel Kape,2,Kyoji Horiguchi,3,Manel Kape,True,2.0,5.0,True,True
+2026-06-19,2026-06-20,Women's Bantamweight,Karol Rosa,7,Luana Santos,10,Luana Santos,False,8.0,11.0,False,False
+2026-07-10,2026-07-11,Lightweight,Benoit Saint Denis,6,Paddy Pimblett,8,Paddy Pimblett,False,5.0,6.0,False,False
+2026-07-10,2026-07-11,Bantamweight,Cory Sandhagen,5,Mario Bautista,6,Mario Bautista,False,4.0,7.0,False,False
+2026-07-10,2026-07-11,Women's Flyweight,Tracy Cortez,7,Wang Cong,11,Wang Cong,False,8.0,12.0,False,True
+2026-07-17,2026-07-18,Women's Strawweight,Tabatha Ricci,6,Fatima Kline,13,Fatima Kline,False,8.0,11.0,False,True
+2026-07-24,2026-07-25,Light Heavyweight,Magomed Ankalaev,1,Bogdan Guskov,10,Magomed Ankalaev,True,1.0,10.0,True,True
+2026-07-31,2026-08-01,Light Heavyweight,Jan Blachowicz,3,Navajo Stirling,10,Navajo Stirling,False,4.0,99.0,,False
+2026-08-07,2026-08-08,Women's Strawweight,Amanda Lemos,13,Alexia Thainara,9,Alexia Thainara,True,6.0,14.0,False,False
+2026-08-07,2026-08-08,Lightweight,Mateusz Gamrot,5,Quillan Salkilld,9,Quillan Salkilld,False,8.0,12.0,False,False
+2026-08-14,2026-08-15,Welterweight,Islam Makhachev,0,Ian Machado Garry,1,Islam Makhachev,True,0.0,1.0,True,True
+2026-08-14,2026-08-15,Women's Strawweight,Mackenzie Dern,0,Gillian Robertson,4,Mackenzie Dern,True,0.0,5.0,True,False
+2026-08-21,2026-08-22,Middleweight,Anthony Hernandez,6,Gregory Rodrigues,9,Gregory Rodrigues,False,6.0,12.0,False,False
+2026-08-28,2026-08-29,Bantamweight,Umar Nurmagomedov,4,Song Yadong,3,Song Yadong,True,3.0,5.0,False,False
+2026-08-28,2026-08-29,Women's Strawweight,Yan Xiaonan,12,Denise Gomes,10,Denise Gomes,True,4.0,13.0,False,False
+2026-09-04,2026-09-05,Heavyweight,Mario Pinto,12,Ryan Spann,13,Mario Pinto,True,99.0,99.0,,True
+2026-09-11,2026-09-12,Flyweight,Brandon Moreno,5,Joseph Morales,10,Brandon Moreno,True,9.0,99.0,,True
+2026-09-11,2026-09-12,Heavyweight,Waldo Cortes Acosta,2,Curtis Blaydes,6,Curtis Blaydes,False,5.0,7.0,False,False
+2026-09-11,2026-09-12,Women's Flyweight,Manon Fiorot,1,Alexa Grasso,5,Alexa Grasso,False,2.0,3.0,False,False
+2026-09-18,2026-09-19,Flyweight,Joshua Van,0,Alexandre Pantoja,1,Joshua Van,True,0.0,1.0,True,True
+2026-09-18,2026-09-19,Lightweight,Arman Tsarukyan,4,Mauricio Ruffy,9,Arman Tsarukyan,True,2.0,7.0,True,True
+2026-09-25,2026-09-26,Bantamweight,Raul Rosas Jr.,12,Raoni Barcelos,9,Raul Rosas Jr.,False,13.0,14.0,True,False
+2026-09-25,2026-09-26,Women's Bantamweight,Norma Dumont,2,Ailin Perez,3,Ailin Perez,False,4.0,5.0,False,True
