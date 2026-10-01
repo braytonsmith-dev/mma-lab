@@ -39,7 +39,7 @@ ol.fav,ul.fav{padding-left:22px}ol.fav li,ul.fav li{margin:3px 0}.flag{color:#d0
 
 HEAD = ("<thead><tr><th>#</th><th>Move</th><th>Fighter</th><th class='num'>Score</th><th class='num'>Rating</th>"
         "<th>Last 5</th><th class='num'>Ledger</th><th class='num'>Top-10 wins</th>"
-        "<th class='num'>Days since</th><th>Stability</th></tr></thead>")
+        "<th class='num'>Days since</th><th>Weight band</th></tr></thead>")
 
 
 def _move(r, prev: dict) -> str:
@@ -211,11 +211,12 @@ def prediction_page(cfg: dict, site: str, as_of) -> str:
     """The predictive model, kept apart from the resume board: who would be favored today."""
     from mmalab.elo import EloParams, run_elo
     bouts = pd.read_csv(ROOT / "data" / "processed" / "bouts_with_stats.csv", parse_dates=["date"])
-    _, hist = run_elo(bouts, EloParams(**cfg["elo"]))
+    bt = json.loads((OUT / "backtest_report.json").read_text()) if (OUT / "backtest_report.json").exists() else None
+    # one specification everywhere: the parameters the grid selected on 2010-2019 (config elo is the fallback)
+    _, hist = run_elo(bouts, EloParams(**(bt["tuned_params"] if bt else cfg["elo"])))
     pr = hist.groupby("fighter").tail(1).set_index("fighter")["rating"]
     board = pd.read_csv(OUT / "composite_rankings_full.csv")
     board["pred"] = board["fighter"].map(pr)
-    bt = json.loads((OUT / "backtest_report.json").read_text()) if (OUT / "backtest_report.json").exists() else None
     parts = []
     for div in RANKED_DIVISIONS:
         g = board[board["division"] == div].dropna(subset=["pred"]).sort_values("pred", ascending=False).head(15)
@@ -231,9 +232,17 @@ def prediction_page(cfg: dict, site: str, as_of) -> str:
                      f"<th class='num'>Win chance vs #1 here</th><th>Resume board spot</th></tr></thead><tbody>{rows}</tbody></table>")
     acc = ""
     if bt:
-        m = bt["ranking_model_test"]
-        acc = (f"Held-out accuracy {m['accuracy']:.1%} (log loss {m['log_loss']}) on {m['n']:,} bouts since 2020, "
-               f"against {bt['classic_tuned_test']['accuracy']:.1%} for results-only Elo and about 65% for the betting market.")
+        m = bt["tuned_test"]
+        sig = bt.get("significance_classic_vs_tuned", {})
+        mt = bt.get("market_comparison_heldout_2020_2023", {})
+        ci = sig.get("ci95_event_block_bootstrap")
+        acc = (f"Held-out accuracy {m['accuracy']:.1%} (log loss {m['log_loss']}) on {m['n']:,} bouts from 2020 on, "
+               f"against {bt['classic_tuned_test']['accuracy']:.1%} ({bt['classic_tuned_test']['log_loss']}) for results-only Elo"
+               + (f"; the log-loss gain of {sig['delta_log_loss']:.3f} has a 95% event-block bootstrap interval of "
+                  f"{ci[0]:.3f} to {ci[1]:.3f}" if ci else "")
+               + (f". On the {mt['matched_bouts']:,} held-out bouts with closing odds (2020-2023) the de-vigged market scored "
+                  f"{mt['market_devigged']['accuracy']:.1%} ({mt['market_devigged']['log_loss']}) against this model's "
+                  f"{mt['performance_adjusted']['accuracy']:.1%} ({mt['performance_adjusted']['log_loss']})." if mt else "."))
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>Prediction model</title><style>{CSS}</style></head><body>
 <p class="meta"><a href="index.html">Back to {html.escape(site)}</a></p>
@@ -301,9 +310,11 @@ def main() -> None:
 <p class="tag">{html.escape(tagline)}</p>
 <p class="meta"><a href="#boards">Divisional boards</a> · <a href="#compare">Side by side</a> ·
 <a href="methodology.html">Methodology</a> · <a href="prediction.html">Prediction model</a> ·
-<a href="#cards">Card quality</a> · <a href="#backtest">Model accuracy</a> · <a href="favorites.html">Personal top ten</a></p>
-<p class="meta">Data through {as_of}. Page built {date.today()}. Weights: {w}. Stability = 10th to 90th
-percentile position across {cfg['resume']['stability_draws']} weight vectors near the configured weights.
+<a href="#cards">Card quality</a> · <a href="#backtest">Model accuracy</a></p>
+<p class="meta">Data through {as_of}. Page built {date.today()}. Weights: {w}. Weight band = 10th to 90th
+percentile of the final position across {cfg['resume']['stability_draws']} weight vectors drawn near the configured weights, with
+every placement rule applied; it shows how much a spot depends on the 70/30 choice, not skill uncertainty, and the published
+rank always lies inside it.
 C = champion, IC = interim champion, R = reserved (vacated with injury, owed a title shot); they sit above
 the numbered board with their metrics shown. Move = change since the board before the last event.
 Open source, public data (UFCStats; official rankings history for opponent rank at fight time).</p>
@@ -321,7 +332,8 @@ Full rules, weights and worked examples: <a href="methodology.html">methodology<
 <h2 id='backtest'>Does the rating predict?</h2>
 <img src="fig_backtest.png" alt="Backtest log loss by year and calibration">
 {md_table_to_html(table_md)}
-<p class='meta'>Independent fan research project built on public UFCStats data. Not affiliated with, sponsored or endorsed by UFC, Zuffa, LLC, TKO Group Holdings, or any athlete. All trademarks belong to their owners and are used only to identify athletes and events.</p>
+<p class='meta'>Independent fan research project built on public UFCStats data. Not affiliated with, sponsored or endorsed by UFC, Zuffa, LLC, TKO Group Holdings, or any athlete. All trademarks belong to their owners and are used only to identify athletes and events.
+Separate from the method: <a href="favorites.html">the curator's personal top ten</a>, a fan list that plays no part in any board above.</p>
 </body></html>"""
     (DOCS / "index.html").write_text(page)
     (DOCS / "favorites.html").write_text(favorites_page(bouts, as_of, site))

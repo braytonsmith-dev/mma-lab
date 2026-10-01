@@ -1,19 +1,22 @@
 """
-history.py - Board snapshots, movement arrows and forward validation.
+history.py - Board snapshots, movement arrows and the validation ledger.
 
   snapshot(board, as_of)  -> outputs/history/board_<as_of>.csv
   backfill(months)        -> rebuilds the board as it stood the day before each event
                              in the last `months` and saves each snapshot
-  validate()              -> for every bout after a snapshot (until the next one) between two
-                             fighters on that division's board, did the higher-placed one win?
-                             Compared with the official UFC media panel's order on the same bouts.
-Writes outputs/forward_validation.csv and outputs/forward_validation.json.
+  validate()              -> one row per bout between two fighters who both appear in the
+                             snapshot before that bout (the primary population in
+                             PREREGISTRATION.md), with every frozen baseline on the same bout.
+Writes outputs/forward_validation.csv and outputs/forward_validation.json. Bouts on or before
+the v1.0 freeze date are a retrospective reconstruction; bouts after it are the prospective test.
 """
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from mmalab import resume_board
@@ -23,6 +26,9 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "outputs"
 HIST = OUT / "history"
 PROC = ROOT / "data" / "processed"
+
+FREEZE_DATE = pd.Timestamp("2026-10-01")   # VERSION file; bouts after this date are prospective
+PROB_SLOPE = 1.36                           # frozen score-difference -> win probability map (PREREGISTRATION.md section 5)
 
 
 def board_position(row) -> int:
@@ -65,53 +71,107 @@ def previous_positions(before: pd.Timestamp) -> dict:
     return {(r.division, r.fighter): int(r.position) for r in d.itertuples()}
 
 
-def validate(board_size: int = 15) -> dict:
+def wilson(k: int, n: int, z: float = 1.96) -> list[float] | None:
+    if n == 0:
+        return None
+    p = k / n
+    den = 1 + z * z / n
+    c = (p + z * z / (2 * n)) / den
+    h = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / den
+    return [round(c - h, 3), round(c + h, 3)]
+
+
+def _scores(df: pd.DataFrame, col: str, y: np.ndarray) -> dict | None:
+    p = df[col].to_numpy(dtype=float)
+    ok = ~np.isnan(p)
+    if ok.sum() == 0:
+        return None
+    p, yy = np.clip(p[ok], 1e-6, 1 - 1e-6), y[ok]
+    return {"n": int(ok.sum()),
+            "log_loss": round(float(-np.mean(yy * np.log(p) + (1 - yy) * np.log(1 - p))), 4),
+            "brier": round(float(np.mean((p - yy) ** 2)), 4),
+            "accuracy": round(float(np.mean((p > 0.5) == (yy == 1))), 4)}
+
+
+def _summary(df: pd.DataFrame) -> dict:
+    if df.empty:
+        return {"bouts": 0}
+    y = df["result_a"].to_numpy(dtype=float)
+    conc = df["real_concordant"].to_numpy(dtype=float)
+    k = float(np.nansum(conc))
+    out = {"bouts": int(len(df)),
+           "real_concordance": round(k / len(df), 3), "real_concordance_wilson95": wilson(int(round(k)), len(df)),
+           "real_probability": _scores(df, "p_real", y),
+           "results_only_elo": _scores(df, "p_classic", y),
+           "performance_adjusted_elo": _scores(df, "p_predictive", y)}
+    both = df.dropna(subset=["official_correct"])
+    if len(both):
+        oc = int(both["official_correct"].astype(float).sum())
+        rc = float(both["real_concordant"].sum())
+        out["official_board"] = {"bouts_both_ranked": int(len(both)),
+                                 "official_concordance": round(oc / len(both), 3),
+                                 "official_wilson95": wilson(oc, len(both)),
+                                 "real_concordance_same_bouts": round(rc / len(both), 3)}
+    return out
+
+
+def validate() -> dict:
     bouts = pd.read_csv(PROC / "bouts.csv", parse_dates=["date"])
     snaps = sorted(HIST.glob("board_*.csv"))
     names = pd.concat([bouts["fighter_a"], bouts["fighter_b"]]).dropna().unique().tolist()
     off = OfficialRanks(names)
+    pred, classic = {}, {}
     rated_path = PROC / "bouts_rated.csv"
-    pred = {}
     if rated_path.exists():
         rr = pd.read_csv(rated_path)
         pred = dict(zip(rr["bout_url"], rr["p_a"]))
+        if "p_a_classic" in rr.columns:
+            classic = dict(zip(rr["bout_url"], rr["p_a_classic"]))
     rows = []
     for i, p in enumerate(snaps):
         t0 = pd.Timestamp(p.stem.split("_")[1])
         t1 = pd.Timestamp(snaps[i + 1].stem.split("_")[1]) if i + 1 < len(snaps) else pd.Timestamp.max
         board = pd.read_csv(p)
-        pos = {(r.division, r.fighter): r.position for r in board.itertuples() if r.position <= board_size}
+        info = {(r.division, r.fighter): (int(r.position), float(r.score)) for r in board.itertuples()}
         window = bouts[(bouts["date"] > t0) & (bouts["date"] <= t1) & bouts["result_a"].isin([0.0, 1.0])]
         for x in window.itertuples():
-            pa, pb = pos.get((x.division, x.fighter_a)), pos.get((x.division, x.fighter_b))
-            if pa is None or pb is None or pa == pb:
+            a, b = info.get((x.division, x.fighter_a)), info.get((x.division, x.fighter_b))
+            if a is None or b is None:
                 continue
-            ours_right = (pa < pb) == (x.result_a == 1.0)
+            (pa, sa), (pb, sb) = a, b
+            diff = sa - sb
+            # concordance uses the published order: champion (0) first, then rank; two title holders tie at 0.5
+            concordant = 0.5 if pa == pb else float((pa < pb) == (x.result_a == 1.0))
+            p_real = 1.0 / (1.0 + math.exp(-PROB_SLOPE * diff))
             oa, ob = off.rank(x.fighter_a, x.division, x.date), off.rank(x.fighter_b, x.division, x.date)
             off_right = None
             if oa is not None and ob is not None and oa != ob and max(oa, ob) < 99:
-                off_right = (oa < ob) == (x.result_a == 1.0)
-            rows.append({"snapshot": t0.date(), "date": x.date.date(), "division": x.division,
-                         "fighter_a": x.fighter_a, "pos_a": pa, "fighter_b": x.fighter_b, "pos_b": pb,
-                         "winner": x.fighter_a if x.result_a == 1.0 else x.fighter_b,
-                         "ours_correct": ours_right, "official_a": oa, "official_b": ob, "official_correct": off_right,
-                         "predictive_correct": (None if x.bout_url not in pred else (pred[x.bout_url] > 0.5) == (x.result_a == 1.0))})
+                off_right = float((oa < ob) == (x.result_a == 1.0))
+            top = lambda n: (1 <= pa <= n or pa == 0) and (1 <= pb <= n or pb == 0)
+            rows.append({"snapshot": t0.date(), "date": x.date.date(), "prospective": x.date > FREEZE_DATE,
+                         "division": x.division, "title_fight": bool(x.title_fight),
+                         "fighter_a": x.fighter_a, "pos_a": pa, "score_a": round(sa, 4),
+                         "fighter_b": x.fighter_b, "pos_b": pb, "score_b": round(sb, 4),
+                         "result_a": float(x.result_a), "winner": x.fighter_a if x.result_a == 1.0 else x.fighter_b,
+                         "real_concordant": concordant, "p_real": round(p_real, 4),
+                         "both_top30": top(30), "both_top15": top(15),
+                         "official_a": oa, "official_b": ob, "official_correct": off_right,
+                         "p_predictive": pred.get(x.bout_url, np.nan), "p_classic": classic.get(x.bout_url, np.nan),
+                         "method": x.method})
     df = pd.DataFrame(rows)
     OUT.mkdir(exist_ok=True)
     df.to_csv(OUT / "forward_validation.csv", index=False)
-    both = df.dropna(subset=["official_correct"]) if not df.empty else df
-    res = {
-        "snapshots": len(snaps),
-        "ranked_vs_ranked_bouts": int(len(df)),
-        "ours_higher_ranked_win_rate": round(float(df["ours_correct"].mean()), 3) if len(df) else None,
-        "same_bouts_official_also_ranked": int(len(both)),
-        "ours_on_same_bouts": round(float(both["ours_correct"].mean()), 3) if len(both) else None,
-        "official_on_same_bouts": round(float(both["official_correct"].astype(bool).mean()), 3) if len(both) else None,
-        "predictive_elo_on_all_ranked_bouts": round(float(df["predictive_correct"].dropna().astype(bool).mean()), 3)
-        if len(df) and df["predictive_correct"].notna().any() else None,
-        "note": "Snapshots before the method freeze (v1.0) were rebuilt with today's rules, so they are an "
-                "in-sample check; only bouts after the freeze date are a true forward test.",
-    }
+    res = {"snapshots": len(snaps), "freeze_date": str(FREEZE_DATE.date()), "probability_map_slope": PROB_SLOPE,
+           "protocol": "PREREGISTRATION.md"}
+    if not df.empty:
+        for label, mask in (("retrospective_reconstruction", ~df["prospective"]), ("prospective_since_freeze", df["prospective"])):
+            part = df[mask]
+            res[label] = {"primary_both_scored": _summary(part),
+                          "secondary_both_top30": _summary(part[part["both_top30"]]),
+                          "secondary_both_top15": _summary(part[part["both_top15"]]),
+                          "secondary_title_fights": _summary(part[part["title_fight"]])}
+    res["note"] = ("Snapshots before the freeze were rebuilt with the v1.0 rules, so the retrospective block is an "
+                   "in-sample reconstruction; only the prospective block is the pre-registered test.")
     (OUT / "forward_validation.json").write_text(json.dumps(res, indent=2, default=str))
     return res
 

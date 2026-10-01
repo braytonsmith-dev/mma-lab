@@ -58,8 +58,10 @@ def tag_bouts(rated: pd.DataFrame, hist: pd.DataFrame, window_days: int) -> pd.D
             pos_b.append((r.Index, pos.get((r.division, r.fighter_b), 999)))
     df["pos_a"] = pd.Series(dict(pos_a))
     df["pos_b"] = pd.Series(dict(pos_b))
-    df["top10_bout"] = (df["pos_a"] <= 11) & (df["pos_b"] <= 11)
+    df["top10_bout"] = (df["pos_a"] <= 11) & (df["pos_b"] <= 11)      # champion-or-top-10 on both sides
     df["top15_bout"] = (df["pos_a"] <= 16) & (df["pos_b"] <= 16)
+    df["title_fight"] = df["title_fight"].fillna(False).astype(bool)
+    df["nontitle_top10_bout"] = df["top10_bout"] & ~df["title_fight"]   # the champion sits in every title bout
     df["ranked_appearances"] = (df["pos_a"] <= 16).astype(int) + (df["pos_b"] <= 16).astype(int)
     return df
 
@@ -68,12 +70,15 @@ def event_table(tagged: pd.DataFrame, rated: pd.DataFrame) -> pd.DataFrame:
     all_bouts = rated[rated["date"].dt.year >= FROM_YEAR].groupby(["event", "date"]).size().rename("bouts")
     ev = tagged.groupby(["event", "date"]).agg(
         top10_bouts=("top10_bout", "sum"), top15_bouts=("top15_bout", "sum"),
+        nontitle_top10_bouts=("nontitle_top10_bout", "sum"), title_bouts=("title_fight", "sum"),
         ranked_appearances=("ranked_appearances", "sum"),
         is_numbered=("is_numbered", "first"), location=("location", "first")).reset_index()
     ev = ev.merge(all_bouts.reset_index(), on=["event", "date"], how="left")
     ev["year"] = ev["date"].dt.year
     ev["card_type"] = ev["is_numbered"].map({True: "Numbered", False: "Fight Night"})
     ev["ranked_share"] = ev["ranked_appearances"] / (2 * ev["bouts"])
+    ev["top10_per_10_bouts"] = 10 * ev["top10_bouts"] / ev["bouts"]            # card-size normalised
+    ev["nontitle_top10_per_10_bouts"] = 10 * ev["nontitle_top10_bouts"] / ev["bouts"]
     return ev.sort_values("date", ascending=False)
 
 
@@ -110,23 +115,35 @@ def supply_facts(tagged: pd.DataFrame, hist: pd.DataFrame, window_days: int) -> 
 def main() -> None:
     cfg = yaml.safe_load(CFG.read_text())
     bouts = pd.read_csv(PROC / "bouts_with_stats.csv", parse_dates=["date"])
-    rated, hist = run_elo(bouts, EloParams(**cfg["elo"]))
+    # positions come from the same specification the backtest selected on 2010-2019 (one model in the paper);
+    # the site's interpretable floors (config elo) are the fallback when no backtest report exists
+    report = OUT / "backtest_report.json"
+    params = json.loads(report.read_text())["tuned_params"] if report.exists() else cfg["elo"]
+    rated, hist = run_elo(bouts, EloParams(**params))
     window = cfg["active_window_days"]
 
     tagged = tag_bouts(rated, hist, window)
     ev = event_table(tagged, rated)
     OUT.mkdir(exist_ok=True)
     tagged[["date", "event", "division", "fighter_a", "pos_a", "fighter_b", "pos_b", "top10_bout",
-            "top15_bout", "method"]].to_csv(OUT / "card_quality_bouts.csv", index=False)
+            "top15_bout", "title_fight", "nontitle_top10_bout", "method"]].to_csv(OUT / "card_quality_bouts.csv", index=False)
     ev.to_csv(OUT / "card_quality_events.csv", index=False)
 
-    summary = ev.groupby(["year", "card_type"]).agg(
+    agg = dict(
         events=("event", "size"), bouts_per_card=("bouts", "mean"),
-        top10_bouts_per_card=("top10_bouts", "mean"), top15_bouts_per_card=("top15_bouts", "mean"),
+        top10_bouts_per_card=("top10_bouts", "mean"), nontitle_top10_bouts_per_card=("nontitle_top10_bouts", "mean"),
+        top15_bouts_per_card=("top15_bouts", "mean"),
+        top10_per_10_bouts=("top10_per_10_bouts", "mean"), nontitle_top10_per_10_bouts=("nontitle_top10_per_10_bouts", "mean"),
         share_cards_zero_top10=("top10_bouts", lambda s: (s == 0).mean()),
+        share_cards_zero_nontitle_top10=("nontitle_top10_bouts", lambda s: (s == 0).mean()),
         share_cards_zero_top15=("top15_bouts", lambda s: (s == 0).mean()),
-        ranked_share_of_slots=("ranked_share", "mean")).round(3).reset_index()
+        ranked_share_of_slots=("ranked_share", "mean"))
+    summary = ev.groupby(["year", "card_type"]).agg(**agg).round(3).reset_index()
     summary.to_csv(OUT / "card_quality_summary.csv", index=False)
+    totals = ev.groupby("card_type").agg(**agg).round(3).reset_index()
+    totals.insert(0, "period", f"{int(ev['year'].min())}-{int(ev['year'].max())}")
+    totals.to_csv(OUT / "card_quality_totals.csv", index=False)
+    print(totals.to_string(index=False))
 
     supply = supply_facts(tagged, hist, window)
     (OUT / "card_quality_supply.json").write_text(json.dumps(supply, indent=2))

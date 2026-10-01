@@ -335,7 +335,10 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
     cont, cycle_notes = title_cycle(cont, out, as_of_ts, rc["title_cycle"])
     h2h_notes += cycle_notes
 
-    # stability: interdecile range of position across weight vectors near the chosen weights
+    # weight-sensitivity band: 10th to 90th percentile of the FINAL position (score order, then the
+    # head-to-head and title-cycle rules, exactly as published) across weight vectors drawn near the
+    # chosen weights. It measures how much the placement depends on the 70/30 choice, not skill
+    # uncertainty, so the published rank always lies inside its own band.
     if stability:
         rng = np.random.default_rng(7)
         keys = list(w)
@@ -344,7 +347,10 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
         for _ in range(rc["stability_draws"]):
             wv = dict(zip(keys, rng.dirichlet(base * rc["stability_concentration"])))
             s = score(f, wv)
-            draws.append(s[s["pos"].notna()][["division", "fighter", "pos"]])
+            c = s[s["pos"].notna()].copy()
+            c, _ = head_to_head(c, out, as_of_ts, h2h["max_gap"], h2h["max_years"], h2h.get("max_gap_recent"))
+            c, _ = title_cycle(c, out, as_of_ts, rc["title_cycle"])
+            draws.append(c[["division", "fighter", "pos"]])
         dd = pd.concat(draws).groupby(["division", "fighter"])["pos"].quantile([0.1, 0.9]).unstack()
         dd.columns = ["rank_p10", "rank_p90"]
         cont = cont.merge(dd.reset_index(), on=["division", "fighter"], how="left")

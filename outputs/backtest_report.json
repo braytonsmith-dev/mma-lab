@@ -108,6 +108,30 @@
     "brier": 0.2347,
     "accuracy": 0.6124
   },
+  "ranking_model_note": "Site specification with interpretable floors; it is a second specification scored on the test window and is not the pre-registered result. The paper reports tuned_test.",
+  "significance_classic_vs_tuned": {
+    "n": 3390,
+    "events": 287,
+    "log_loss_a": 0.674,
+    "log_loss_b": 0.6631,
+    "delta_log_loss": 0.0109,
+    "ci95_bout_bootstrap": [
+      0.0055,
+      0.0165
+    ],
+    "ci95_event_block_bootstrap": [
+      0.0057,
+      0.0162
+    ],
+    "brier_a": 0.2406,
+    "brier_b": 0.2352,
+    "accuracy_a": 0.5805,
+    "accuracy_b": 0.6056,
+    "discordant_only_a_correct": 344,
+    "discordant_only_b_correct": 429,
+    "mcnemar_exact_p": 0.002495153738277208,
+    "bootstrap_reps": 5000
+  },
   "market_comparison_2014_2023": {
     "matched_bouts": 3499,
     "date_range": [
@@ -133,6 +157,48 @@
       "accuracy": 0.6488
     },
     "coin_flip_log_loss": 0.6931
+  },
+  "market_comparison_heldout_2020_2023": {
+    "matched_bouts": 1445,
+    "date_range": [
+      "2020-01-18",
+      "2023-12-16"
+    ],
+    "classic_tuned": {
+      "n": 1445,
+      "log_loss": 0.675,
+      "brier": 0.241,
+      "accuracy": 0.5779
+    },
+    "performance_adjusted": {
+      "n": 1445,
+      "log_loss": 0.669,
+      "brier": 0.2378,
+      "accuracy": 0.6
+    },
+    "market_devigged": {
+      "n": 1445,
+      "log_loss": 0.6088,
+      "brier": 0.2104,
+      "accuracy": 0.6706
+    },
+    "blend_50_50": {
+      "n": 1445,
+      "log_loss": 0.6292,
+      "brier": 0.2191,
+      "accuracy": 0.6623
+    }
+  },
+  "calibration_in_the_large_test": {
+    "n": 3390,
+    "mean_predicted_first_listed": 0.5351,
+    "observed_first_listed_win_rate": 0.572,
+    "note": "fighter_a is the first-listed (red corner) fighter in UFCStats; the model carries no corner term"
+  },
+  "grid": {
+    "combinations": 520,
+    "selection_metric": "log loss on 2010-2019",
+    "full_results": "outputs/elo_grid_search.csv"
   },
   "grid_top5": [
     {

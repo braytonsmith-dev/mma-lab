@@ -19,18 +19,21 @@ Principle: a fighter is ranked on how he performed against the fighters he faced
 | Comparison with UFC media panel, Meta, Sherdog, Fight Matrix, ESPN | `outputs/compare_report.md`, `outputs/compare_flags.csv` |
 | Card-quality index and supply facts | `outputs/card_quality_*.csv`, `outputs/card_quality_supply.json` |
 
-## Headline results (as of 2026-09-26)
+## Headline results (as of 2026-09-26, method v1.0 frozen 2026-10-01)
 
-Prediction, held-out 2020-2026 (3,390 bouts; parameters fixed on 2010-2019):
+Prediction, held-out 2020-2026 (3,390 bouts; parameters fixed by a 520-point grid on 2010-2019 and scored once):
 
-| Model | Log loss | Accuracy |
-|---|---|---|
-| Coin flip | 0.693 | 50.0% |
-| Classic Elo, results only, tuned | 0.674 | 58.1% |
-| Performance-adjusted Elo (in-fight dominance), interpretable floors | 0.662 | 61.2% |
-| Betting market, de-vigged, same-bout comparison 2014-2023 | 0.616 | 65.2% |
+| Model | Log loss | Brier | Accuracy |
+|---|---|---|---|
+| Coin flip | 0.693 | 0.250 | 50.0% |
+| Results-only Elo, tuned | 0.674 | 0.241 | 58.1% |
+| Performance-adjusted Elo (in-fight dominance) | 0.663 | 0.235 | 60.6% |
 
-Card quality, 203 cards 2022 to Sept 2026: 1.2 top-10 vs top-10 bouts per card; numbered events 2.2, Fight Nights 0.7; 31% to 54% of Fight Nights carry none. Fighters starting a year inside a division top 11 average 1.3 to 1.4 bouts that year and 12% to 16% do not fight at all.
+The log-loss gain of 0.011 has a 95% event-block bootstrap interval of 0.006 to 0.016 (McNemar exact p = 0.002 on the picks). On the 1,445 held-out bouts with closing odds (2020-2023) the de-vigged market scored 0.609 log loss and 67.1% accuracy against the model's 0.669 and 60.0%: the model is a transparent rating, not a betting edge. The first-listed (red corner) fighter wins 57.2% of held-out bouts against 53.5% predicted; the model carries no corner term. Full table: `outputs/table_backtest.md`; per-bout ledger: `data/processed/bouts_rated.csv`.
+
+Card quality, 203 cards from 2022 to Sept 2026: numbered events average 2.19 champion-or-top-10 bouts per card (1.26 excluding title bouts) against 0.72 (0.71) for Fight Nights; 44% of Fight Nights carry none. Fighters starting a year inside a division top 11 average 1.30 to 1.44 bouts that year and 12% to 17% do not fight at all.
+
+Resume board (REAL v1.0): a retrospective reconstruction over 127 boards is reported in `METHODOLOGY.md` section 8 and is not a forward test. The prospective test is pre-registered in `PREREGISTRATION.md` and starts with the first event after Oct 1, 2026. Data rights and redistribution basis: `DATA_LICENSE.md`.
 
 ## Build it yourself, step by step
 

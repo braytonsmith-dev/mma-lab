@@ -25,7 +25,7 @@ Known gaps: no pre-UFC records (debutants start at the same rating), no injury d
 4. **Score.** Score = rating weight x scaled rating + ledger weight x scaled ledger - form penalty. Both inputs are scaled within the division by their interdecile range: (value - median) / (90th percentile - 10th percentile).
 5. **Head-to-head.** The winner of the latest meeting moves above the loser when close enough (section 7).
 6. **Title cycle.** Recent title-fight challengers who lost step back from the top slots (section 7).
-7. **Stability band.** The same board is rebuilt with nearby weights; the band is each fighter's 10th to 90th percentile position.
+7. **Weight-sensitivity band.** The whole pipeline (score order, head-to-head, title cycle) is rerun with weight vectors drawn near the configured weights; the band is each fighter's 10th to 90th percentile final position. It is a sensitivity interval for the weight choice, not skill uncertainty (see section 10 for the Glicko-style deviation planned for v1.1).
 8. **Audit.** Every contender's placement records where the score put him and which rule moved him.
 
 ## 4. Scoring a single fight (the rating)
@@ -89,9 +89,9 @@ A **quality win** is valued by the opponent's official rank going into the fight
 
 Agreement with the public boards (UFC contenders only, champions removed): our average gap is 1.6 to 1.9 places; the public boards differ from each other by 0.9 to 1.6. Disagreement is expected and reported, not removed: `outputs/compare_flags.csv` lists every large gap with its cause.
 
-The separate predictive model (performance-adjusted Elo) scores 61.2% accuracy and 0.6621 log loss on 3,390 held-out bouts from 2020 on, against 58.1% for results-only Elo and 65.2% for the betting market (2014-2023).
+The separate predictive model (performance-adjusted Elo, the specification a 520-point grid selected on 2010-2019) scores 60.6% accuracy and 0.6631 log loss on 3,390 held-out bouts from 2020 on, against 58.1% and 0.674 for results-only Elo (paired log-loss gain 0.011, 95% event-block bootstrap interval 0.006 to 0.016; McNemar exact p = 0.0025). On the 1,445 held-out bouts with closing odds (2020-2023) the de-vigged market scored 67.1% and 0.6088 against the model's 60.0% and 0.669.
 
-**Forward check of the resume board.** Boards were rebuilt as they stood before each of the last 127 events. In 226 bouts between two fighters on the same board, the higher-placed fighter won 54.4% of the time; on the 204 of those bouts where the official board ranked both, ours was right 55.4% and the official board 52.0%; the prediction model picked 62.4%. Ranked-versus-ranked bouts are matched to be close, so every board sits near a coin flip on them; the differences are within sampling error. These snapshots use today's rules, so they are in-sample; the true forward test starts at the v1.0 freeze.
+**Retrospective reconstruction of the resume board (not a forward test).** Boards were rebuilt with the v1.0 rules as they would have stood before each of the last 127 events. Across the 942 bouts in which both fighters held a place on that board, the higher-placed fighter won 61.5% (95% Wilson interval 58% to 64%); the frozen score-to-probability map scored 0.6669 log loss against 0.6726 for results-only Elo and 0.6498 for the performance-adjusted model on the same bouts. Restricted to bouts between two top-15 fighters (226 bouts) the figure is 54.4%, against 52.0% for the official board on the 204 bouts it ranked both fighters; ranked-versus-ranked bouts are matched to be close, so every board sits near a coin flip on them and the differences are inside sampling error. Because these boards were reconstructed with today's rules, none of this is evidence of forward validity. The pre-registered prospective test (PREREGISTRATION.md) starts with the first event after 2026-10-01; so far it covers 0 bouts.
 
 ## 9. Worked examples (from this rebuild's audit trail)
 
@@ -111,28 +111,56 @@ The separate predictive model (performance-adjusted Elo) scores 61.2% accuracy a
 
 | Practice (source) | REAL v1.0 |
 |---|---|
-| Separate resume ranking from prediction (NCAA NET vs KenPom; Fight Matrix) | Met: two systems, two pages |
-| Margin of victory from the judges' rounds (BoxRec) | Met, blended 50/50 with fight stats |
+| Separate results-based from predictive metrics (NCAA selection practice: NET, KPI and Strength of Record versus KenPom, BPI and Torvik) | Met at the page level only: the resume rating itself is 50% judges and 50% fight statistics, so it is still performance-sensitive; Colley-style results-only scoring is an open option for v1.1 |
+| Margin of victory from the judges' cards (BoxRec: result = (1 + clear-decision factor) / 2, scorecard margins when available) | Met in a different form, blended 50/50 with fight stats; cards and stats can measure the same dominance twice, which v1.1 will test by ablation |
 | Partial credit for close results (Fight Matrix split-decision scoring) | Met: card margins and close-fight rules |
 | Winner stays above loser for a period (BoxRec, 36 months) | Met in a narrower form: head-to-head rule |
-| Losses in the biggest fights cost less (FIFA: knockout-stage losses cost nothing) | Met: loss protection tiers |
-| Out-of-sample validation against baselines and the market (Holmes et al. 2023; Tennis Elo) | Met for the prediction model; started for the resume board |
-| Per-fighter uncertainty (Glicko RD, TrueSkill) | Partly met: stability bands cover weights, not sample size |
-| Margin-of-victory autocorrelation correction (FiveThirtyEight) | Not yet |
-| Constants fitted to data rather than set by judgment | Not yet: set by stated principle, then checked |
+| Losses in the biggest fights cost less (FIFA: knockout-stage losses at final tournaments cost nothing) | Met: loss protection tiers. FIFA is a precedent that a governing body can protect losses by policy; it does not justify the 15% and 75% constants, which were set by stated principle and are a v1.1 fitting target |
+| Out-of-sample validation against baselines and the market (Holmes, McHale and Zychaluk 2023; Tennis Elo) | Met for the prediction model with paired bootstrap and McNemar tests; the resume board has only a retrospective reconstruction (54.4% on 226 ranked-versus-ranked bouts, 95% Wilson interval 48% to 61%, not distinguishable from chance) and a pre-registered prospective test from the v1.0 freeze (PREREGISTRATION.md) |
+| Per-fighter uncertainty (Glicko RD, TrueSkill) | Not met: the weight band is a sensitivity interval for the weights, not a deviation that grows with sparse records or inactivity; planned for v1.1 |
+| Margin-of-victory autocorrelation correction (FiveThirtyEight NFL Elo damps the margin multiplier by the favorite's rating edge) | Not yet: the dominance term is not conditioned on expected dominance, so favorites can be rewarded for routs they were expected to produce; first v1.1 model change |
+| Constants fitted to data rather than set by judgment | Not yet: set by stated principle, then checked against public boards, which makes those boards an informal tuning target; v1.1 fits them on held-out log loss |
 | Versioned method and changelog (FIFA, BoxRec, FiveThirtyEight) | Met from v1.0 |
+| Minimum sample or provisional status for new entrants (Glicko, Fight Matrix over full professional records) | Not met: one UFC bout makes a fighter eligible and every debutant starts at 1500 with no pre-UFC record; v1.1 marks fewer than four UFC bouts provisional |
+| Independence from the external board being compared against | Not met: official media-panel ranks at fight time set the quality-win tiers and the top-3 loss protection, so REAL is an official-rank-informed resume board rather than an independent one; v1.1 tests a frozen pre-fight REAL position as the replacement |
 
-## 11. Limits and open decisions
+## 11. Why these numbers: what each constant is for and what it costs
+
+Every constant in the engine encodes a stated ranking principle (what a resume should reward or forgive); none was fitted to outcomes. The table shows what each principle costs or buys when the pre-fight resume rating is scored as a forecaster on the same 3,390 held-out bouts (2020-2026) the prediction model is graded on, changing one constant at a time from the v1.0 values (`outputs/constants_sensitivity.csv`, rebuilt by `python -m mmalab.sensitivity`). A positive change in log loss means the alternative predicts worse than v1.0; a negative one means it predicts better. The resume board is not graded on prediction (its test is PREREGISTRATION.md), so a small predictive cost is the accepted price of a principle, but the reader can see the price.
+
+v1.0 reference: log loss 0.6757, accuracy 57.9% on 3,390 bouts (results-only Elo 0.674, performance-adjusted Elo 0.663 on the same bouts).
+
+| Constant | v1.0 value | Principle | Alternatives tried: change in held-out log loss |
+|---|---|---|---|
+| k | 60 | rating speed; 60 sits between chess (20 to 40) and Fight Matrix (170) | 30: +0.0054, 45: +0.0021, 80: -0.0015, 100: -0.0014 |
+| k_new_mult | 1.5 | newcomers converge faster (FIDE practice), first n_new = 5 bouts | 1: +0.0040, 2: -0.0021 |
+| protected_loss_mult | 0.15 | a non-dominant loss in a title fight or to a top-3 fighter counts for little | 0: +0.0002, 0.3: -0.0003, 0.5: -0.0006, 1: -0.0013 |
+| dominant_loss_mult | 0.75 | a dominant loss in that context still costs most of its value | 0.5: +0.0006, 1: -0.0006 |
+| consecutive_loss_mult | 0.6 | protection weakens on a second straight loss | 0.15: +0.0001, 1: -0.0001 |
+| heavy_favorite_p | 0.75 | a round-one finish by a favorite at or above this probability costs full value (1.01 = never) | 0.6: +0.0000, 0.9: +0.0000, 1.01: +0.0000 |
+| card_weight | 0.5 | decisions: share of the result taken from the judges' cards, the rest from fight statistics | 0: +0.0008, 0.25: +0.0002, 0.75: +0.0001, 1: +0.0005 |
+| stat_scale | 2 | dominance per minute that maps to about 73% of a performance win | 1: -0.0009, 3: +0.0008 |
+| close_s | 0.7 | a decision at or below this blended score counts as close (29-28 territory) | 0.6: +0.0000, 0.8: +0.0002 |
+| proof_gain | 0.1 | close loss to a top-5 fighter by someone outside the top 5 gains this share of K | 0: -0.0002, 0.2: +0.0002 |
+| proof_top_n | 5 | the rank that defines an elite opponent for proof of concept | 3: -0.0002, 7: +0.0000 |
+| protect_top_n | 3 | the rank at or above which an opponent's win is a protected context | 1: -0.0004, 5: +0.0008 |
+| upset_quick_finish_mult | 0.7 | a round-one upset finish moves both fighters by this share | 0.5: +0.0014, 1: -0.0015 |
+| all loss protections off | | plain Elo on cards and stats, every loss at full cost | -0.0033 (log loss 0.6724, accuracy 58.2%) |
+
+Reading the table: the whole set of loss protections costs about 0.003 log loss out of sample, and no single principle costs more than 0.0015, so the resume rules are cheap in predictive terms. The 50/50 blend of judges' cards and fight statistics is the best of the five blends tried, which supports the Jones-versus-Reyes argument with data. The two constants the data would push are K and the newcomer multiplier (faster ratings predict slightly better); the board keeps them slower on purpose, so that a single fight moves a resume less than it moves a forecast. The board-level constants (70/30 weights, horizons, ledger values, form penalty, title-cycle and head-to-head thresholds) cannot be scored this way because they act on the board, not the rating; the weight band covers the 70/30 choice and the rest are fitted or ablated under the v1.1 plan in section 10.
+
+## 12. Limits and open decisions
 
 - Pre-UFC records and betting odds after 2023 are not yet loaded (they require a manual Kaggle download); when added, pre-UFC records will set starting ratings and judge debut opponents' quality, never award ranking credit, and odds will define 'heavy favorite' instead of the model's own probability.
 - Missed weight is not recorded in the fight data and is not yet used.
 - Division overrides, injuries and retirements are hand-kept and need weekly review.
-- Weights and thresholds were set by stated judgment and checked against the public boards; they have not been fitted to any outcome.
+- Weights and thresholds were set by stated judgment and checked against the public boards (which makes those boards an informal tuning target); section 11 reports what each engine constant costs out of sample, and none has been fitted to any outcome.
 - Card-quality and matchmaking analyses use the predictive model's positions, not these boards.
 
-## 12. Changelog
+## 13. Changelog
 
 - **1.0 (Oct 1, 2026).** Method frozen for forward grading. Official rank at fight time (2013+); tiered quality wins; proof-of-concept credit for close losses to top-5 fighters; early-finish and war rules; drug-test overturns count as losses; short-notice credit; last-five form penalty; division, head-to-head, title-cycle and reserved-spot rules; audit trail; prediction model published separately.
+- **1.0.1 (Oct 1, 2026, display and documentation only; no ranking rule changed).** Weight band recomputed after the head-to-head and title-cycle rules so every published rank lies inside its own band; prediction page and card-quality positions switched to the specification the grid selected on 2010-2019 (one model in the paper); paired bootstrap and McNemar tests, the market on the held-out overlap, the constants sensitivity table (section 11), PREREGISTRATION.md and DATA_LICENSE.md added; favorites page moved out of the research navigation.
 - **0.x (Sept 29-30, 2026).** Composite of six percentile dimensions, replaced after review because four dimensions carried no ranking signal and losses were counted three times.
 
 Independent fan and research project. Not affiliated with, sponsored or endorsed by UFC, Zuffa, LLC, TKO Group Holdings, or any athlete.

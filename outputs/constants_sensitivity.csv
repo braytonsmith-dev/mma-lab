@@ -1,0 +1,41 @@
+constant,value,principle,n,log_loss,brier,accuracy,delta_log_loss_vs_v1
+v1.0 reference,,all constants at their configured values,3390,0.6757,0.2413,0.5788,0.0
+k,30,rating speed; 60 sits between chess (20 to 40) and Fight Matrix (170),3390,0.6811,0.244,0.5737,0.0054
+k,45,rating speed; 60 sits between chess (20 to 40) and Fight Matrix (170),3390,0.6778,0.2424,0.5749,0.0021
+k,80,rating speed; 60 sits between chess (20 to 40) and Fight Matrix (170),3390,0.6742,0.2406,0.5841,-0.0015
+k,100,rating speed; 60 sits between chess (20 to 40) and Fight Matrix (170),3390,0.6743,0.2404,0.5882,-0.0014
+k_new_mult,1.0,"newcomers converge faster (FIDE practice), first n_new = 5 bouts",3390,0.6797,0.2433,0.5693,0.004
+k_new_mult,2.0,"newcomers converge faster (FIDE practice), first n_new = 5 bouts",3390,0.6736,0.2403,0.5855,-0.0021
+protected_loss_mult,0.0,a non-dominant loss in a title fight or to a top-3 fighter counts for little,3390,0.6759,0.2415,0.5791,0.0002
+protected_loss_mult,0.3,a non-dominant loss in a title fight or to a top-3 fighter counts for little,3390,0.6754,0.2412,0.5782,-0.0003
+protected_loss_mult,0.5,a non-dominant loss in a title fight or to a top-3 fighter counts for little,3390,0.6751,0.2411,0.5796,-0.0006
+protected_loss_mult,1.0,a non-dominant loss in a title fight or to a top-3 fighter counts for little,3390,0.6744,0.2407,0.5805,-0.0013
+dominant_loss_mult,0.5,a dominant loss in that context still costs most of its value,3390,0.6763,0.2416,0.5791,0.0006
+dominant_loss_mult,1.0,a dominant loss in that context still costs most of its value,3390,0.6751,0.2411,0.5799,-0.0006
+consecutive_loss_mult,0.15,protection weakens on a second straight loss,3390,0.6758,0.2414,0.5796,0.0001
+consecutive_loss_mult,1.0,protection weakens on a second straight loss,3390,0.6756,0.2413,0.5791,-0.0001
+heavy_favorite_p,0.6,a round-one finish by a favorite at or above this probability costs full value (1.01 = never),3390,0.6757,0.2413,0.5785,0.0
+heavy_favorite_p,0.9,a round-one finish by a favorite at or above this probability costs full value (1.01 = never),3390,0.6757,0.2413,0.5788,0.0
+heavy_favorite_p,1.01,a round-one finish by a favorite at or above this probability costs full value (1.01 = never),3390,0.6757,0.2413,0.5788,0.0
+card_weight,0.0,"decisions: share of the result taken from the judges' cards, the rest from fight statistics",3390,0.6765,0.2417,0.5687,0.0008
+card_weight,0.25,"decisions: share of the result taken from the judges' cards, the rest from fight statistics",3390,0.6759,0.2414,0.5735,0.0002
+card_weight,0.75,"decisions: share of the result taken from the judges' cards, the rest from fight statistics",3390,0.6758,0.2414,0.5817,0.0001
+card_weight,1.0,"decisions: share of the result taken from the judges' cards, the rest from fight statistics",3390,0.6762,0.2416,0.577,0.0005
+stat_scale,1.0,dominance per minute that maps to about 73% of a performance win,3390,0.6748,0.2409,0.5817,-0.0009
+stat_scale,2.0,dominance per minute that maps to about 73% of a performance win,3390,0.6757,0.2413,0.5788,0.0
+stat_scale,3.0,dominance per minute that maps to about 73% of a performance win,3390,0.6765,0.2417,0.5776,0.0008
+close_s,0.6,a decision at or below this blended score counts as close (29-28 territory),3390,0.6757,0.2414,0.5788,0.0
+close_s,0.7,a decision at or below this blended score counts as close (29-28 territory),3390,0.6757,0.2413,0.5788,0.0
+close_s,0.8,a decision at or below this blended score counts as close (29-28 territory),3390,0.6759,0.2414,0.5788,0.0002
+proof_gain,0.0,close loss to a top-5 fighter by someone outside the top 5 gains this share of K,3390,0.6755,0.2413,0.5796,-0.0002
+proof_gain,0.1,close loss to a top-5 fighter by someone outside the top 5 gains this share of K,3390,0.6757,0.2413,0.5788,0.0
+proof_gain,0.2,close loss to a top-5 fighter by someone outside the top 5 gains this share of K,3390,0.6759,0.2414,0.5796,0.0002
+proof_top_n,3,the rank that defines an elite opponent for proof of concept,3390,0.6755,0.2413,0.5788,-0.0002
+proof_top_n,5,the rank that defines an elite opponent for proof of concept,3390,0.6757,0.2413,0.5788,0.0
+proof_top_n,7,the rank that defines an elite opponent for proof of concept,3390,0.6757,0.2414,0.5788,0.0
+protect_top_n,1,the rank at or above which an opponent's win is a protected context,3390,0.6753,0.2412,0.5802,-0.0004
+protect_top_n,5,the rank at or above which an opponent's win is a protected context,3390,0.6765,0.2417,0.5802,0.0008
+upset_quick_finish_mult,0.5,a round-one upset finish moves both fighters by this share,3390,0.6771,0.242,0.5776,0.0014
+upset_quick_finish_mult,0.7,a round-one upset finish moves both fighters by this share,3390,0.6757,0.2413,0.5788,0.0
+upset_quick_finish_mult,1.0,a round-one upset finish moves both fighters by this share,3390,0.6742,0.2406,0.5796,-0.0015
+all loss protections off,,"plain Elo on cards and stats, every loss at full cost",3390,0.6724,0.2398,0.582,-0.0033

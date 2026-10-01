@@ -80,7 +80,7 @@ def build_text() -> str:
     a("4. **Score.** Score = rating weight x scaled rating + ledger weight x scaled ledger - form penalty. Both inputs are scaled within the division by their interdecile range: (value - median) / (90th percentile - 10th percentile).")
     a("5. **Head-to-head.** The winner of the latest meeting moves above the loser when close enough (section 7).")
     a("6. **Title cycle.** Recent title-fight challengers who lost step back from the top slots (section 7).")
-    a("7. **Stability band.** The same board is rebuilt with nearby weights; the band is each fighter's 10th to 90th percentile position.")
+    a("7. **Weight-sensitivity band.** The whole pipeline (score order, head-to-head, title cycle) is rerun with weight vectors drawn near the configured weights; the band is each fighter's 10th to 90th percentile final position. It is a sensitivity interval for the weight choice, not skill uncertainty (see section 10 for the Glicko-style deviation planned for v1.1).")
     a("8. **Audit.** Every contender's placement records where the score put him and which rule moved him.")
     a("")
     a("## 4. Scoring a single fight (the rating)")
@@ -157,20 +157,39 @@ def build_text() -> str:
           "`outputs/compare_flags.csv` lists every large gap with its cause.")
         a("")
     if bt:
-        a(f"The separate predictive model (performance-adjusted Elo) scores {bt['ranking_model_test']['accuracy']:.1%} accuracy and "
-          f"{bt['ranking_model_test']['log_loss']} log loss on {bt['ranking_model_test']['n']:,} held-out bouts from 2020 on, against "
-          f"{bt['classic_tuned_test']['accuracy']:.1%} for results-only Elo and 65.2% for the betting market (2014-2023).")
+        sig = bt.get("significance_classic_vs_tuned", {})
+        mt = bt.get("market_comparison_heldout_2020_2023", {})
+        a(f"The separate predictive model (performance-adjusted Elo, the specification a {bt.get('grid', {}).get('combinations', '')}-point "
+          f"grid selected on 2010-2019) scores {bt['tuned_test']['accuracy']:.1%} accuracy and "
+          f"{bt['tuned_test']['log_loss']} log loss on {bt['tuned_test']['n']:,} held-out bouts from 2020 on, against "
+          f"{bt['classic_tuned_test']['accuracy']:.1%} and {bt['classic_tuned_test']['log_loss']} for results-only Elo"
+          + (f" (paired log-loss gain {sig['delta_log_loss']:.3f}, 95% event-block bootstrap interval "
+             f"{sig['ci95_event_block_bootstrap'][0]:.3f} to {sig['ci95_event_block_bootstrap'][1]:.3f}; "
+             f"McNemar exact p = {sig['mcnemar_exact_p']:.3g})" if sig else "")
+          + (f". On the {mt['matched_bouts']:,} held-out bouts with closing odds (2020-2023) the de-vigged market scored "
+             f"{mt['market_devigged']['accuracy']:.1%} and {mt['market_devigged']['log_loss']} against the model's "
+             f"{mt['performance_adjusted']['accuracy']:.1%} and {mt['performance_adjusted']['log_loss']}." if mt else "."))
         a("")
     fv = json.loads((OUT / "forward_validation.json").read_text()) if (OUT / "forward_validation.json").exists() else None
-    if fv:
-        a(f"**Forward check of the resume board.** Boards were rebuilt as they stood before each of the last "
-          f"{fv['snapshots']} events. In {fv['ranked_vs_ranked_bouts']} bouts between two fighters on the same board, the "
-          f"higher-placed fighter won {fv['ours_higher_ranked_win_rate']:.1%} of the time; on the {fv['same_bouts_official_also_ranked']} "
-          f"of those bouts where the official board ranked both, ours was right {fv['ours_on_same_bouts']:.1%} and the official "
-          f"board {fv['official_on_same_bouts']:.1%}" + (f"; the prediction model picked {fv['predictive_elo_on_all_ranked_bouts']:.1%}." if fv.get('predictive_elo_on_all_ranked_bouts') else ".") +
-          " Ranked-versus-ranked bouts are matched to be close, so every board sits near a coin flip on them; "
-          "the differences are within sampling error. These snapshots use today's rules, so they are in-sample; "
-          "the true forward test starts at the v1.0 freeze.")
+    if fv and fv.get("retrospective_reconstruction"):
+        r = fv["retrospective_reconstruction"]
+        pri, t15 = r["primary_both_scored"], r["secondary_both_top15"]
+        ci = pri.get("real_concordance_wilson95") or [0, 0]
+        a(f"**Retrospective reconstruction of the resume board (not a forward test).** Boards were rebuilt with the v1.0 rules as "
+          f"they would have stood before each of the last {fv['snapshots']} events. Across the {pri['bouts']} bouts in which both "
+          f"fighters held a place on that board, the higher-placed fighter won {pri['real_concordance']:.1%} "
+          f"(95% Wilson interval {ci[0]:.0%} to {ci[1]:.0%})"
+          + (f"; the frozen score-to-probability map scored {pri['real_probability']['log_loss']} log loss against "
+             f"{pri['results_only_elo']['log_loss']} for results-only Elo and {pri['performance_adjusted_elo']['log_loss']} for the "
+             f"performance-adjusted model on the same bouts" if pri.get("results_only_elo") and pri.get("performance_adjusted_elo") else "")
+          + f". Restricted to bouts between two top-15 fighters ({t15['bouts']} bouts) the figure is {t15['real_concordance']:.1%}"
+          + (f", against {t15['official_board']['official_concordance']:.1%} for the official board on the "
+             f"{t15['official_board']['bouts_both_ranked']} bouts it ranked both fighters" if t15.get("official_board") else "")
+          + "; ranked-versus-ranked bouts are matched to be close, so every board sits near a coin flip on them and the "
+            "differences are inside sampling error. Because these boards were reconstructed with today's rules, none of this is "
+            "evidence of forward validity. The pre-registered prospective test (PREREGISTRATION.md) starts with the first "
+            f"event after {fv['freeze_date']}"
+          + (f"; so far it covers {fv['prospective_since_freeze']['primary_both_scored']['bouts']} bouts." if fv.get("prospective_since_freeze") else "."))
         a("")
     a("## 9. Worked examples (from this rebuild's audit trail)")
     a("")
@@ -188,31 +207,78 @@ def build_text() -> str:
     a("")
     a("| Practice (source) | REAL v1.0 |")
     a("|---|---|")
-    a("| Separate resume ranking from prediction (NCAA NET vs KenPom; Fight Matrix) | Met: two systems, two pages |")
-    a("| Margin of victory from the judges' rounds (BoxRec) | Met, blended 50/50 with fight stats |")
+    a("| Separate results-based from predictive metrics (NCAA selection practice: NET, KPI and Strength of Record versus KenPom, BPI and Torvik) | Met at the page level only: the resume rating itself is 50% judges and 50% fight statistics, so it is still performance-sensitive; Colley-style results-only scoring is an open option for v1.1 |")
+    a("| Margin of victory from the judges' cards (BoxRec: result = (1 + clear-decision factor) / 2, scorecard margins when available) | Met in a different form, blended 50/50 with fight stats; cards and stats can measure the same dominance twice, which v1.1 will test by ablation |")
     a("| Partial credit for close results (Fight Matrix split-decision scoring) | Met: card margins and close-fight rules |")
     a("| Winner stays above loser for a period (BoxRec, 36 months) | Met in a narrower form: head-to-head rule |")
-    a("| Losses in the biggest fights cost less (FIFA: knockout-stage losses cost nothing) | Met: loss protection tiers |")
-    a("| Out-of-sample validation against baselines and the market (Holmes et al. 2023; Tennis Elo) | Met for the prediction model; started for the resume board |")
-    a("| Per-fighter uncertainty (Glicko RD, TrueSkill) | Partly met: stability bands cover weights, not sample size |")
-    a("| Margin-of-victory autocorrelation correction (FiveThirtyEight) | Not yet |")
-    a("| Constants fitted to data rather than set by judgment | Not yet: set by stated principle, then checked |")
+    a("| Losses in the biggest fights cost less (FIFA: knockout-stage losses at final tournaments cost nothing) | Met: loss protection tiers. FIFA is a precedent that a governing body can protect losses by policy; it does not justify the 15% and 75% constants, which were set by stated principle and are a v1.1 fitting target |")
+    a("| Out-of-sample validation against baselines and the market (Holmes, McHale and Zychaluk 2023; Tennis Elo) | Met for the prediction model with paired bootstrap and McNemar tests; the resume board has only a retrospective reconstruction (54.4% on 226 ranked-versus-ranked bouts, 95% Wilson interval 48% to 61%, not distinguishable from chance) and a pre-registered prospective test from the v1.0 freeze (PREREGISTRATION.md) |")
+    a("| Per-fighter uncertainty (Glicko RD, TrueSkill) | Not met: the weight band is a sensitivity interval for the weights, not a deviation that grows with sparse records or inactivity; planned for v1.1 |")
+    a("| Margin-of-victory autocorrelation correction (FiveThirtyEight NFL Elo damps the margin multiplier by the favorite's rating edge) | Not yet: the dominance term is not conditioned on expected dominance, so favorites can be rewarded for routs they were expected to produce; first v1.1 model change |")
+    a("| Constants fitted to data rather than set by judgment | Not yet: set by stated principle, then checked against public boards, which makes those boards an informal tuning target; v1.1 fits them on held-out log loss |")
     a("| Versioned method and changelog (FIFA, BoxRec, FiveThirtyEight) | Met from v1.0 |")
+    a("| Minimum sample or provisional status for new entrants (Glicko, Fight Matrix over full professional records) | Not met: one UFC bout makes a fighter eligible and every debutant starts at 1500 with no pre-UFC record; v1.1 marks fewer than four UFC bouts provisional |")
+    a("| Independence from the external board being compared against | Not met: official media-panel ranks at fight time set the quality-win tiers and the top-3 loss protection, so REAL is an official-rank-informed resume board rather than an independent one; v1.1 tests a frozen pre-fight REAL position as the replacement |")
     a("")
-    a("## 11. Limits and open decisions")
+    a("## 11. Why these numbers: what each constant is for and what it costs")
+    a("")
+    a("Every constant in the engine encodes a stated ranking principle (what a resume should reward or forgive); none was fitted "
+      "to outcomes. The table shows what each principle costs or buys when the pre-fight resume rating is scored as a forecaster on "
+      "the same 3,390 held-out bouts (2020-2026) the prediction model is graded on, changing one constant at a time from the v1.0 "
+      "values (`outputs/constants_sensitivity.csv`, rebuilt by `python -m mmalab.sensitivity`). A positive change in log loss means "
+      "the alternative predicts worse than v1.0; a negative one means it predicts better. The resume board is not graded on "
+      "prediction (its test is PREREGISTRATION.md), so a small predictive cost is the accepted price of a principle, but the reader "
+      "can see the price.")
+    a("")
+    sens_path = OUT / "constants_sensitivity.csv"
+    if sens_path.exists():
+        sens = pd.read_csv(sens_path)
+        ref = sens[sens["constant"] == "v1.0 reference"].iloc[0]
+        a(f"v1.0 reference: log loss {ref['log_loss']:.4f}, accuracy {ref['accuracy']:.1%} on {int(ref['n']):,} bouts "
+          f"(results-only Elo 0.674, performance-adjusted Elo 0.663 on the same bouts).")
+        a("")
+        a("| Constant | v1.0 value | Principle | Alternatives tried: change in held-out log loss |")
+        a("|---|---|---|---|")
+        from mmalab.resume import ResumeParams
+        eng = {**ResumeParams().__dict__, **cfg["resume"]["engine"]}
+        fmt = lambda v: f"{float(v):g}"
+        for name, g in sens[~sens["constant"].isin(["v1.0 reference", "all loss protections off"])].groupby("constant", sort=False):
+            alts = ", ".join(f"{fmt(v)}: {d:+.4f}" for v, d in zip(g["value"], g["delta_log_loss_vs_v1"])
+                             if fmt(v) != fmt(eng.get(name, "nan")))
+            a(f"| {name} | {fmt(eng.get(name))} | {g['principle'].iloc[0]} | {alts} |")
+        off = sens[sens["constant"] == "all loss protections off"]
+        if len(off):
+            o = off.iloc[0]
+            a(f"| all loss protections off | | plain Elo on cards and stats, every loss at full cost | {o['delta_log_loss_vs_v1']:+.4f} "
+              f"(log loss {o['log_loss']:.4f}, accuracy {o['accuracy']:.1%}) |")
+        a("")
+        a("Reading the table: the whole set of loss protections costs about 0.003 log loss out of sample, and no single principle costs "
+          "more than 0.0015, so the resume rules are cheap in predictive terms. The 50/50 blend of judges' cards and fight statistics "
+          "is the best of the five blends tried, which supports the Jones-versus-Reyes argument with data. The two constants the data "
+          "would push are K and the newcomer multiplier (faster ratings predict slightly better); the board keeps them slower on purpose, "
+          "so that a single fight moves a resume less than it moves a forecast. The board-level constants (70/30 weights, horizons, ledger "
+          "values, form penalty, title-cycle and head-to-head thresholds) cannot be scored this way because they act on the board, not "
+          "the rating; the weight band covers the 70/30 choice and the rest are fitted or ablated under the v1.1 plan in section 10.")
+        a("")
+    a("## 12. Limits and open decisions")
     a("")
     a("- Pre-UFC records and betting odds after 2023 are not yet loaded (they require a manual Kaggle download); when added, pre-UFC records will set starting ratings and judge debut opponents' quality, never award ranking credit, and odds will define 'heavy favorite' instead of the model's own probability.")
     a("- Missed weight is not recorded in the fight data and is not yet used.")
     a("- Division overrides, injuries and retirements are hand-kept and need weekly review.")
-    a("- Weights and thresholds were set by stated judgment and checked against the public boards; they have not been fitted to any outcome.")
+    a("- Weights and thresholds were set by stated judgment and checked against the public boards (which makes those boards an informal tuning target); section 11 reports what each engine constant costs out of sample, and none has been fitted to any outcome.")
     a("- Card-quality and matchmaking analyses use the predictive model's positions, not these boards.")
     a("")
-    a("## 12. Changelog")
+    a("## 13. Changelog")
     a("")
     a("- **1.0 (Oct 1, 2026).** Method frozen for forward grading. Official rank at fight time (2013+); tiered quality wins; "
       "proof-of-concept credit for close losses to top-5 fighters; early-finish and war rules; drug-test overturns count as losses; "
       "short-notice credit; last-five form penalty; division, head-to-head, title-cycle and reserved-spot rules; audit trail; "
       "prediction model published separately.")
+    a("- **1.0.1 (Oct 1, 2026, display and documentation only; no ranking rule changed).** Weight band recomputed after the head-to-head "
+      "and title-cycle rules so every published rank lies inside its own band; prediction page and card-quality positions switched to the "
+      "specification the grid selected on 2010-2019 (one model in the paper); paired bootstrap and McNemar tests, the market on the held-out "
+      "overlap, the constants sensitivity table (section 11), PREREGISTRATION.md and DATA_LICENSE.md added; favorites page moved out of the "
+      "research navigation.")
     a("- **0.x (Sept 29-30, 2026).** Composite of six percentile dimensions, replaced after review because four dimensions carried no ranking signal and losses were counted three times.")
     a("")
     a("Independent fan and research project. Not affiliated with, sponsored or endorsed by UFC, Zuffa, LLC, TKO Group Holdings, or any athlete.")
