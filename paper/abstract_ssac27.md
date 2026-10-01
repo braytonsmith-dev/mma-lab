@@ -1,10 +1,10 @@
 # Performance-Adjusted Elo for Mixed Martial Arts: In-Fight Statistics Improve UFC Rankings and Measure the Card-Quality Gap
 
-Track: Other Sports. Author: Brayton Smith, PhD, MBA. Repository: https://github.com/braytonsmith-dev/mma-lab
+Track: Other Sports. Author: Brayton Smith, PhD, MBA. Repository: https://github.com/braytonsmith-dev/real-fighter-rankings
 
 ## Introduction
 
-In June 2026 the UFC began replacing its media-voted rankings with an Elo-style model built with Meta that uses results, opponent quality, and recency. Fans disputed the first boards within hours. Two questions decide whether a data-driven ranking deserves trust: does it predict outcomes, and what does it reveal about matchmaking? We build an open, reproducible rating system from public UFCStats data, test whether round-level statistics improve on results-only Elo, and measure how ranked-versus-ranked bouts are distributed across the promotion's 43-event calendar.
+In June 2026 the UFC began replacing its media-voted rankings with an Elo-style model built with Meta that uses results, opponent quality, and recency. Two questions decide whether a data-driven ranking deserves trust: does it predict outcomes, and what does it reveal about matchmaking? We build an open, reproducible rating system from public UFCStats data, test whether round-level statistics improve on results-only Elo, and measure how ranked-versus-ranked bouts are distributed across the promotion's 43-event calendar.
 
 ## Methods
 
@@ -16,7 +16,7 @@ Table 1 summarizes prediction. Performance adjustment lowers held-out log loss f
 
 ## Conclusion
 
-Round-level statistics carry ranking information that results alone miss, and a transparent board with adjustable weights and rank-stability bands can be published weekly from public data. The card-quality index confirms the "stacked card" complaint but bounds the remedy: with roughly 50 ranked-versus-ranked bouts available per year, redistribution across 43 cards, not more matchups, is the actionable lever. Code, data, and weekly boards are open source at the repository above.
+Round-level statistics carry ranking information that results alone miss. We pair the predictive model with REAL Fighter Rankings, a weekly resume board that values each win by the opponent's official rank at fight time, blends judges' cards with fight statistics, and publishes an audit trail for every placement. The card-quality index confirms the "stacked card" complaint but bounds the remedy: with roughly 50 ranked-versus-ranked bouts available per year, redistribution across 43 cards, not more matchups, is the actionable lever. Code, data, and weekly boards are open source at the repository above.
 
 ---
 

@@ -33,25 +33,43 @@ th,td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left}
 th{color:var(--ink2);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.03em}
 td.num,th.num{text-align:right}tr.champ td{font-weight:600}
 .band{color:var(--muted)}details{margin:6px 0}summary{cursor:pointer;color:var(--blue)}
-ol.fav,ul.fav{padding-left:22px}ol.fav li,ul.fav li{margin:3px 0}.flag{color:#d03b3b;font-size:.85rem}\nh3{font-size:1rem;margin:14px 0 4px}\n.tag{color:var(--ink2);margin:0 0 6px;font-size:1rem}.scroll{overflow-x:auto}table.cmp td,table.cmp th{white-space:nowrap}\nimg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px}
+ol.fav,ul.fav{padding-left:22px}ol.fav li,ul.fav li{margin:3px 0}.flag{color:#d03b3b;font-size:.85rem}\nh3{font-size:1rem;margin:14px 0 4px}\n.tag{color:var(--ink2);margin:0 0 6px;font-size:1rem}.scroll{overflow-x:auto}table.cmp td,table.cmp th{white-space:nowrap}\n.up{color:#0ca30c;font-size:.85rem}.down{color:#d03b3b;font-size:.85rem}\nimg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px}
 """
 
 
-HEAD = ("<thead><tr><th>#</th><th>Fighter</th><th class='num'>Score</th><th class='num'>Rating</th>"
-        "<th>Last 5</th><th class='num'>Quality wins</th><th class='num'>15-yr QW</th>"
+HEAD = ("<thead><tr><th>#</th><th>Move</th><th>Fighter</th><th class='num'>Score</th><th class='num'>Rating</th>"
+        "<th>Last 5</th><th class='num'>Ledger</th><th class='num'>Top-10 wins</th>"
         "<th class='num'>Days since</th><th>Stability</th></tr></thead>")
 
 
-def _row(r) -> str:
+def _move(r, prev: dict) -> str:
+    if r.champion or getattr(r, "interim", False) or getattr(r, "reserved", False):
+        return ""
+    before = prev.get((r.division, r.fighter))
+    if not prev:
+        return ""
+    if before is None or before == 0:
+        return "<span class='up'>new</span>"
+    d = int(before) - int(r.rank)
+    if d > 0:
+        return f"<span class='up'>&#9650;{d}</span>"
+    if d < 0:
+        return f"<span class='down'>&#9660;{-d}</span>"
+    return "<span class='band'>&ndash;</span>"
+
+
+def _row(r, prev: dict | None = None) -> str:
     interim = bool(getattr(r, "interim", False))
-    label = "C" if r.champion else ("IC" if interim else str(r.rank))
-    cls = ' class="champ"' if (r.champion or interim) else ""
+    reserved = bool(getattr(r, "reserved", False))
+    label = "C" if r.champion else ("IC" if interim else ("R" if reserved else str(r.rank)))
+    cls = ' class="champ"' if (r.champion or interim or reserved) else ""
     last5 = getattr(r, "last5", r.record_3y)
     qw = getattr(r, "quality_wins", float("nan"))
     ent = " E" if bool(getattr(r, "entrenched", False)) else ""
     inj = " <span class='band'>(injury)</span>" if bool(getattr(r, "injury", False)) else ""
-    band = "" if (r.champion or interim) else f"{int(r.rank_p10)}-{int(r.rank_p90)}"
-    return (f"<tr{cls}><td>{label}</td><td>{html.escape(r.fighter)}{inj}</td>"
+    res = " <span class='band'>(vacated, owed a title shot)</span>" if reserved else ""
+    band = "" if (r.champion or interim or reserved) else f"{int(r.rank_p10)}-{int(r.rank_p90)}"
+    return (f"<tr{cls}><td>{label}</td><td>{_move(r, prev or {})}</td><td>{html.escape(r.fighter)}{inj}{res}</td>"
             f"<td class='num'>{r.score:+.2f}</td><td class='num'>{r.rating:.0f}</td>"
             f"<td>{last5}</td><td class='num'>{qw:.1f}</td>"
             f"<td class='num'>{int(r.top15_wins)}{ent}</td><td class='num'>{int(r.days_since)}</td>"
@@ -59,21 +77,26 @@ def _row(r) -> str:
 
 
 def board_tables(cfg: dict) -> str:
-    """Champion plus top 10 visible; 11 through board_size (30) behind a dropdown."""
+    """Title holders (C, IC) and reserved spots (R) above; top 10 visible; 11 to 30 behind a dropdown.
+    Move = change since the board before the most recent event."""
+    from mmalab.history import previous_positions
     b = pd.read_csv(OUT / "composite_rankings_full.csv")
+    bouts = pd.read_csv(ROOT / "data" / "processed" / "bouts.csv", parse_dates=["date"])
+    prev = previous_positions(bouts["date"].max())
     top = b[b["rank"] <= cfg["board_size"]]
     parts = []
     for div in RANKED_DIVISIONS:
         g = top[top["division"] == div]
         if g.empty:
             continue
-        head = "".join(_row(r) for r in g[g["rank"] <= 10].itertuples())
+        head = "".join(_row(r, prev) for r in g[g["rank"] <= 10].itertuples())
         rest = g[g["rank"] > 10]
         more = ""
         if not rest.empty:
             more = (f"<details><summary>Show {int(rest['rank'].min())} to {int(rest['rank'].max())}</summary>"
-                    f"<table>{HEAD}<tbody>{''.join(_row(r) for r in rest.itertuples())}</tbody></table></details>")
-        parts.append(f"<h2>{html.escape(div)}</h2><table>{HEAD}<tbody>{head}</tbody></table>{more}")
+                    f"<table>{HEAD}<tbody>{''.join(_row(r, prev) for r in rest.itertuples())}</tbody></table></details>")
+        vacant = "" if (g["champion"].any() or g.get("interim", pd.Series(False)).any()) else " <span class='band'>(title vacant)</span>"
+        parts.append(f"<h2>{html.escape(div)}{vacant}</h2><table>{HEAD}<tbody>{head}</tbody></table>{more}")
     return "\n".join(parts)
 
 
@@ -184,6 +207,52 @@ def comparison_section() -> str:
     return "\n".join(parts)
 
 
+def prediction_page(cfg: dict, site: str, as_of) -> str:
+    """The predictive model, kept apart from the resume board: who would be favored today."""
+    from mmalab.elo import EloParams, run_elo
+    bouts = pd.read_csv(ROOT / "data" / "processed" / "bouts_with_stats.csv", parse_dates=["date"])
+    _, hist = run_elo(bouts, EloParams(**cfg["elo"]))
+    pr = hist.groupby("fighter").tail(1).set_index("fighter")["rating"]
+    board = pd.read_csv(OUT / "composite_rankings_full.csv")
+    board["pred"] = board["fighter"].map(pr)
+    bt = json.loads((OUT / "backtest_report.json").read_text()) if (OUT / "backtest_report.json").exists() else None
+    parts = []
+    for div in RANKED_DIVISIONS:
+        g = board[board["division"] == div].dropna(subset=["pred"]).sort_values("pred", ascending=False).head(15)
+        if g.empty:
+            continue
+        top = g.iloc[0]["pred"]
+        rows = "".join(
+            f"<tr><td>{i}</td><td>{html.escape(r.fighter)}</td><td class='num'>{r.pred:.0f}</td>"
+            f"<td class='num'>{1 / (1 + 10 ** ((top - r.pred) / 400)):.0%}</td>"
+            f"<td>{'C' if r.champion else ('IC' if getattr(r, 'interim', False) else ('R' if getattr(r, 'reserved', False) else r.rank))}</td></tr>"
+            for i, r in enumerate(g.itertuples(), 1))
+        parts.append(f"<h2>{html.escape(div)}</h2><table><thead><tr><th>#</th><th>Fighter</th><th class='num'>Predictive rating</th>"
+                     f"<th class='num'>Win chance vs #1 here</th><th>Resume board spot</th></tr></thead><tbody>{rows}</tbody></table>")
+    acc = ""
+    if bt:
+        m = bt["ranking_model_test"]
+        acc = (f"Held-out accuracy {m['accuracy']:.1%} (log loss {m['log_loss']}) on {m['n']:,} bouts since 2020, "
+               f"against {bt['classic_tuned_test']['accuracy']:.1%} for results-only Elo and about 65% for the betting market.")
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Prediction model</title><style>{CSS}</style></head><body>
+<p class="meta"><a href="index.html">Back to {html.escape(site)}</a></p>
+<h1>Prediction model</h1>
+<p class="meta">Separate from the REAL resume board. This answers a different question: who would be favored if
+the fight happened today, not who has earned the position. It weighs in-fight dominance heavily and is graded
+on bouts it has not seen. {acc} Data through {as_of}. Win chance is against the top-rated fighter in this list.</p>
+{''.join(parts)}
+</body></html>"""
+
+
+def favorites_page(bouts: pd.DataFrame, as_of, site: str) -> str:
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Personal Top Ten</title><style>{CSS}</style></head><body>
+<p class="meta"><a href="index.html">Back to {html.escape(site)}</a></p>
+{favorites_section(bouts, as_of)}
+</body></html>"""
+
+
 def md_table_to_html(md: str) -> str:
     out, in_table = [], False
     for line in md.splitlines():
@@ -231,24 +300,21 @@ def main() -> None:
 <h1>{html.escape(site)}</h1>
 <p class="tag">{html.escape(tagline)}</p>
 <p class="meta"><a href="#boards">Divisional boards</a> · <a href="#compare">Side by side</a> ·
-<a href="methodology.html">Methodology</a> · <a href="#favorites">Personal top ten</a> ·
-<a href="#cards">Card quality</a> · <a href="#backtest">Model accuracy</a></p>
+<a href="methodology.html">Methodology</a> · <a href="prediction.html">Prediction model</a> ·
+<a href="#cards">Card quality</a> · <a href="#backtest">Model accuracy</a> · <a href="favorites.html">Personal top ten</a></p>
 <p class="meta">Data through {as_of}. Page built {date.today()}. Weights: {w}. Stability = 10th to 90th
 percentile position across {cfg['resume']['stability_draws']} weight vectors near the configured weights.
-Champion (C) = last undisputed title-bout winner. Open source, public data (UFCStats).</p>
-<details><summary>How the score is built</summary><p>Resume first: who has earned it as of now.
-Score = 70% resume rating + 30% quality wins, each measured as distance from the division median in
-interdecile ranges. The resume rating credits wins and losses by opponent strength; decisions blend the
-judges' cards with the fight stats; losses to a top-3 fighter or in a title fight cost 15% (75% if
-dominant, 100% for a round-one finish by a heavy favorite). Quality wins are wins over UFC fighters with
-5+ UFC wins or ranked top 7 at the time, weighted by age (3, 5, 10, 15 years); a dominant loss in the last
-3 years cancels one. No penalty for the first 12 months off; documented injury layoffs are exempt.
-A fighter who beat someone in their latest meeting (last 3 years) and sits within 3 spots below moves
-above him. E = entrenched (5+ quality wins in 15 years). Stability = 10th to 90th percentile position
-across nearby weights.</p></details>
+C = champion, IC = interim champion, R = reserved (vacated with injury, owed a title shot); they sit above
+the numbered board with their metrics shown. Move = change since the board before the last event.
+Open source, public data (UFCStats; official rankings history for opponent rank at fight time).</p>
+<details><summary>How the score is built</summary><p>REAL ranks fighters on how they performed against the
+fighters they faced and how good those fighters were. Score = 70% resume rating + 30% quality ledger, each
+measured as distance from the division median in interdecile ranges, minus a last-five form penalty. Wins are
+valued by the opponent's official rank at the time (champion 2.0, top 5 1.5, top 10 1.0, top 15 0.5). Close
+fights with a top-5 fighter count in your favor; blowouts and losses to non-elite opponents count against.
+Full rules, weights and worked examples: <a href="methodology.html">methodology</a>.</p></details>
 <div id='boards'></div>{board_tables(cfg)}
 {comparison_section()}
-{favorites_section(bouts, as_of)}
 <h2 id='cards'>Card-quality index, 2022 to present</h2>
 <img src="fig_card_quality.png" alt="Top-10 bouts per card, numbered vs Fight Night">
 {cq}
@@ -258,6 +324,8 @@ across nearby weights.</p></details>
 <p class='meta'>Independent fan research project built on public UFCStats data. Not affiliated with, sponsored or endorsed by UFC, Zuffa, LLC, TKO Group Holdings, or any athlete. All trademarks belong to their owners and are used only to identify athletes and events.</p>
 </body></html>"""
     (DOCS / "index.html").write_text(page)
+    (DOCS / "favorites.html").write_text(favorites_page(bouts, as_of, site))
+    (DOCS / "prediction.html").write_text(prediction_page(cfg, site, as_of))
     print(f"docs/index.html written (data through {as_of})")
 
 

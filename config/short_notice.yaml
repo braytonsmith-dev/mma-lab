@@ -1,0 +1,4 @@
+# Bouts taken on short notice (about 3 weeks or less). A win counts 1.2x, a loss costs 0.5x.
+# UFCStats does not record this, so entries are added by the weekly review. Format:
+# - {fighter: "Name as on UFCStats", date: YYYY-MM-DD, note: "replaced X, N days notice", source: "url"}
+[]

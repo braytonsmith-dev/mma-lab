@@ -13,7 +13,8 @@ so a 70-point rating gap counts more than a 5-point one (percentiles would not).
                  each dominant loss in the last 3 years cancels one quality win
   head-to-head   if a fighter beat someone in their most recent meeting (last 3
                  years) and sits at most 3 spots below him (6 if within 12 months), he
-                 moves directly above; a fighter with a negative last five gets no lift
+                 moves directly above; a close win older than 12 months does not count,
+                 and a fighter with a negative last five gets no lift
 
 Display-only: last five (W-L), streak, entrenched (5+ quality wins in 15 years),
 danger-adjusted durability (KO/TKO losses weighted by how dangerous the opponent was).
@@ -113,6 +114,10 @@ def head_to_head(board: pd.DataFrame, out: pd.DataFrame, as_of: pd.Timestamp, ma
     last_meeting = {}
     for x in d.itertuples():
         key = tuple(sorted((x.fighter_a, x.fighter_b)))
+        old = (as_of - x.date).days > 365
+        if old and getattr(x, "close", False):
+            last_meeting.pop(key, None)          # a close win more than a year old settles nothing
+            continue
         last_meeting[key] = (x.date, x.fighter_a if x.result_a == 1.0 else x.fighter_b)
     fixed = []
     for div, g in board.groupby("division"):
@@ -184,8 +189,9 @@ def title_cycle(cont: pd.DataFrame, out: pd.DataFrame, as_of: pd.Timestamp, tc: 
     for name, when in list(capped.items()):
         later = d[(d["date"] > when) & (((d["fighter_a"] == name) & (d["result_a"] == 1.0)) |
                                         ((d["fighter_b"] == name) & (d["result_a"] == 0.0)))]
-        if not later.empty:
-            capped.pop(name)
+        top10 = later["top10_win"].sum() if "top10_win" in later else 0
+        if top10 >= tc.get("release_top10_wins", 1) or len(later) >= tc.get("release_wins", 2):
+            capped.pop(name)                     # earned his way back
     beat_recently: dict[str, set] = {}
     for x in d[(as_of - d["date"]).dt.days <= 365].itertuples():
         w, l = (x.fighter_a, x.fighter_b) if x.result_a == 1.0 else (x.fighter_b, x.fighter_a)
@@ -265,12 +271,15 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
     d["hw"] = d["age"].apply(lambda a: horizon_weight(a, hz))
     L = rc["ledger"]
     recent = d["age"] <= rc.get("decisive_loss_years", 3)
-    qw = d[d["quality_win"]].groupby("winner")["hw"].sum() * L["quality_win"]
+    d["qw_weighted"] = d["hw"] * d["qw_value"]
+    qw = d[d["quality_win"]].groupby("winner")["qw_weighted"].sum() * L["quality_win"]
     proof = d[d["proof"]].groupby("loser")["hw"].sum() * L["proof_of_concept"]
     dl = d[d["decisive_loss"] & recent].groupby("loser")["hw"].sum() * L["dominant_loss"]
     weak = d[recent & ~d["decisive_loss"] & ~d["proof"] & (d["winner_pos"] > rc["engine"].get("proof_top_n", 5))]
     wl = weak.groupby("loser")["hw"].sum() * L["loss_outside_top5"]
     q15 = d[d["quality_win"] & (d["age"] <= 15)].groupby("winner").size()
+    t10 = d[d["top10_win"] & (d["age"] <= 15)].groupby("winner").size()
+    t15 = d[d["top15_win"] & (d["age"] <= 15)].groupby("winner").size()
     parts = pd.concat([qw.rename("qw"), proof.rename("proof"), dl.rename("dl"), wl.rename("wl")], axis=1).fillna(0)
     parts = parts.reindex(f.index).fillna(0)
     # the ledger: quality wins + proof-of-concept losses - blowout losses - losses outside the top 5
@@ -278,7 +287,10 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
     f["ledger_detail"] = [f"+{a:.1f} QW +{b:.1f} proof -{c:.1f} blowout -{e:.1f} weak"
                           for a, b, c, e in parts[["qw", "proof", "dl", "wl"]].itertuples(index=False)]
     f["quality_wins_15y"] = q15.reindex(f.index).fillna(0).astype(int)
-    f["entrenched"] = f["quality_wins_15y"] >= 5
+    f["top10_wins_15y"] = t10.reindex(f.index).fillna(0).astype(int)
+    f["top15_wins_15y"] = t15.reindex(f.index).fillna(0).astype(int)
+    ent = rc.get("entrenched", {"top10_wins": 4, "top15_wins": 5})
+    f["entrenched"] = (f["top10_wins_15y"] >= ent["top10_wins"]) | (f["top15_wins_15y"] >= ent["top15_wins"])
     ufc_bouts = pd.concat([out["fighter_a"], out["fighter_b"]]).value_counts()
     f["ufc_bouts"] = ufc_bouts.reindex(f.index).fillna(0).astype(int)
     f = f.join(last_five(out)).join(durability(out, as_of_ts))
@@ -293,6 +305,10 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
         f.loc[f["fighter"] == name, "division"] = div      # a title holder is ranked in his title's division
     f["champion"] = f.apply(lambda r: champs.get(r["division"]) == r["fighter"], axis=1)
     f["interim"] = f.apply(lambda r: interim.get(r["division"]) == r["fighter"], axis=1)
+    reserved = _yaml("reserved.yaml")
+    for div, name in reserved.items():
+        f.loc[f["fighter"] == name, "division"] = div
+    f["reserved"] = f.apply(lambda r: reserved.get(r["division"]) == r["fighter"], axis=1)
 
     def score(frame: pd.DataFrame, wts: dict) -> pd.DataFrame:
         parts = []
@@ -301,7 +317,7 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
             g["rating_term"] = wts["rating"] * idr_scale(g["rating"])
             g["ledger_term"] = wts["quality_wins"] * idr_scale(g["quality_wins"])
             g["score"] = g["rating_term"] + g["ledger_term"] - g["form_penalty"]
-            cont = g[~g["champion"] & ~g["interim"]].sort_values("score", ascending=False)
+            cont = g[~g["champion"] & ~g["interim"] & ~g["reserved"]].sort_values("score", ascending=False)
             g["pos"] = np.nan
             g.loc[cont.index, "pos"] = range(1, len(cont) + 1)
             parts.append(g)
@@ -337,14 +353,17 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
     titled["rank_p10"] = titled["rank_p90"] = 0
     board = pd.concat([titled, cont], ignore_index=True)
     board["rank"] = board["pos"].fillna(0).astype(int)
-    board = board.sort_values(["division", "rank", "interim"], ascending=[True, True, True])
+    board["slot"] = np.where(board["champion"], 0, np.where(board["interim"], 1, np.where(board["reserved"], 2, 3)))
+    board = board.sort_values(["division", "slot", "rank"])
 
     overrides = _yaml("division_overrides.yaml")
-    board["division_source"] = np.where(board["champion"] | board["interim"], "title holder",
+    board["division_source"] = np.where(board["champion"] | board["interim"] | board["reserved"], "title holder or reserved",
                                 np.where(board["fighter"].isin(list(overrides)), "override (config)", "fight record"))
     def why(r) -> str:
         if r["champion"] or r["interim"]:
             return "title holder"
+        if r["reserved"]:
+            return "reserved: vacated with injury, owed a title shot"
         steps = [f"score order #{int(r['pos_score'])}"]
         if r["pos_h2h"] != r["pos_score"]:
             steps.append(f"head-to-head -> #{int(r['pos_h2h'])}")
@@ -355,7 +374,7 @@ def build(as_of: str | None = None, weights: dict | None = None, stability: bool
 
     # columns expected by publish.py / compare.py
     board["record_3y"] = board["last5"]
-    board["top15_wins"] = board["quality_wins_15y"]
+    board["top15_wins"] = board["top10_wins_15y"]   # site column: top-10 wins in 15 years
     meta = {"as_of": as_of_ts - pd.Timedelta(days=1), "weights": w, "h2h": h2h_notes, "champs": champs,
             "interim": interim}
     return board, meta
@@ -365,11 +384,13 @@ def main(as_of: str | None = None) -> None:
     cfg = yaml.safe_load((CFG / "weights.yaml").read_text())
     board, meta = build(as_of)
     OUT.mkdir(exist_ok=True)
+    from mmalab.history import snapshot
+    snapshot(board, meta["as_of"])          # keeps the weekly history for movement arrows and validation
     board.to_csv(OUT / "composite_rankings_full.csv", index=False)
     size = cfg["board_size"]
     top = board[board["rank"] <= size]
-    cols = ["division", "rank", "fighter", "champion", "interim", "score", "rating", "quality_wins",
-            "quality_wins_15y", "entrenched", "last5", "streak", "days_since", "injury", "ko_risk",
+    cols = ["division", "rank", "fighter", "champion", "interim", "reserved", "score", "rating", "quality_wins",
+            "top10_wins_15y", "top15_wins_15y", "entrenched", "last5", "streak", "days_since", "injury", "ko_risk",
             "rank_p10", "rank_p90"]
     top[cols].round(3).to_csv(OUT / "composite_top15_by_division.csv", index=False)
 
@@ -381,16 +402,16 @@ def main(as_of: str | None = None) -> None:
             continue
         lines.append(f"\n## {div}" + ("   (title vacant)" if div not in meta["champs"] and div not in meta["interim"] else ""))
         for r in g.itertuples():
-            label = " C" if r.champion else ("IC" if r.interim else f"{r.rank:>2}")
+            label = " C" if r.champion else ("IC" if r.interim else (" R" if r.reserved else f"{r.rank:>2}"))
             inj = " (injury layoff)" if r.injury else ""
             lines.append(f"{label}. {r.fighter:<26} score {r.score:+.2f}  rating {r.rating:6.0f}  last5 {r.last5:<4} "
-                         f"QW {r.quality_wins:4.1f} ({int(r.quality_wins_15y)} in 15y{' E' if r.entrenched else ''})  "
+                         f"ledger {r.quality_wins:4.1f} (T10 {int(r.top10_wins_15y)}, T15 {int(r.top15_wins_15y)}{' E' if r.entrenched else ''})  "
                          f"days {int(r.days_since):>3}{inj}  band [{int(r.rank_p10)}-{int(r.rank_p90)}]")
     lines += ["", "## Head-to-head moves applied"] + [f"- {n}" for n in meta["h2h"]]
     (OUT / "composite_boards.md").write_text("\n".join(lines))
     audit_cols = ["division", "rank", "fighter", "placement", "division_source", "score", "rating_term",
                   "ledger_term", "form_penalty", "rating", "rating_raw", "inactivity_penalty", "injury",
-                  "quality_wins", "ledger_detail", "quality_wins_15y", "entrenched", "last5", "streak",
+                  "quality_wins", "ledger_detail", "top10_wins_15y", "top15_wins_15y", "entrenched", "last5", "streak",
                   "days_since", "ko_risk", "rank_p10", "rank_p90"]
     top[[c for c in audit_cols if c in top.columns]].round(3).to_csv(OUT / "audit_top30.csv", index=False)
     print("\n".join(lines))

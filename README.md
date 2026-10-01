@@ -1,20 +1,23 @@
-# MMA Lab
+# REAL Fighter Rankings
 
-Open, reproducible UFC fighter ratings, adjustable-weight rankings, and a card-quality index, built entirely from public UFCStats data. Companion to the SSAC27 abstract in `paper/abstract_ssac27.md`.
+Results, Evidence, Analytics, Ledger. Open, reproducible UFC rankings built from public data: a weekly resume board (who has earned it), a separately graded prediction model (who would be favored), and a card-quality index for matchmaking research. Companion to the SSAC27 abstract in `paper/abstract_ssac27.md`.
 
-Data through the last event in `data/raw/ufc_event_details.csv` (currently September 26, 2026). Nothing here uses UFC marks or non-public data.
+- Site: https://braytonsmith-dev.github.io/real-fighter-rankings/ (boards, side-by-side with public boards, prediction model, methodology)
+- Methodology, version 1.0, with every rule, weight, and worked example: [METHODOLOGY.md](METHODOLOGY.md) (regenerated on every rebuild from `config/weights.yaml` and the audit trail)
+- Per-fighter audit trail: `outputs/audit_top30.csv`; forward validation: `outputs/forward_validation.json`
+
+Principle: a fighter is ranked on how he performed against the fighters he faced, and how good those fighters were.
 
 ## What it produces
 
 | Output | File |
 |---|---|
-| Boards, top 15 per division with champion, stability bands | `outputs/composite_boards.md`, `outputs/composite_top15_by_division.csv` |
-| Every active fighter with all six dimension scores | `outputs/composite_rankings_full.csv` |
-| Backtest report (classic vs performance-adjusted Elo vs market) | `outputs/backtest_report.json`, `outputs/table_backtest.md` |
-| Card-quality index per event and summary by year and card type | `outputs/card_quality_events.csv`, `outputs/card_quality_summary.csv` |
-| Supply facts (how often ranked fighters actually fight) | `outputs/card_quality_supply.json` |
-| Figures for the paper and site | `outputs/fig_backtest.png`, `outputs/fig_card_quality.png` |
-| Static site for GitHub Pages | `docs/index.html` |
+| Divisional boards, champion plus top 30, movement since the last event | `outputs/composite_boards.md`, `docs/index.html` |
+| Audit trail: score order, rule moves, ledger detail for every contender | `outputs/audit_top30.csv` |
+| Weekly snapshots and forward validation | `outputs/history/`, `outputs/forward_validation.json` |
+| Prediction model ratings and backtest | `docs/prediction.html`, `outputs/backtest_report.json`, `outputs/table_backtest.md` |
+| Comparison with UFC media panel, Meta, Sherdog, Fight Matrix, ESPN | `outputs/compare_report.md`, `outputs/compare_flags.csv` |
+| Card-quality index and supply facts | `outputs/card_quality_*.csv`, `outputs/card_quality_supply.json` |
 
 ## Headline results (as of 2026-09-26)
 
@@ -121,7 +124,13 @@ src/mmalab/ingest.py           raw CSVs -> clean tables
 src/mmalab/bout_stats.py       round stats -> per-bout totals and dominance differential
 src/mmalab/elo.py              the rating engine (classic and performance-adjusted)
 src/mmalab/backtest.py         grid search, held-out evaluation, market comparison
-src/mmalab/rankings.py         six-dimension composite boards with stability bands
+src/mmalab/resume.py           resume rating engine (judges + stats, loss rules, official ranks)
+src/mmalab/resume_board.py     REAL boards: ledger, form, division, head-to-head, title cycle, audit
+src/mmalab/official_ranks.py   official UFC rank on any date (2013+)
+src/mmalab/history.py          snapshots, movement arrows, forward validation
+src/mmalab/methodology.py      writes METHODOLOGY.md from the live config
+src/mmalab/compare.py          comparison with public boards
+src/mmalab/rankings.py         legacy six-dimension composite (v0.x)
 src/mmalab/card_quality.py     top-10 vs top-10 bouts per card, supply facts
 src/mmalab/figures.py          paper figures and table
 src/mmalab/publish.py          docs/index.html for GitHub Pages
@@ -140,4 +149,4 @@ Known limits: no regional (pre-UFC) records, so debutants start at 1500; no inju
 
 ## Citation
 
-Smith, B. (2026). MMA Lab: performance-adjusted Elo ratings and a card-quality index for the UFC. GitHub repository.
+Smith, B. (2026). REAL Fighter Rankings: resume rankings, performance-adjusted Elo, and a card-quality index for the UFC (Version 1.0). GitHub repository.

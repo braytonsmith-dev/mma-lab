@@ -1,0 +1,11 @@
+127 snapshots
+{
+  "snapshots": 127,
+  "ranked_vs_ranked_bouts": 226,
+  "ours_higher_ranked_win_rate": 0.544,
+  "same_bouts_official_also_ranked": 204,
+  "ours_on_same_bouts": 0.554,
+  "official_on_same_bouts": 0.52,
+  "predictive_elo_on_all_ranked_bouts": 0.624,
+  "note": "Snapshots before the method freeze (v1.0) were rebuilt with today's rules, so they are an in-sample check; only bouts after the freeze date are a true forward test."
+}

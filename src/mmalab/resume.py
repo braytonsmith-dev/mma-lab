@@ -39,6 +39,9 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import yaml
+
+from mmalab.official_ranks import OfficialRanks
 
 ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / "data" / "raw"
@@ -69,6 +72,12 @@ class ResumeParams:
     proof_top_n: int = 5                 # close fights with a top-5 fighter by someone outside the top 5
     proof_gain: float = 0.10             # ...earn the loser this share of K instead of a loss
     upset_quick_finish_mult: float = 0.7 # R1 finish by the underdog moves both ratings 70% as much
+    use_official_ranks: bool = True      # official media-panel rank at fight time (2013+); model position before
+    qw_tiers: tuple = ((0, 2.0), (5, 1.5), (10, 1.0), (15, 0.5))   # opponent rank limit -> quality-win value
+    qw_veteran_min_wins: int = 8         # unranked opponent with 8+ UFC wins and a winning UFC record...
+    qw_veteran_value: float = 0.25       # ...is worth this much
+    short_notice_win_mult: float = 1.2
+    short_notice_loss_mult: float = 0.5
     protect_top_n: int = 3
     quality_top_n: int = 7
     quality_min_wins: int = 5
@@ -113,10 +122,50 @@ def load_scorecards() -> pd.DataFrame:
     return r[["bout_url", "card_s", "card_dominant", "card_margins"]]
 
 
+def apply_overturned(df: pd.DataFrame) -> pd.DataFrame:
+    """A no-contest caused by a failed drug test counts as a loss for the fighter who failed
+    (UFCStats records 'Failed Drug Test by <name>' in the bout details)."""
+    r = pd.read_csv(RAW / "ufc_fight_results.csv")
+    r.columns = [c.strip() for c in r.columns]
+    det = r.drop_duplicates("URL").set_index("URL")["DETAILS"].fillna("").astype(str)
+    df = df.copy()
+    df["overturned_by"] = ""
+    for i, row in df[df["result_a"].isna()].iterrows():
+        text = det.get(row["bout_url"], "")
+        m = re.search(r"Failed Drug Test by ([A-Za-z' .-]+?)(?=[A-Z][a-z]+ [A-Z][a-z]* ?\d|$)", text)
+        if not m:
+            continue
+        who = m.group(1).strip().lower()
+        a_last, b_last = row["fighter_a"].split()[-1].lower(), row["fighter_b"].split()[-1].lower()
+        if who.endswith(a_last) and not who.endswith(b_last):
+            df.at[i, "result_a"], df.at[i, "overturned_by"] = 0.0, row["fighter_a"]
+        elif who.endswith(b_last) and not who.endswith(a_last):
+            df.at[i, "result_a"], df.at[i, "overturned_by"] = 1.0, row["fighter_b"]
+        if df.at[i, "overturned_by"]:
+            df.at[i, "method"] = "DQ"
+    return df
+
+
+def load_short_notice() -> set:
+    p = ROOT / "config" / "short_notice.yaml"
+    if not p.exists():
+        return set()
+    data = yaml.safe_load(p.read_text()) or []
+    out = set()
+    for item in data:
+        out.add((item["fighter"], pd.Timestamp(item["date"]).date()))
+    return out
+
+
 def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.DataFrame, pd.DataFrame]:
     p = p or ResumeParams()
     cards = load_scorecards()
     df = bouts.merge(cards, on="bout_url", how="left").sort_values(["date", "bout_id"]).reset_index(drop=True)
+    df = apply_overturned(df)
+    names = pd.concat([df["fighter_a"], df["fighter_b"]]).dropna().unique().tolist()
+    official = OfficialRanks(names) if p.use_official_ranks else None
+    short_notice = load_short_notice()
+    losses: dict[str, int] = {}
 
     rating: dict[str, float] = {}
     n_fights: dict[str, int] = {}
@@ -143,9 +192,16 @@ def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.D
         ra, rb = rating.get(a, p.start), rating.get(b, p.start)
         pos_a = position_fast(a, div, d) if a in rating else 999
         pos_b = position_fast(b, div, d) if b in rating else 999
+        # official media-panel rank going in (0 = champion, 99 = unranked); model position before 2013
+        off_a = official.rank(a, div, d) if official is not None else None
+        off_b = official.rank(b, div, d) if official is not None else None
+        eff_a = off_a if off_a is not None else pos_a
+        eff_b = off_b if off_b is not None else pos_b
         ea = 1.0 / (1.0 + 10 ** ((rb - ra) / 400.0))
         res = row.result_a
         rec = {"bout_id": row.bout_id, "pos_a": pos_a, "pos_b": pos_b, "r_pre_a": ra, "r_pre_b": rb,
+               "rank_a": eff_a, "rank_b": eff_b, "official_a": off_a, "official_b": off_b,
+               "qw_value": 0.0, "top10_win": False, "top15_win": False, "short_notice": "",
                "wins_pre_a": wins.get(a, 0), "wins_pre_b": wins.get(b, 0),
                "s_a": np.nan, "protected": "", "loss_mult": 1.0, "dominant": False,
                "decisive_loss": False, "quality_win": False, "proof": False, "close": False,
@@ -197,8 +253,8 @@ def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.D
         rec["close"] = close if res in (0.0, 1.0) else False
         if res in (0.0, 1.0):
             loser = "a" if res == 0.0 else "b"
-            winner_pos = pos_b if loser == "a" else pos_a
-            loser_pos = pos_a if loser == "a" else pos_b
+            winner_pos = eff_b if loser == "a" else eff_a
+            loser_pos = eff_a if loser == "a" else eff_b
             p_winner = (1 - ea) if loser == "a" else ea
             protected_ctx = bool(row.title_fight) or winner_pos <= p.protect_top_n
             k_loser = ka if loser == "a" else kb
@@ -235,17 +291,43 @@ def run_resume(bouts: pd.DataFrame, p: ResumeParams | None = None) -> tuple[pd.D
             rec["decisive_loss"] = dominant and not rec.get("proof", False)
             rec["winner_pos"], rec["loser_pos"] = winner_pos, loser_pos
 
-        # quality win bookkeeping (opponent strength measured before the bout)
-        if res == 1.0:
-            rec["quality_win"] = wins.get(b, 0) >= p.quality_min_wins or pos_b <= p.quality_top_n
-        elif res == 0.0:
-            rec["quality_win"] = wins.get(a, 0) >= p.quality_min_wins or pos_a <= p.quality_top_n
+        # short notice: a win counts more, a loss costs less
+        for side, name in (("a", a), ("b", b)):
+            if (name, d.date()) in short_notice:
+                rec["short_notice"] += side
+                won = (res == 1.0) == (side == "a") and res in (0.0, 1.0)
+                delta = da if side == "a" else db
+                if won and delta > 0:
+                    delta *= p.short_notice_win_mult
+                elif not won and delta < 0:
+                    delta *= p.short_notice_loss_mult
+                if side == "a":
+                    da = delta
+                else:
+                    db = delta
+
+        # quality win bookkeeping: tiered by the opponent's rank going in
+        if res in (0.0, 1.0):
+            opp_rank = eff_b if res == 1.0 else eff_a
+            opp = b if res == 1.0 else a
+            value = 0.0
+            for limit, v in p.qw_tiers:
+                if opp_rank <= limit:
+                    value = v
+                    break
+            if value == 0.0 and wins.get(opp, 0) >= p.qw_veteran_min_wins and wins.get(opp, 0) > losses.get(opp, 0):
+                value = p.qw_veteran_value          # unranked, but a proven UFC winner
+            rec["qw_value"] = value
+            rec["quality_win"] = value > 0
+            rec["top10_win"] = opp_rank <= 10
+            rec["top15_win"] = opp_rank <= 15
 
         na, nb = ra + da, rb + db
         rating[a], rating[b] = na, nb
         for f, won in ((a, res == 1.0), (b, res == 0.0)):
             n_fights[f] = n_fights.get(f, 0) + 1
             wins[f] = wins.get(f, 0) + int(won)
+            losses[f] = losses.get(f, 0) + int(res in (0.0, 1.0) and not won)
             last_result[f] = "W" if won else ("L" if res in (0.0, 1.0) else "D")
             if last_div.get(f) != div and f in last_div:
                 div_members.get(last_div[f], set()).discard(f)

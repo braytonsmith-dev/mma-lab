@@ -1,5 +1,6 @@
 site_name: "REAL Fighter Rankings"
 site_tagline: "Results, Evidence, Analytics, Ledger"
+method_version: "1.0"
 
 # Composite ranking weights. Must sum to 1.0. Change these and re-run
 #   python -m mmalab.rankings
@@ -67,12 +68,13 @@ resume:
     injury_max_days: 730           # documented injuries (config/layoffs.yaml): no penalty, eligible 24 months
   decisive_loss_years: 3         # losses this recent count against the ledger
   ledger:                        # quality ledger, each item weighted by the age horizons above
-    quality_win: 1.0             # win over a UFC fighter with 5+ UFC wins or ranked top 7 at the time
+    quality_win: 1.0             # multiplier on tiered wins: champion 2.0, top 5 1.5, top 10 1.0, top 15 0.5, proven unranked vet 0.25
     proof_of_concept: 0.5        # close loss to a top-5 fighter by someone outside the top 5
     dominant_loss: 1.0           # blowout loss (last 3 years)
     loss_outside_top5: 1.0       # any other loss to someone outside the top 5 (last 3 years)
-  form_penalty: {"2-3": 0.15, "1-4": 0.45, "0-5": 0.60}   # score units subtracted for the last five
-  title_cycle: {days: 365, min_position: 4}               # recent title-fight challengers who lost
+  form_penalty: {"2-3": 0.15, "1-4": 0.60, "0-5": 0.80}   # score units subtracted for the last five
+  title_cycle: {days: 270, min_position: 4, release_top10_wins: 1, release_wins: 2}   # losing challengers; released by 1 top-10 win or 2 wins
+  entrenched: {top10_wins: 4, top15_wins: 5}              # in the last 15 years
   head_to_head: {max_gap: 3, max_gap_recent: 6, max_years: 3}   # recent = last 12 months
   declining_guard: false         # proposal: negative last five -> only last-3-year quality wins count
   stability_draws: 200

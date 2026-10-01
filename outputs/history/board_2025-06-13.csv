@@ -1,0 +1,703 @@
+division,fighter,position,rank,score
+Bantamweight,Merab Dvalishvili,0,0,1.411914524996296
+Bantamweight,Deiveson Figueiredo,1,1,0.8912866054454283
+Bantamweight,Song Yadong,2,2,0.8168687287840077
+Bantamweight,Petr Yan,3,3,0.6338451827945363
+Bantamweight,Umar Nurmagomedov,4,4,0.6628847915066025
+Bantamweight,Cory Sandhagen,5,5,1.1393899364114715
+Bantamweight,Sean O'Malley,6,6,0.8472209757349978
+Bantamweight,Henry Cejudo,7,7,0.5586411616938437
+Bantamweight,Rob Font,8,8,0.5513415811127316
+Bantamweight,Montel Jackson,9,9,0.5195270027457876
+Bantamweight,Mario Bautista,10,10,0.4674904678684333
+Bantamweight,Jose Aldo,11,11,0.44762861383769414
+Bantamweight,Marlon Vera,12,12,0.4081420753857623
+Bantamweight,Kyler Phillips,13,13,0.35678481058476774
+Bantamweight,Marcus McGhee,14,14,0.35372359638181905
+Bantamweight,Vinicius Oliveira,15,15,0.2811423424991675
+Bantamweight,Said Nurmagomedov,16,16,0.2829247967226099
+Bantamweight,Jonathan Martinez,17,17,0.23188875730975042
+Bantamweight,Farid Basharat,18,18,0.2210640319975225
+Bantamweight,Brady Hiestand,19,19,0.20776238392817664
+Bantamweight,Taylor Lapilus,20,20,0.20397376755783972
+Bantamweight,Aiemann Zahabi,21,21,0.19699212733366891
+Bantamweight,Chris Gutierrez,22,22,0.19006794983761024
+Bantamweight,Davey Grant,23,23,0.18547390242405126
+Bantamweight,Raoni Barcelos,24,24,0.1798727227158209
+Bantamweight,Raul Rosas Jr.,25,25,0.16348715619523307
+Bantamweight,Cody Garbrandt,26,26,0.1488870676213239
+Bantamweight,Daniel Marcos,27,27,0.1287586755480833
+Bantamweight,Payton Talbott,28,28,0.12301340147748566
+Bantamweight,SuYoung You,29,29,0.1077083736982164
+Bantamweight,Da'Mon Blackshear,30,30,0.09723471917512044
+Bantamweight,ChangHo Lee,31,31,0.09476009206797498
+Bantamweight,Cody Haddon,32,32,0.07621672284733148
+Bantamweight,Rinya Nakamura,33,33,0.07340082391531676
+Bantamweight,Jean Matsumoto,34,34,0.07212332229518661
+Bantamweight,David Martinez,35,35,0.06669404493900546
+Bantamweight,Malcolm Wellmaker,36,36,0.06233821312551063
+Bantamweight,Aleksandre Topuria,37,37,0.042835375102949394
+Bantamweight,Xiao Long,38,38,0.01517746825180164
+Bantamweight,Victor Henry,39,39,0.01139265637588617
+Bantamweight,Douglas Silva de Andrade,40,40,-0.0006602966680464076
+Bantamweight,Ricky Simon,41,41,-0.0029782888520160367
+Bantamweight,Muin Gafurov,42,42,-0.004883908719438494
+Bantamweight,Elijah Smith,43,43,-0.033345795873190254
+Bantamweight,Serhiy Sidey,44,44,-0.0511359424483627
+Bantamweight,Bekzat Almakhan,45,45,-0.05910476339668595
+Bantamweight,Cameron Smotherman,46,46,-0.06599774865893808
+Bantamweight,Victor Hugo,47,47,-0.07153207898480904
+Bantamweight,Carlos Vera,48,48,-0.07582334514302339
+Bantamweight,Miles Johns,49,49,-0.09583292012696304
+Bantamweight,Adrian Yanez,50,50,-0.10487916301250816
+Bantamweight,Javid Basharat,51,51,-0.11095382772348542
+Bantamweight,Caolan Loughran,52,52,-0.111084769003084
+Bantamweight,Patchy Mix,53,53,-0.1356190522344191
+Bantamweight,Quang Le,54,54,-0.14060170784395085
+Bantamweight,Alatengheili,55,55,-0.14921949412830315
+Bantamweight,Baergeng Jieleyisi,56,56,-0.15253739211439055
+Bantamweight,Benardo Sopaj,57,57,-0.15934726422263673
+Bantamweight,Ramon Taveras,58,58,-0.16238842950283644
+Bantamweight,Colby Thicknesse,59,59,-0.1636759731236767
+Bantamweight,Rani Yahya,60,60,-0.17892961793366952
+Bantamweight,Kyung Ho Kang,61,61,-0.1791482201972277
+Bantamweight,Josias Musasa,62,62,-0.18475275978694303
+Bantamweight,Aoriqileng,63,63,-0.19944681990756014
+Bantamweight,Toshiomi Kazama,64,64,-0.2020817444673204
+Bantamweight,Pedro Falcao,65,65,-0.21219531505962924
+Bantamweight,Kleydson Rodrigues,66,66,-0.23892948865142738
+Bantamweight,Angel Pacheco,67,67,-0.2603404863956803
+Bantamweight,Gaston Bolanos,68,68,-0.2607670285000115
+Bantamweight,John Castaneda,69,69,-0.2818024986795114
+Bantamweight,Cody Stamann,70,70,-0.3159762201828221
+Bantamweight,AJ Cunningham,71,71,-0.3239210181369852
+Bantamweight,Jesse Butler,72,72,-0.3362858358241921
+Bantamweight,Cristian Quinonez,73,73,-0.34389488721130623
+Bantamweight,Yanis Ghemmouri,74,74,-0.3510983214326164
+Bantamweight,Cortavious Romious,75,75,-0.36119542926989695
+Bantamweight,Cameron Saaiman,76,76,-0.3742724778410124
+Bantamweight,Charalampos Grigoriou,77,77,-0.377391654535872
+Bantamweight,Jake Hadley,78,78,-0.38100443659175304
+Bantamweight,Brad Katona,79,79,-0.4057316802089782
+Bantamweight,Pedro Munhoz,80,80,-0.4267453910421522
+Bantamweight,Garrett Armfield,81,81,-0.4524297465538558
+Bantamweight,Cody Gibson,82,82,-0.4618302996910354
+Bantamweight,Saimon Oliveira,83,83,-0.4636799127471347
+Bantamweight,Dan Argueta,84,84,-0.479502135244252
+Bantamweight,Chad Anheliger,85,85,-0.5027611103720785
+Bantamweight,Ricky Turcios,86,86,-0.5497286229027898
+Bantamweight,Fernie Garcia,87,87,-0.592072780661913
+Bantamweight,Brian Kelleher,88,88,-0.8469168795972191
+Bantamweight,Vince Morales,89,89,-1.175163331331437
+Featherweight,Alexander Volkanovski,0,0,1.408327096602505
+Featherweight,Ilia Topuria,1,1,1.2472645065866317
+Featherweight,Movsar Evloev,2,2,0.7437772935620014
+Featherweight,Aljamain Sterling,3,3,1.3207682353858008
+Featherweight,Max Holloway,4,4,1.6573480421430014
+Featherweight,Yair Rodriguez,5,5,0.8607508461553224
+Featherweight,Arnold Allen,6,6,0.6940063934652996
+Featherweight,Jean Silva,7,7,0.6767320974835693
+Featherweight,Diego Lopes,8,8,0.46326120049095243
+Featherweight,Brian Ortega,9,9,0.6087809782016247
+Featherweight,Lerone Murphy,10,10,0.6078130152484513
+Featherweight,Youssef Zalal,11,11,0.44831263857816084
+Featherweight,Chepe Mariscal,12,12,0.4327363756881866
+Featherweight,Steve Garcia,13,13,0.400210462160182
+Featherweight,Nathaniel Wood,14,14,0.3900355436162045
+Featherweight,Cub Swanson,15,15,0.30447145448654134
+Featherweight,David Onama,16,16,0.2959493771743595
+Featherweight,Pat Sabatini,17,17,0.21941454768845498
+Featherweight,Joanderson Brito,18,18,0.27037282524306094
+Featherweight,Josh Emmett,19,19,0.26186512715190713
+Featherweight,Felipe Lima,20,20,0.2518277617711524
+Featherweight,Hyder Amil,21,21,0.2502817704511181
+Featherweight,Daniel Santos,22,22,0.23119724383755685
+Featherweight,Giga Chikadze,23,23,0.22939720416889445
+Featherweight,Darren Elkins,24,24,0.2007894885443804
+Featherweight,Edson Barboza,25,25,0.19095941337665315
+Featherweight,Mairon Santos,26,26,0.17646279583211516
+Featherweight,Sean Woodson,27,27,0.13791048843647505
+Featherweight,Isaac Dulgarian,28,28,0.12944522755767537
+Featherweight,William Gomis,29,29,0.11883107039901286
+Featherweight,Julio Arce,30,30,0.10789109193664814
+Featherweight,JooSang Yoo,31,31,0.10743642610043005
+Featherweight,Kevin Vallejos,32,32,0.10231617233303872
+Featherweight,Bogdan Grad,33,33,0.10227862801944435
+Featherweight,Jose Delgado,34,34,0.09161556685306382
+Featherweight,Dan Ige,35,35,0.08230386982736584
+Featherweight,Dooho Choi,36,36,0.07979208678302918
+Featherweight,Yadier del Valle,37,37,0.07673184633446714
+Featherweight,Muhammad Naimov,38,38,0.05597214489073071
+Featherweight,Melquizael Costa,39,39,0.03360707845348268
+Featherweight,Nathan Fletcher,40,40,0.03136483506856622
+Featherweight,Jamall Emmers,41,41,0.02923276580991434
+Featherweight,Morgan Charriere,42,42,0.014542123357411087
+Featherweight,Charles Jourdain,43,43,0.008872848094814229
+Featherweight,Gabriel Santos,44,44,0.007642803488366537
+Featherweight,Danny Silva,45,45,-0.016128088477530084
+Featherweight,Christian Rodriguez,46,46,-0.019302439417188014
+Featherweight,Alex Caceres,47,47,-0.026770589198172864
+Featherweight,Bryce Mitchell,48,48,-0.033308796757855835
+Featherweight,Nate Landwehr,49,49,-0.034533428798703074
+Featherweight,Sodiq Yusuff,50,50,-0.08976670179759991
+Featherweight,Timmy Cuamba,51,51,-0.1009233450409739
+Featherweight,Fernando Padilla,52,52,-0.11594170649146676
+Featherweight,Austin Bashi,53,53,-0.11774443606296722
+Featherweight,Jonathan Pearce,54,54,-0.12215098600734842
+Featherweight,Julian Erosa,55,55,-0.1480314353077868
+Featherweight,Patricio Freire,56,56,-0.1500348125215145
+Featherweight,Jack Shore,57,57,-0.20302986571857903
+Featherweight,Kyle Nelson,58,58,-0.22347662624306106
+Featherweight,Bill Algeo,59,59,-0.22149830935306533
+Featherweight,Jack Jenkins,60,60,-0.23793595253681515
+Featherweight,Melsik Baghdasaryan,61,61,-0.23904002511886321
+Featherweight,Zygimantas Ramaska,62,62,-0.2395397636930764
+Featherweight,Billy Quarantillo,63,63,-0.27656662853584413
+Featherweight,Westin Wilson,64,64,-0.28194394789361205
+Featherweight,JeongYeong Lee,65,65,-0.2887792805964909
+Featherweight,Yizha,66,66,-0.30028618487632036
+Featherweight,Steven Nguyen,67,67,-0.30226702476741024
+Featherweight,Dennis Buzukja,68,68,-0.30702296845657845
+Featherweight,Luis Pajuelo,69,69,-0.3073910840382293
+Featherweight,Josh Culibao,70,70,-0.319238148577344
+Featherweight,Andre Fili,71,71,-0.3232687895617662
+Featherweight,Jarno Errens,72,72,-0.33295606992602966
+Featherweight,Kaan Ofli,73,73,-0.334669910127277
+Featherweight,Kron Gracie,74,74,-0.34335707221172895
+Featherweight,Francis Marshall,75,75,-0.35609979126483593
+Featherweight,Shayilan Nuerdanbieke,76,76,-0.3686403009563863
+Featherweight,Ricardo Ramos,77,77,-0.3713819667766062
+Featherweight,Roberto Romero,78,78,-0.395326273033993
+Featherweight,Brendon Marotte,79,79,-0.4091527288726371
+Featherweight,Calvin Kattar,80,80,-0.4100071393031076
+Featherweight,Blake Bilder,81,81,-0.4130063267141074
+Featherweight,Jeka Saragih,82,82,-0.4180450518307871
+Featherweight,Lucas Alexander,83,83,-0.4528606236382648
+Featherweight,Lucas Almeida,84,84,-0.4876647292030728
+Featherweight,Gabriel Miranda,85,85,-0.4958188746853772
+Featherweight,Erik Silva,86,86,-0.5200750917610292
+Featherweight,Connor Matthews,87,87,-0.630965438463909
+Featherweight,Daniel Pineda,88,88,-0.6369079754865452
+Featherweight,Damon Jackson,89,89,-0.8823184348877204
+Featherweight,SeungWoo Choi,90,90,-1.0089882721250205
+Featherweight,Herbert Burns,91,91,-1.0652989303020735
+Flyweight,Alexandre Pantoja,0,0,1.3916658526954602
+Flyweight,Brandon Moreno,1,1,1.5231261795464075
+Flyweight,Muhammad Mokaev,2,2,0.9883754641410918
+Flyweight,Brandon Royval,3,3,0.8755348955048834
+Flyweight,Tatsuro Taira,4,4,0.8908369008468356
+Flyweight,Manel Kape,5,5,0.8047321653409787
+Flyweight,Kai Kara-France,6,6,0.7564174232095614
+Flyweight,Amir Albazi,7,7,0.5380717598988249
+Flyweight,Tagir Ulanbekov,8,8,0.5249938903409584
+Flyweight,HyunSung Park,9,9,0.50609250651941
+Flyweight,Joshua Van,10,10,0.4231939603225782
+Flyweight,Allan Nascimento,11,11,0.34220636054586034
+Flyweight,Andre Lima,12,12,0.3337945009116352
+Flyweight,Asu Almabayev,13,13,0.325259430361948
+Flyweight,Ramazan Temirov,14,14,0.277890109370523
+Flyweight,Clayton Carpenter,15,15,0.25687964016149734
+Flyweight,DongHun Choi,16,16,0.25651809363626493
+Flyweight,Steve Erceg,17,17,0.1770274398334317
+Flyweight,Lone'er Kavanagh,18,18,0.15301147718751876
+Flyweight,Nate Maness,19,19,0.15005827995760207
+Flyweight,Jafel Filho,20,20,0.11142473554387082
+Flyweight,Rafael Estevam,21,21,0.09109231198443911
+Flyweight,Edgar Chairez,22,22,0.0841431974815867
+Flyweight,Alessandro Costa,23,23,0.07010829171561546
+Flyweight,Matheus Nicolau,24,24,0.05342485043992956
+Flyweight,Jesus Aguilar,25,25,0.0002415238016364729
+Flyweight,Ronaldo Rodriguez,26,26,-0.005897074992561622
+Flyweight,Felipe Bunes,27,27,-0.017815108081452362
+Flyweight,Jose Ochoa,28,28,-0.02691922419963292
+Flyweight,Nyamjargal Tumendemberel,29,29,-0.04644895076870239
+Flyweight,Kai Asakura,30,30,-0.05265572567362811
+Flyweight,Rei Tsuruya,31,31,-0.062359721430853124
+Flyweight,Igor Severino,32,32,-0.08146372572335447
+Flyweight,Stewart Nicoll,33,33,-0.11639020374214891
+Flyweight,Kiru Sahota,34,34,-0.12108927557092158
+Flyweight,Charles Johnson,35,35,-0.13146247305948258
+Flyweight,Lucas Rocha,36,36,-0.14522765473249125
+Flyweight,Mitch Raposo,37,37,-0.1691114766632344
+Flyweight,Kevin Borjas,38,38,-0.169937706859437
+Flyweight,Alex Perez,39,39,-0.17536708627502073
+Flyweight,Felipe dos Santos,40,40,-0.1897821672682794
+Flyweight,Luis Gurule,41,41,-0.20430755339117612
+Flyweight,Azat Maksum,42,42,-0.20870470452939843
+Flyweight,Cody Durden,43,43,-0.2684763079008251
+Flyweight,Victor Altamirano,44,44,-0.2774362583407708
+Flyweight,Daniel Barez,45,45,-0.30134990865810957
+Flyweight,Jose Johnson,46,46,-0.3216063746033401
+Flyweight,Sumudaerji,47,47,-0.3453501028506861
+Flyweight,Vinicius Salvador,48,48,-0.36018386702801874
+Flyweight,Matt Schnell,49,49,-0.3966242331437
+Flyweight,Mateus Mendonca,50,50,-0.48834956641743177
+Flyweight,Ode Osbourne,51,51,-0.497964525069859
+Flyweight,Carlos Hernandez,52,52,-0.5342474487030516
+Flyweight,Denys Bondar,53,53,-0.5698232097226598
+Flyweight,CJ Vergara,54,54,-0.6242837011959516
+Flyweight,Malcolm Gordon,55,55,-0.8476200818751917
+Flyweight,Jimmy Flick,56,56,-0.9675307194349855
+Flyweight,Daniel Lacerda,57,57,-1.7684099388215522
+Heavyweight,Ciryl Gane,0,0,0.8144415023055566
+Heavyweight,Tom Aspinall,0,0,0.6665387605856914
+Heavyweight,Jon Jones,1,1,1.0996194937740988
+Heavyweight,Alex Pereira,2,2,1.0050916541983654
+Heavyweight,Alexander Volkov,3,3,0.814956287202119
+Heavyweight,Sergei Pavlovich,4,4,0.4789275359077253
+Heavyweight,Curtis Blaydes,5,5,0.6719503568757319
+Heavyweight,Stipe Miocic,6,6,0.6527421402602239
+Heavyweight,Marcin Tybura,7,7,0.3204352412034732
+Heavyweight,Jairzinho Rozenstruik,8,8,0.3150372594137683
+Heavyweight,Waldo Cortes Acosta,9,9,0.2553790903252888
+Heavyweight,Derrick Lewis,10,10,0.2520464868357598
+Heavyweight,Kennedy Nzechukwu,11,11,0.1071625115620272
+Heavyweight,Shamil Gaziev,12,12,0.10000379424774672
+Heavyweight,Mick Parkin,13,13,0.08953485171353413
+Heavyweight,Marcos Rogerio de Lima,14,14,0.0707696509390039
+Heavyweight,Valter Walker,15,15,0.05162592295985373
+Heavyweight,Mario Pinto,16,16,0.027292093188019707
+Heavyweight,Tallison Teixeira,17,17,0.02152215979382121
+Heavyweight,Jhonata Diniz,18,18,-0.04033903395766583
+Heavyweight,Karl Williams,19,19,0.013579841416885422
+Heavyweight,Alexandr Romanov,20,20,-0.004437020483614246
+Heavyweight,Serghei Spivac,21,21,-0.01509249499283663
+Heavyweight,Martin Buday,22,22,-0.036237648495594965
+Heavyweight,Hamdy Abdelwahab,23,23,-0.0990194772058222
+Heavyweight,Thomas Petersen,24,24,-0.09960807988830113
+Heavyweight,Uran Satybaldiev,25,25,-0.12034799244126536
+Heavyweight,Justin Tafa,26,26,-0.12100833341164413
+Heavyweight,Rodrigo Nascimento,27,27,-0.12203290079698342
+Heavyweight,Mohammed Usman,28,28,-0.13661377473182815
+Heavyweight,Jamal Pogues,29,29,-0.15495010775522672
+Heavyweight,Robelis Despaigne,30,30,-0.16581708077567864
+Heavyweight,Caio Machado,31,31,-0.18588590537816216
+Heavyweight,Sean Sharaf,32,32,-0.20115971357755022
+Heavyweight,Chris Barnett,33,33,-0.2852837174109113
+Heavyweight,Junior Tafa,34,34,-0.28909014294603685
+Heavyweight,Austen Lane,35,35,-0.39603817752890175
+Heavyweight,Andrei Arlovski,36,36,-0.7661269049098038
+Heavyweight,Tai Tuivasa,37,37,-0.7999996610611226
+Heavyweight,Don'Tale Mayes,38,38,-0.9894607930383279
+Heavyweight,Josh Parisian,39,39,-1.033927087723981
+Heavyweight,Lukasz Brzeski,40,40,-1.0745269906878865
+Light Heavyweight,Magomed Ankalaev,0,0,1.0558244573624576
+Light Heavyweight,Jiri Prochazka,1,1,0.844072939388496
+Light Heavyweight,Carlos Ulberg,2,2,0.5678707948730924
+Light Heavyweight,Jan Blachowicz,3,3,0.6038580413417991
+Light Heavyweight,Dominick Reyes,4,4,0.5213339439345077
+Light Heavyweight,Jamahal Hill,5,5,0.4697513418848517
+Light Heavyweight,Azamat Murzakanov,6,6,0.4680817500726924
+Light Heavyweight,Nikita Krylov,7,7,0.457952560683071
+Light Heavyweight,Reinier de Ridder,8,8,0.3830208215981604
+Light Heavyweight,Aleksandar Rakic,9,9,0.34935899062040277
+Light Heavyweight,Volkan Oezdemir,10,10,0.32654630871001067
+Light Heavyweight,Zhang Mingyang,11,11,0.3207875111428721
+Light Heavyweight,Khalil Rountree Jr.,12,12,0.3142729192655681
+Light Heavyweight,Johnny Walker,13,13,0.27306678939768336
+Light Heavyweight,Oumar Sy,14,14,0.17111265499109427
+Light Heavyweight,Bogdan Guskov,15,15,0.15229997547434404
+Light Heavyweight,Alonzo Menifield,16,16,0.11293559662157837
+Light Heavyweight,Navajo Stirling,17,17,0.0681501206019733
+Light Heavyweight,Rodolfo Bellato,18,18,0.034324126529223786
+Light Heavyweight,Dustin Jacoby,19,19,0.015828072783096836
+Light Heavyweight,Ibo Aslan,20,20,-0.03561862283724455
+Light Heavyweight,Vitor Petrino,21,21,-0.05127439591884872
+Light Heavyweight,Philipe Lins,22,22,-0.0630130256963769
+Light Heavyweight,Modestas Bukauskas,23,23,-0.09073263333371444
+Light Heavyweight,Paulo Costa,24,24,-0.09679910905804645
+Light Heavyweight,Tyson Pedro,25,25,-0.11462473346294764
+Light Heavyweight,Julius Walker,26,26,-0.12465603508855269
+Light Heavyweight,Jimmy Crute,27,27,-0.14584870848708487
+Light Heavyweight,Bruno Lopes,28,28,-0.20948540701835597
+Light Heavyweight,Magomed Gadzhiyasulov,29,29,-0.16670737661233348
+Light Heavyweight,Ovince Saint Preux,30,30,-0.16811931975451294
+Light Heavyweight,Ion Cutelaba,31,31,-0.23449388617134137
+Light Heavyweight,Billy Elekana,32,32,-0.2546241457406235
+Light Heavyweight,Ivan Erslan,33,33,-0.27962239493659496
+Light Heavyweight,Diyar Nurgozhay,34,34,-0.2905001525654956
+Light Heavyweight,Tuco Tokkos,35,35,-0.41558583571253743
+Light Heavyweight,Rafael Cerquiera,36,36,-0.43813336498104183
+Light Heavyweight,Marcin Prachnio,37,37,-0.457702868136176
+Light Heavyweight,Brendson Ribeiro,38,38,-0.4633177233695195
+Light Heavyweight,Zac Pauga,39,39,-0.5300268889462815
+Light Heavyweight,Devin Clark,40,40,-0.6237244584366779
+Light Heavyweight,Anthony Smith,41,41,-0.655993604982395
+Light Heavyweight,Ryan Spann,42,42,-0.7127430966619053
+Light Heavyweight,Anton Turkalj,43,43,-0.7341391292200158
+Light Heavyweight,Da Woon Jung,44,44,-0.8237762223501635
+Lightweight,Islam Makhachev,0,0,1.9726075976569817
+Lightweight,Charles Oliveira,1,1,1.5730868555107522
+Lightweight,Justin Gaethje,2,2,1.0766817702883436
+Lightweight,Arman Tsarukyan,3,3,0.9042922053712542
+Lightweight,Paddy Pimblett,4,4,0.798071148916233
+Lightweight,Dan Hooker,5,5,0.6995142921985413
+Lightweight,Mateusz Gamrot,6,6,0.7619313629357551
+Lightweight,Grant Dawson,7,7,0.731665053522035
+Lightweight,Renato Moicano,8,8,0.7289143828024329
+Lightweight,Joel Alvarez,9,9,0.5999382080176222
+Lightweight,Benoit Saint Denis,10,10,0.476084874175682
+Lightweight,Ignacio Bahamondes,11,11,0.4464896608331787
+Lightweight,Nazim Sadykhov,12,12,0.3608506905547527
+Lightweight,Chase Hooper,13,13,0.358941238604724
+Lightweight,Nasrat Haqparast,14,14,0.33419024231563943
+Lightweight,Rafael Fiziev,15,15,0.31988157705407017
+Lightweight,Manuel Torres,16,16,0.30028754686654874
+Lightweight,Jim Miller,17,17,0.2849240197510338
+Lightweight,Mauricio Ruffy,18,18,0.24203762362995768
+Lightweight,Jared Gordon,19,19,0.22109549182977123
+Lightweight,Chris Padilla,20,20,0.20795715877647436
+Lightweight,Diego Ferreira,21,21,0.20768799782241879
+Lightweight,Quillan Salkilld,22,22,0.19750437298392748
+Lightweight,Fares Ziam,23,23,0.18839792041133
+Lightweight,Mateusz Rebecki,24,24,0.16463400517236235
+Lightweight,Myktybek Orolbai,25,25,0.1423624965016521
+Lightweight,Ludovit Klein,26,26,0.12972508238158362
+Lightweight,Charlie Campbell,27,27,0.1288883207290499
+Lightweight,Chris Duncan,28,28,0.12377700181758083
+Lightweight,Drakkar Klose,29,29,0.117788438912964
+Lightweight,Kaue Fernandes,30,30,0.11621482761865193
+Lightweight,Nurullo Aliev,31,31,0.11030778081675899
+Lightweight,MarQuel Mederos,32,32,0.08785465098436987
+Lightweight,Mike Davis,33,33,0.0830899787489807
+Lightweight,King Green,34,34,0.07065635921045718
+Lightweight,Michael Johnson,35,35,0.045635578452291055
+Lightweight,Rafa Garcia,36,36,0.03952303176529075
+Lightweight,Esteban Ribovics,37,37,0.030260138676961562
+Lightweight,Nikolas Motta,38,38,0.005446301862275035
+Lightweight,Jordan Leavitt,39,39,0.004518744611893277
+Lightweight,Mason Jones,40,40,0.0
+Lightweight,Tom Nolan,41,41,-0.003947044749177481
+Lightweight,Daniel Zellhuber,42,42,-0.025618158288028346
+Lightweight,Evan Elder,43,43,-0.03138197921487206
+Lightweight,Claudio Puelles,44,44,-0.08869364645380695
+Lightweight,Elves Brener,45,45,-0.09122622315816732
+Lightweight,Trey Ogden,46,46,-0.09127349782408183
+Lightweight,Ismael Bonfim,47,47,-0.13835859988345717
+Lightweight,Terrance McKinney,48,48,-0.09172595202686218
+Lightweight,Bolaji Oki,49,49,-0.13022752971618562
+Lightweight,Alexander Hernandez,50,50,-0.14795473472985632
+Lightweight,Michael Aswell Jr.,51,51,-0.14962325639131682
+Lightweight,Vinc Pichel,52,52,-0.17545213143976446
+Lightweight,Loik Radzhabov,53,53,-0.179514332233274
+Lightweight,Joe Solecki,54,54,-0.19757971412586106
+Lightweight,Yanal Ashmouz,55,55,-0.20183147850943955
+Lightweight,Mark Choinski,56,56,-0.20618972415951695
+Lightweight,Matt Frevola,57,57,-0.21345140103994903
+Lightweight,Gauge Young,58,58,-0.22064222999919803
+Lightweight,Joaquim Silva,59,59,-0.2230453922908735
+Lightweight,Kody Steele,60,60,-0.2612114368595145
+Lightweight,Matheus Camilo,61,61,-0.26252269060990163
+Lightweight,Natan Levy,62,62,-0.27037041509048054
+Lightweight,Rongzhu,63,63,-0.2852896406177559
+Lightweight,Kyle Prepolec,64,64,-0.30478232377599035
+Lightweight,Mitch Ramirez,65,65,-0.3197205810320538
+Lightweight,Francisco Prado,66,66,-0.33040829211016287
+Lightweight,Kaynan Kruschewsky,67,67,-0.3337254741342759
+Lightweight,Jordan Vucenic,68,68,-0.3402388778951172
+Lightweight,Abdul-Kareem Al-Selwady,69,69,-0.3620825656854781
+Lightweight,Thiago Moises,70,70,-0.3646607026166863
+Lightweight,Michal Figlak,71,71,-0.36762065400120614
+Lightweight,Anshul Jubli,72,72,-0.37950189951601865
+Lightweight,James Llontop,73,73,-0.386968661247601
+Lightweight,Landon Quinones,74,74,-0.39651830319095693
+Lightweight,Mohammad Yahya,75,75,-0.4102846420126228
+Lightweight,Jai Herbert,76,76,-0.4126780973262846
+Lightweight,Michael Chandler,77,77,-0.42087988079687777
+Lightweight,Viacheslav Borshchev,78,78,-0.42509079265455274
+Lightweight,Alex Reyes,79,79,-0.45565544689494997
+Lightweight,Trevor Peek,80,80,-0.47235408837769544
+Lightweight,Victor Martinez,81,81,-0.4898407890681148
+Lightweight,Jamie Mullarkey,82,82,-0.5542177709093978
+Lightweight,Ottman Azaitar,83,83,-0.5562235528990364
+Lightweight,Jalin Turner,84,84,-0.5857022378079337
+Lightweight,Jeremy Stephens,85,85,-0.6099665448256648
+Lightweight,Guram Kutateladze,86,86,-0.6282633934909295
+Lightweight,Maheshate,87,87,-0.6453626426995526
+Lightweight,Kurt Holobaugh,88,88,-0.6937599248935886
+Lightweight,Drew Dober,89,89,-0.7020830310422365
+Lightweight,Gabriel Benitez,90,90,-0.7425148907872172
+Lightweight,Clay Guida,91,91,-0.7941340844192211
+Lightweight,Roosevelt Roberts,92,92,-0.8284519695139603
+Lightweight,Damir Hadzovic,93,93,-0.8881365942586219
+Lightweight,Ricky Glenn,94,94,-0.9643319734634248
+Lightweight,Austin Hubbard,95,95,-0.9794924963703461
+Lightweight,Christos Giagos,96,96,-1.0490337486691592
+Middleweight,Dricus Du Plessis,0,0,1.111460891667516
+Middleweight,Khamzat Chimaev,1,1,0.7423639514462903
+Middleweight,Robert Whittaker,2,2,0.7300118318225352
+Middleweight,Nassourdine Imavov,3,3,0.7011760488450636
+Middleweight,Sean Strickland,4,4,0.6594467247630754
+Middleweight,Roman Dolidze,5,5,0.5524771132688602
+Middleweight,Anthony Hernandez,6,6,0.47552261873914625
+Middleweight,Brendan Allen,7,7,0.504347747208691
+Middleweight,Caio Borralho,8,8,0.4365927762131223
+Middleweight,Jared Cannonier,9,9,0.4004922978128067
+Middleweight,Joe Pyfer,10,10,0.3012248827393693
+Middleweight,Israel Adesanya,11,11,0.2291259346801363
+Middleweight,Ismail Naurdiev,12,12,0.16532843566996303
+Middleweight,Roman Kopylov,13,13,0.1582784234599932
+Middleweight,Gregory Rodrigues,14,14,0.14419043955228658
+Middleweight,Shara Magomedov,15,15,0.13859015674639805
+Middleweight,Abus Magomedov,16,16,0.12715930420074362
+Middleweight,Jack Hermansson,17,17,0.12489296043495343
+Middleweight,Marco Tulio,18,18,0.12335743759912375
+Middleweight,Mansur Abdul-Malik,19,19,0.11861389170241007
+Middleweight,Cesar Almeida,20,20,0.11368279058309429
+Middleweight,Marvin Vettori,21,21,0.10955958649695899
+Middleweight,Michel Pereira,22,22,0.09580533932952764
+Middleweight,Kelvin Gastelum,23,23,0.09509265002074621
+Middleweight,JunYong Park,24,24,0.09314447444740674
+Middleweight,Andre Petroski,25,25,0.05908683030060344
+Middleweight,Rodolfo Vieira,26,26,0.0924119381605002
+Middleweight,Ikram Aliskerov,27,27,0.09119541772970503
+Middleweight,Azamat Bekoev,28,28,0.08709659591413424
+Middleweight,Bo Nickal,29,29,0.08148419471943949
+Middleweight,Nursulton Ruziboev,30,30,0.062911983463288
+Middleweight,Eryk Anders,31,31,0.03564681831894369
+Middleweight,Chris Weidman,32,32,0.055645915270247925
+Middleweight,Jacob Malkoun,33,33,0.03951883524045191
+Middleweight,Christian Leroy Duncan,34,34,0.027450683319307806
+Middleweight,Ateba Gautier,35,35,0.01422304635323151
+Middleweight,Edmen Shahbazyan,36,36,-0.03779727840918752
+Middleweight,Brunno Ferreira,37,37,-0.060286970748757315
+Middleweight,Aliaskhab Khizriev,38,38,-0.07164539551767253
+Middleweight,Makhmud Muradov,39,39,-0.07243679019732935
+Middleweight,Torrez Finney,40,40,-0.10596566365534502
+Middleweight,Ryan Loder,41,41,-0.10820922129407963
+Middleweight,Andre Muniz,42,42,-0.12826429529708888
+Middleweight,Gerald Meerschaert,43,43,-0.15986774229307993
+Middleweight,Ozzy Diaz,44,44,-0.21759019490648668
+Middleweight,Djorden Santos,45,45,-0.1679618859472231
+Middleweight,Zach Reese,46,46,-0.17888461771598577
+Middleweight,Chris Curtis,47,47,-0.20921348859783195
+Middleweight,Andrey Pulyaev,48,48,-0.2237526639569451
+Middleweight,Eric McConico,49,49,-0.2446262213292837
+Middleweight,Nick Klein,50,50,-0.24588974739128897
+Middleweight,Brad Tavares,51,51,-0.2644797421588147
+Middleweight,Cody Brundage,52,52,-0.27844627094040997
+Middleweight,Abdul Razak Alhassan,53,53,-0.2874857847897106
+Middleweight,Robert Valentin,54,54,-0.29479246077432586
+Middleweight,Robert Bryczek,55,55,-0.3410464651552733
+Middleweight,Tresean Gore,56,56,-0.36488396499141407
+Middleweight,Michal Oleksiejczuk,57,57,-0.3767791572726274
+Middleweight,Marc-Andre Barriault,58,58,-0.3914198466809776
+Middleweight,Jose Daniel Medina,59,59,-0.3982939562950889
+Middleweight,Antonio Trocoli,60,60,-0.40055383150442425
+Middleweight,Sedriques Dumas,61,61,-0.4320276342012895
+Middleweight,AJ Dobson,62,62,-0.448539618997632
+Middleweight,Dylan Budka,63,63,-0.4867557949690508
+Middleweight,Claudio Ribeiro,64,64,-0.49246551956802015
+Middleweight,Armen Petrosyan,65,65,-0.5076204107297917
+Middleweight,Josh Fremd,66,66,-0.5176170064704321
+Middleweight,Dustin Stoltzfus,67,67,-0.5525748993088171
+Middleweight,Paul Craig,68,68,-0.7215619121473049
+Middleweight,Warlley Alves,69,69,-0.8614789798794446
+Middleweight,Julian Marquez,70,70,-0.91538793525517
+Middleweight,Bryan Barberena,71,71,-0.9435888920678953
+Middleweight,Phil Hawes,72,72,-0.949700386194568
+Middleweight,Dusko Todorovic,73,73,-1.0095041775187068
+Middleweight,Bruno Silva,74,74,-1.0956866168093793
+Middleweight,Denis Tiuliulin,75,75,-1.1952934325225182
+Middleweight,Ihor Potieria,76,76,-1.2289946439545787
+Middleweight,Jamie Pickett,77,77,-1.5228774860017709
+Welterweight,Jack Della Maddalena,0,0,0.8503297831640533
+Welterweight,Belal Muhammad,1,1,1.2204041670350914
+Welterweight,Sean Brady,2,2,0.9045457923314089
+Welterweight,Leon Edwards,3,3,1.105353941790716
+Welterweight,Shavkat Rakhmonov,4,4,1.0235130433894999
+Welterweight,Ian Machado Garry,5,5,0.8326030628219525
+Welterweight,Joaquin Buckley,6,6,0.6808558874549709
+Welterweight,Michael Morales,7,7,0.6194754413582124
+Welterweight,Colby Covington,8,8,0.5367055683995776
+Welterweight,Geoff Neal,9,9,0.4325184322110233
+Welterweight,Carlos Prates,10,10,0.3777058530431099
+Welterweight,Rinat Fakhretdinov,11,11,0.34528559754611654
+Welterweight,Bryan Battle,12,12,0.30132903471589156
+Welterweight,Randy Brown,13,13,0.33351161628771
+Welterweight,Vicente Luque,14,14,0.2732529886984272
+Welterweight,Gunnar Nelson,15,15,0.27246307651352597
+Welterweight,Oban Elliott,16,16,0.2265203387003057
+Welterweight,Gabriel Bonfim,17,17,0.20785231774949237
+Welterweight,Jake Matthews,18,18,0.19246308043775606
+Welterweight,Mike Malott,19,19,0.1652459034715139
+Welterweight,Michael Page,20,20,0.1493250704822141
+Welterweight,Daniel Rodriguez,21,21,0.13636172293742835
+Welterweight,Andreas Gustafsson,22,22,0.12139010592093233
+Welterweight,Kevin Holland,23,23,0.0969871542765332
+Welterweight,Phil Rowe,24,24,0.07797120970122606
+Welterweight,Trey Waters,25,25,0.07716623875837123
+Welterweight,Sam Patterson,26,26,0.07670871719567479
+Welterweight,Elizeu Zaleski dos Santos,27,27,0.06681013939835004
+Welterweight,Jacobe Smith,28,28,0.05681590759959333
+Welterweight,Muslim Salikhov,29,29,0.02167250176883983
+Welterweight,Carlos Leal,30,30,0.020638304465298227
+Welterweight,Jeremiah Wells,31,31,0.016563046939129415
+Welterweight,Jonathan Micallef,32,32,0.011362739551928236
+Welterweight,Themba Gorimbo,33,33,0.009215121130613402
+Welterweight,Li Jingliang,34,34,0.001953220001139816
+Welterweight,Nicolas Dalby,35,35,0.0
+Welterweight,Punahele Soriano,36,36,-0.04770517736893383
+Welterweight,Santiago Ponzinibbio,37,37,-0.051811446896282046
+Welterweight,Ramiz Brahimaj,38,38,-0.061869087723365364
+Welterweight,Uros Medic,39,39,-0.07337308261934322
+Welterweight,Max Griffin,40,40,-0.09181334966819028
+Welterweight,Danny Barlow,41,41,-0.09720073861345874
+Welterweight,Chidi Njokuani,42,42,-0.10252702367951316
+Welterweight,Neil Magny,43,43,-0.11022996768976438
+Welterweight,Stephen Thompson,44,44,-0.1109290585696937
+Welterweight,Khaos Williams,45,45,-0.12063305070470717
+Welterweight,Kevin Jousset,46,46,-0.12156584138674884
+Welterweight,Charles Radtke,47,47,-0.1646370498669411
+Welterweight,Ange Loosa,48,48,-0.17335405275581628
+Welterweight,Carlston Harris,49,49,-0.1789863252091535
+Welterweight,Gabe Green,50,50,-0.18222150674300278
+Welterweight,Billy Ray Goff,51,51,-0.1978267374253615
+Welterweight,Zachary Scroggin,52,52,-0.20653579179030462
+Welterweight,Bassil Hafez,53,53,-0.22379273748437428
+Welterweight,Rafael Dos Anjos,54,54,-0.2254358191810108
+Welterweight,Daniel Frunza,55,55,-0.2315491367670256
+Welterweight,Court McGee,56,56,-0.2595927919238567
+Welterweight,Adam Fugitt,57,57,-0.28045178496393103
+Welterweight,Nikolay Veretennikov,58,58,-0.30719975367822416
+Welterweight,Rolando Bedoya,59,59,-0.3125024579230178
+Welterweight,Gilbert Urbina,60,60,-0.3513085620070398
+Welterweight,Pete Rodriguez,61,61,-0.35359682452702
+Welterweight,Gilbert Burns,62,62,-0.3859040079628925
+Welterweight,Preston Parsons,63,63,-0.39910832048865674
+Welterweight,Song Kenan,64,64,-0.4334441256691568
+Welterweight,Kiefer Crosbie,65,65,-0.4354400201299284
+Welterweight,Josh Quinlan,66,66,-0.4389290533030093
+Welterweight,Val Woodburn,67,67,-0.4832834987368938
+Welterweight,Jared Gooden,68,68,-0.5161337357416275
+Welterweight,Trevin Giles,69,69,-0.5566657881722139
+Welterweight,Darrius Flowers,70,70,-0.5744339980487619
+Welterweight,Yohan Lainesse,71,71,-0.6490606484605805
+Welterweight,Miguel Baeza,72,72,-0.6764895210967737
+Welterweight,Tony Ferguson,73,73,-0.7348979008693032
+Welterweight,Mickey Gall,74,74,-0.7786191423435818
+Welterweight,Alex Morono,75,75,-0.7999750433749656
+Welterweight,Rhys McKee,76,76,-0.9535498999028551
+Welterweight,Tim Means,77,77,-0.9560958107977602
+Welterweight,Matthew Semelsberger,78,78,-0.9936719082753676
+Women's Bantamweight,Kayla Harrison,0,0,0.6232164160579818
+Women's Bantamweight,Julianna Pena,1,1,0.40694617700743074
+Women's Bantamweight,Raquel Pennington,2,2,0.7465887990949074
+Women's Bantamweight,Ketlen Vieira,3,3,0.21796875
+Women's Bantamweight,Macy Chiasson,4,4,0.5789178586389652
+Women's Bantamweight,Norma Dumont,5,5,0.5019597916839397
+Women's Bantamweight,Holly Holm,6,6,0.2775231111838379
+Women's Bantamweight,Germaine de Randamie,7,7,0.2556275721759126
+Women's Bantamweight,Irene Aldana,8,8,0.23109404353531526
+Women's Bantamweight,Jacqueline Cavalcanti,9,9,0.12738213565085804
+Women's Bantamweight,Nora Cornolle,10,10,0.17886562198870862
+Women's Bantamweight,Ailin Perez,11,11,0.15987686748597277
+Women's Bantamweight,Melissa Gatto,12,12,0.15223470841576062
+Women's Bantamweight,Karol Rosa,13,13,0.024221290427640207
+Women's Bantamweight,Yana Santos,14,14,-0.035921898745264025
+Women's Bantamweight,Joselyne Edwards,15,15,-0.06819186174828258
+Women's Bantamweight,Miesha Tate,16,16,-0.09439595371494389
+Women's Bantamweight,Melissa Mullins,17,17,-0.17397654548127015
+Women's Bantamweight,Tainara Lisboa,18,18,-0.2619384029917443
+Women's Bantamweight,Priscila Cachoeira,19,19,-0.3484626302055602
+Women's Bantamweight,Montse Rendon,20,20,-0.366700591912406
+Women's Bantamweight,Daria Zhelezniakova,21,21,-0.38388844410176504
+Women's Bantamweight,Julia Avila,22,22,-0.4379914802860836
+Women's Bantamweight,Klaudia Sygula,23,23,-0.46679696711331753
+Women's Bantamweight,Hailey Cowan,24,24,-0.4884874707444614
+Women's Bantamweight,Josiane Nunes,25,25,-0.5265791690595815
+Women's Bantamweight,Tamires Vidal,26,26,-0.6041204624538564
+Women's Bantamweight,Chelsea Chandler,27,27,-0.6397098129978384
+Women's Bantamweight,Pannie Kianzad,28,28,-0.791699019156731
+Women's Bantamweight,Mayra Bueno Silva,29,29,-0.8216670455234912
+Women's Bantamweight,Lucie Pudilova,30,30,-1.1144464583160603
+Women's Flyweight,Valentina Shevchenko,0,0,1.1461318214015181
+Women's Flyweight,Erin Blanchfield,1,1,0.7303410356946243
+Women's Flyweight,Natalia Silva,2,2,0.6866344046868604
+Women's Flyweight,Rose Namajunas,3,3,0.667905521545653
+Women's Flyweight,Manon Fiorot,4,4,0.7656448471565905
+Women's Flyweight,Maycee Barber,5,5,0.515680021998675
+Women's Flyweight,Alexa Grasso,6,6,0.4305913720540248
+Women's Flyweight,Jasmine Jasudavicius,7,7,0.3566913143282795
+Women's Flyweight,Miranda Maverick,8,8,0.3019857427447095
+Women's Flyweight,Jessica Andrade,9,9,0.2799906697438499
+Women's Flyweight,Karine Silva,10,10,0.2234962670459799
+Women's Flyweight,Katlyn Cerminara,11,11,0.21319859466737973
+Women's Flyweight,Casey O'Neill,12,12,0.1196971966616821
+Women's Flyweight,Luana Santos,13,13,0.17288868388072207
+Women's Flyweight,Tracy Cortez,14,14,0.13006625756851592
+Women's Flyweight,Wang Cong,15,15,0.09033054108606683
+Women's Flyweight,Amanda Ribas,16,16,0.012782789974386477
+Women's Flyweight,Viviane Araujo,17,17,0.0035162936707212877
+Women's Flyweight,Dione Barbosa,18,18,-0.02363229778338586
+Women's Flyweight,Carli Judice,19,19,-0.05056376906153044
+Women's Flyweight,Joanne Wood,20,20,-0.056477600281834434
+Women's Flyweight,JJ Aldrich,21,21,-0.062436144204047805
+Women's Flyweight,Luana Carolina,22,22,-0.08259429471832996
+Women's Flyweight,Ernesta Kareckaite,23,23,-0.09791475219376314
+Women's Flyweight,Jamey-Lyn Horth,24,24,-0.1229557695961601
+Women's Flyweight,Nicolle Caliari,25,25,-0.14955585691487436
+Women's Flyweight,Gabriella Fernandes,26,26,-0.18447902863494375
+Women's Flyweight,Veronica Hardy,27,27,-0.1864444265122613
+Women's Flyweight,Montana De La Rosa,28,28,-0.1978468899521531
+Women's Flyweight,Yuneisy Duben,29,29,-0.2218768662053132
+Women's Flyweight,Juliana Miller,30,30,-0.27844994991721567
+Women's Flyweight,Ivana Petrovic,31,31,-0.23843896790729743
+Women's Flyweight,Maryna Moroz,32,32,-0.4443955146579568
+Women's Flyweight,Ariane da Silva,33,33,-0.47069024603489606
+Women's Flyweight,Julija Stoliarenko,34,34,-0.6716950839210984
+Women's Flyweight,Liang Na,35,35,-0.6817561405000249
+Women's Flyweight,Andrea Lee,36,36,-0.8571861694534313
+Women's Flyweight,Mariya Agapova,37,37,-0.9815656724782333
+Women's Flyweight,Victoria Leonardo,38,38,-1.1411573603377825
+Women's Strawweight,Zhang Weili,0,0,1.3414172099290407
+Women's Strawweight,Virna Jandiroba,1,1,0.9566563718764012
+Women's Strawweight,Mackenzie Dern,2,2,0.669163291758851
+Women's Strawweight,Gillian Robertson,3,3,0.6646058186270252
+Women's Strawweight,Tatiana Suarez,4,4,0.8088134077062796
+Women's Strawweight,Amanda Lemos,5,5,0.6267094501911133
+Women's Strawweight,Yan Xiaonan,6,6,0.5760010797233318
+Women's Strawweight,Tecia Pennington,7,7,0.5304774122892202
+Women's Strawweight,Iasmin Lucindo,8,8,0.4568872452494101
+Women's Strawweight,Carla Esparza,9,9,0.4057786497511322
+Women's Strawweight,Jaqueline Amorim,10,10,0.4022516636681497
+Women's Strawweight,Loopy Godinez,11,11,0.36194475037660145
+Women's Strawweight,Tabatha Ricci,12,12,0.23080971903300557
+Women's Strawweight,Angela Hill,13,13,0.3067559463494829
+Women's Strawweight,Loma Lookboonmee,14,14,0.18427589809635328
+Women's Strawweight,Denise Gomes,15,15,0.22045384783587715
+Women's Strawweight,Shi Ming,16,16,0.16755751994794335
+Women's Strawweight,Alexia Thainara,17,17,0.1226151287226766
+Women's Strawweight,Shauna Bannon,18,18,0.09390287038532234
+Women's Strawweight,Fatima Kline,19,19,0.04839312213033894
+Women's Strawweight,Stephanie Luciano,20,20,0.032578156002171156
+Women's Strawweight,Piera Rodriguez,21,21,0.018357423948977852
+Women's Strawweight,Eduarda Moura,22,22,0.00992959072451248
+Women's Strawweight,Ariane Carnelossi,23,23,0.0018183865358906356
+Women's Strawweight,Josefine Knutsson,24,24,0.0
+Women's Strawweight,Ketlen Souza,25,25,-0.006412298004823791
+Women's Strawweight,Talita Alencar,26,26,-0.04481252296949037
+Women's Strawweight,Melissa Martinez,27,27,-0.05201643542956762
+Women's Strawweight,Julia Polastri,28,28,-0.06316926426746224
+Women's Strawweight,Feng Xiaocan,29,29,-0.0750878467608854
+Women's Strawweight,Yazmin Jauregui,30,30,-0.08050783625932673
+Women's Strawweight,Karolina Kowalkiewicz,31,31,-0.08157639586268571
+Women's Strawweight,Alice Ardelean,32,32,-0.09564646489193909
+Women's Strawweight,Sam Hughes,33,33,-0.10346207614886636
+Women's Strawweight,Puja Tomar,34,34,-0.19789172231915236
+Women's Strawweight,Viktoriia Dudakova,35,35,-0.20845849864675645
+Women's Strawweight,Marina Rodriguez,36,36,-0.24987801082683236
+Women's Strawweight,Cory McKenna,37,37,-0.2702933199769466
+Women's Strawweight,Rayanne dos Santos,38,38,-0.302580249426596
+Women's Strawweight,Emily Ducote,39,39,-0.35861455814176724
+Women's Strawweight,Marnic Mann,40,40,-0.44146837381545523
+Women's Strawweight,Bruna Brasil,41,41,-0.4825193842129153
+Women's Strawweight,Jessica Penne,42,42,-0.5631329517164656
+Women's Strawweight,Vanessa Demopoulos,43,43,-0.6163678355082269
+Women's Strawweight,Elise Reed,44,44,-0.6768676007986251
+Women's Strawweight,Polyana Viana,45,45,-0.8387019307106789
+Women's Strawweight,Luana Pinheiro,46,46,-0.845455576545395
+Women's Strawweight,Molly McCann,47,47,-0.8648207786746789
+Women's Strawweight,Michelle Waterson-Gomez,48,48,-1.0080974327160055
+Women's Strawweight,Diana Belbita,49,49,-1.068723243924841
+Women's Strawweight,Istela Nunes,50,50,-1.3696265598902797
