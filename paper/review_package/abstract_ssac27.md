@@ -1,6 +1,6 @@
 # Performance-Adjusted Elo for Mixed Martial Arts: In-Fight Statistics Improve UFC Rankings and Measure the Card-Quality Gap
 
-Track: Other Sports. Author: Brayton Smith, PhD, MBA. Repository: https://github.com/braytonsmith-dev/real-fighter-rankings
+Track: Other Sports. Author: Brayton Smith, PhD, MBA. Repository: https://github.com/braytonsmith-dev/mma-lab
 
 ## Introduction
 
